@@ -3,7 +3,7 @@ Repository for our first project!<br>
 Opgaver:
 <li>Du skal tilegne dig kendskab til GitHub.</li>
 
-<b>Programmerings standard</b><br>
+<b>Programmerings standard</b><br><br>
 
 <li>Al programmering foregår på engelsk, dette gælder også kommentarer</li>
 <li>Der skal skrives fyldestgørende kommentarer</li>
