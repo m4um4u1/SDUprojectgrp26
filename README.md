@@ -1,7 +1,7 @@
 # SDUprojectgrp26
-repository for our first project <br>
+Repository for our first project <br>
 Opgaver:<br>
-Du skal tilegne dig kendskab til GitHub.
+<li>Du skal tilegne dig kendskab til GitHub.</li>
 
 <b>Programmerings standard</b><br>
 
