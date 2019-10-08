@@ -4,12 +4,12 @@ Opgaver:<br>
 Du skal tilegne dig kendskab til GitHub.
 
 Programmerings standard<br>
-Al programmering foregår på engelsk, dette gælder også kommentarer<br>
-Der skal skrives fyldestgørende kommentarer<br>
-Vi følger standarden givet af undervisningen<br>
-Camelcase (små bogstaver ved variabler og store ved klasser, objekter)<br>
-Lav korrekte indhug<br>
-Beskrivende navne (indenfor rimelighed)<br>
+<li>Al programmering foregår på engelsk, dette gælder også kommentarer</li>
+<li>Der skal skrives fyldestgørende kommentarer</li>
+<li>Vi følger standarden givet af undervisningen</li>
+<li>Camelcase (små bogstaver ved variabler og store ved klasser, objekter)</li>
+<li>Lav korrekte indhug</li>
+<li>Beskrivende navne (indenfor rimelighed)</li>
 Undgå at lave implicitte kodestykker (fx constructors)<br>
 Brug this, super og lign. så man kan se ophav<br>
 Så vidt muligt skriv forståelige kode med korrekt grammatik<br>
