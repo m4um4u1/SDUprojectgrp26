@@ -1,9 +1,9 @@
 # SDUprojectgrp26
 Repository for our first project!<br>
 Opgaver:
-<li>Du skal tilegne dig kendskab til GitHub.</li>
+<li>Du skal tilegne dig kendskab til GitHub.</li><br>
 
-<b>Programmerings standard</b><br><br>
+<b>Programmerings standard</b><br>
 
 <li>Al programmering foregår på engelsk, dette gælder også kommentarer</li>
 <li>Der skal skrives fyldestgørende kommentarer</li>
