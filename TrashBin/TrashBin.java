@@ -1,4 +1,4 @@
-package worldofzuul.TrashBin;
+package TrashBin;
 
 //SuperClass
 public class TrashBin {
@@ -19,7 +19,4 @@ public class TrashBin {
     public void setPlace(String Place) {
         this.Place = Place;
     }
-    
-    
-    
 }
