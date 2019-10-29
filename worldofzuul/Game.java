@@ -10,12 +10,14 @@ public class Game
     private Room currentRoom;
     ArrayList<Trash> inventory = new ArrayList<Trash>();
     Room livingRoom, kitchen, homeOffice, entre, driveway;
+    private Metadata metaData;
         
 
     public Game() 
     {
         createRooms();
         parser = new Parser();
+        metaData = new Metadata();
     }
 
     //Our rooms - which room to start in?
@@ -170,6 +172,7 @@ public class Game
             return false;
         }
         else {
+            metaData.flushData(currentRoom.getShortDescription());
             return true;
         }
     }
