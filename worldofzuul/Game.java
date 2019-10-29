@@ -1,7 +1,7 @@
 package worldofzuul;
 
 import java.util.ArrayList;
-
+import Trash.*;
 
 //Added an arraylist of inventory 
 public class Game 
@@ -44,14 +44,12 @@ public class Game
         
         
         //added these for testing
-        entre.setTrash(new Trash ("plastic"));
-        entre.setTrash(new Trash ("bird"));
+        entre.setTrash(new TrashPlastic(1,"name","description432"));
     }
 
     public void play() 
     {            
         printWelcome();
-
                 
         boolean finished = false;
         while (! finished) {
@@ -175,6 +173,5 @@ public class Game
             return true;
         }
     }
-
-    
+  
 }
