@@ -1,4 +1,4 @@
-package worldofzuul.TrashBin;
+package TrashBin;
 
 
 public class CardboardPaper extends TrashBin {
