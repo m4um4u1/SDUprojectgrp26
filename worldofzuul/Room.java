@@ -61,7 +61,7 @@ public class Room
     //Method to grab the trash IF there is any and it matches the input 
     public Trash getTrash (String trashName) {
         for (int i = 0; i < trash.size(); i++) {
-            if (trash.get(i).getDescription().equals(trashName)) {
+            if (trash.get(i).getName().equals(trashName)) {
                 return trash.get(i);
             }
             
@@ -78,7 +78,7 @@ public class Room
     public String getRoomTrash() {
         String output = "";
         for (int i = 0; i < trash.size(); i++) {
-            output += trash.get(i).getDescription() + " ";
+            output += trash.get(i).getName() + " ";
         }
         return output;
     }
@@ -87,7 +87,7 @@ public class Room
     //Eventuelt lav et for each loop
     public void removeTrash (String trashName) {
         for (int i = 0; i < trash.size(); i++) {
-            if (trash.get(i).getDescription().equals(trashName)) {
+            if (trash.get(i).getName().equals(trashName)) {
                 trash.remove(i);
             }
         }
