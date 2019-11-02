@@ -109,8 +109,8 @@ public class Game
     //Method to print the inventory - prints the String as well as the trash held
     private void printInventory() {
         String output = "";
-        for (int i = 0; i < inventory.size(); i++) {
-            output += inventory.get(i).getName() + " ";
+        for (Trash item : inventory) {
+            output = item.getName() + " ";
         }
         System.out.println("Your inventory currently contains: ");
         System.out.println(output);
@@ -145,9 +145,9 @@ public class Game
         }
         String trash = command.getSecondWord();
         String output = null;
-        for (int i = 0; i < inventory.size(); i++) {
-            if (inventory.get(i).getName().equals(trash)) {
-                output = inventory.get(i).getDescription() + " ";
+        for (Trash item : inventory) {
+            if (item.getName().equals(trash)) {
+                output = item.getDescription() + " ";
             }
         }
         System.out.println(output);
