@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
 import Trash.*;
+import TrashBin.*;
 
 public class Room 
 {
@@ -12,14 +13,46 @@ public class Room
     //Adding arraylist of trash in rooms
     private String description;
     private HashMap<String, Room> exits;
+    private TrashBin trashbin;
     ArrayList<Trash> trash = new ArrayList<Trash>();
 
+    //Used if there isn't any trash or trashbin(s) in the room
     public Room(String description) 
     {
         this.description = description;
         exits = new HashMap<String, Room>();
     }
-
+    
+    //Used if there is a trashbin but no trash
+    public Room(String description, TrashBin trashbin) {
+        this.description = description;
+        exits = new HashMap<String, Room>();
+        this.trashbin = trashbin;
+    }
+    
+    //Used if there is trash but no trashbin
+    public Room(String description, ArrayList<Trash> trash) {
+       this.description = description;
+       exits = new HashMap<String, Room>();
+       
+       //Saves all elements from input ArrayList into object ArrayList
+       for (int i = 0; i < trash.size(); i++) {
+           this.trash.add(trash.get(i));
+       }
+    }
+    
+    //Used if there is trash and a trashbin
+    public Room(String description, TrashBin trashbin, ArrayList<Trash> trash) {
+       this.description = description;
+       exits = new HashMap<String, Room>();
+       this.trashbin = trashbin;
+       
+       //Saves all elements from input ArrayList into object ArrayList
+       for (int i = 0; i < trash.size(); i++) {
+           this.trash.add(trash.get(i));
+       }
+    }
+    
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
