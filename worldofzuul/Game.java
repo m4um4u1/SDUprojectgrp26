@@ -2,6 +2,8 @@ package worldofzuul;
 
 import java.util.ArrayList;
 import Trash.*;
+import TrashBin.*;
+import java.util.Iterator;
 
 //Added an arraylist of inventory 
 public class Game 
@@ -99,6 +101,9 @@ public class Game
         else if (commandWord == CommandWord.GRAB) {
             grabTrash(command);
         }
+        else if (commandWord == CommandWord.DEPOSIT) {
+            depositTrash(command);
+        }
         return wantToQuit;
     }
     
@@ -135,6 +140,39 @@ public class Game
         }
     }
         
+    private void depositTrash(Command command) {
+        if(!command.hasSecondWord()) {
+            System.out.println("Deposit what?");
+            return;
+        }
+        
+        String trash = command.getSecondWord();
+        
+        // Added this trash bin in the entre for deposit testing:
+        Plastic test = new Plastic(1, entre.getShortDescription());
+        // Adding trash bins to rooms like how setExit works might be ideal for full implementation.
+        
+        // Iterates the Trash inventory:
+        // (Had to use an iterator in order to be able to remove from inventory after depositing (ConcurrentModificationException))
+        for (Iterator<Trash> itr = inventory.iterator(); itr.hasNext();) {
+            Trash t = itr.next();
+            // Checks if inventory trash String name matches requested trash String name:
+            if (t.getDescription().equals(trash)) { // Why are we grabbing trash by description atm? Change this to getName instead when changed I presume.
+                System.out.println("You deposit " + trash + " from your inventory");
+                // Checks if requested inventory trash type matches room bin trash type && current room is bin location:
+                if (t.getTrashType() == test.getTrashtype() && currentRoom.getShortDescription().equals(test.getPlace())) {
+                    System.out.println("That's the correct bin! You gained 100 points!");
+                    metaData.updateScore(100);
+                } else {
+                    System.out.println("Whoops! That didn't seem right... You lost 1000000000 points LUUUL");
+                    metaData.updateScore(-1000000000);
+                }
+                itr.remove();
+            } else {
+            System.out.println(trash + " was not found in inventory!");
+            }
+        }
+    }
 
     private void printHelp() 
     {

@@ -2,13 +2,18 @@ package TrashBin;
 
 
 public class CardboardPaper extends TrashBin {
+    private final int trashtype = 2;
 
-    public CardboardPaper(String place) {
-        super(place);
+    public CardboardPaper(int id,String place) {
+        super(id,place);
     }
     @Override
     public void setPlace (String place) {
         super.setPlace(place);
+    }
+
+    public int getTrashtype() {
+        return trashtype;
     }
     
 }
