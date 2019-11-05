@@ -26,11 +26,23 @@ public class Game
     //Our rooms - which room to start in?
     private void createRooms()
     {   
+
         livingRoom = new Room("in the living room", new ResidualWaste(livingRoom, 4, "test1"));
         kitchen = new Room("in the kitchen", new Organic(kitchen,5, "test5"));
         homeOffice = new Room("in the home office", new CardboardPaper(homeOffice, 2, "test2"));
         entre = new Room("in the entre",new Plastic(entre, 1, "test1"));
         driveway = new Room("outside in the driveway", new MetalGlass(driveway, 3, "test3"));
+        
+        //Adds Trash into each Room object.
+        livingRoom  .addTrash(new TrashMetalGlas(1,"Jakabov","dåsen er desværre er tom ;("))
+                    .addTrash(new TrashPaperCardboard(2,"Toiletrulle","Der er ikke mere papir"));
+        kitchen     .addTrash(new TrashResidualWaste(3,"Pringlesrør","Den er tom og føles som pap"));
+        homeOffice  .addTrash(new TrashPlastic(4,"Smørlåg","Den er helt ren, undersiden ligner papir og plastik blandet"));
+        entre       .addTrash(new TrashResidualWaste(5,"Pizzabakke","Der er stadig en slice!"))
+                    .addTrash(new TrashOrganic(6,"Pizzaslice","Dejlig hård"));
+        driveway    .addTrash(new TrashOrganic (7,"Bananskræl","meget brun"))
+                    .addTrash(new TrashPlastic (8,"Sugerør","et rundt cylinder"));        
+       
         
         //Adds Trash into each Room object.
         livingRoom  .addTrash(new TrashMetalGlas(1,"Jakabov","dåsen er desværre er tom ;("))
@@ -124,7 +136,7 @@ public class Game
     private void printInventory() {
         String output = "";
         for (Trash item : inventory) {
-            output = item.getName() + " ";
+            output += item.getName() + " ";
         }
         System.out.println("Your inventory currently contains: ");
         System.out.println(output);
