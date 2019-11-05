@@ -25,22 +25,28 @@ public class Game
 
     //Our rooms - which room to start in?
     private void createRooms()
-    {
-        //For testing purposes
-        ArrayList<Trash> test = new ArrayList<Trash>();
-        test.add(new TrashOrganic(1,"sugerør","sugerør"));
+    {   
+        livingRoom = new Room("in the living room", new ResidualWaste(livingRoom, 4, "test1"));
+        kitchen = new Room("in the kitchen", new Organic(kitchen,5, "test5"));
+        homeOffice = new Room("in the home office", new CardboardPaper(homeOffice, 2, "test2"));
+        entre = new Room("in the entre",new Plastic(entre, 1, "test1"));
+        driveway = new Room("outside in the driveway", new MetalGlass(driveway, 3, "test3"));
         
-        //id and trashType hasn't been implemented yet
-        livingRoom = new Room("in the living room", new MetalGlass("living room"));
-        kitchen = new Room("in the kitchen", new Organic("kitchen"), test);
-        homeOffice = new Room ("in the home office");
-        entre = new Room("in the entre", test);
-        driveway = new Room ("outside in the driveway");
+        //Adds Trash into each Room object.
+        livingRoom  .addTrash(new TrashMetalGlas(1,"Jakabov","dåsen er desværre er tom ;("))
+                    .addTrash(new TrashPaperCardboard(2,"Toiletrulle","Der er ikke mere papir"));
+        kitchen     .addTrash(new TrashResidualWaste(3,"Pringlesrør","Den er tom og føles som pap"));
+        homeOffice  .addTrash(new TrashPlastic(4,"Smørlåg","Den er helt ren, undersiden ligner papir og plastik blandet"));
+        entre       .addTrash(new TrashResidualWaste(5,"Pizzabakke","Der er stadig en slice!"))
+                    .addTrash(new TrashOrganic(6,"Pizzaslice","Dejlig hård"));
+        driveway    .addTrash(new TrashOrganic (7,"Bananskræl","meget brun"))
+                    .addTrash(new TrashPlastic (8,"Sugerør","et rundt cylinder"));        
         
         driveway.setExit("north", entre);
 
         entre.setExit("south", driveway);
-        entre.setExit("west", homeOffice);       
+        entre.setExit("west", homeOffice);
+        entre.setExit("north", livingRoom);
 
         homeOffice.setExit("east", entre);
 
@@ -50,10 +56,6 @@ public class Game
         kitchen.setExit("west", livingRoom);
 
         currentRoom = driveway;
-        
-        
-        //added these for testing
-        entre.setTrash(new TrashPlastic(1,"Banan","en banan der blev spist"));
     }
 
     public void play() 
@@ -172,31 +174,27 @@ public class Game
         }
         
         String trash = command.getSecondWord();
-        
-        // Added this trash bin in the entre for deposit testing:
-        Plastic test = new Plastic(1, entre.getShortDescription());
-        // Adding trash bins to rooms like how setExit works might be ideal for full implementation.
-        
+
         // Iterates the Trash inventory:
         // (Had to use an iterator in order to be able to remove from inventory after depositing (ConcurrentModificationException))
-        for (Iterator<Trash> itr = inventory.iterator(); itr.hasNext();) {
-            Trash t = itr.next();
-            // Checks if inventory trash String name matches requested trash String name:
-            if (t.getDescription().equals(trash)) { // Why are we grabbing trash by description atm? Change this to getName instead when changed I presume.
-                System.out.println("You deposit " + trash + " from your inventory");
-                // Checks if requested inventory trash type matches room bin trash type && current room is bin location:
-                if (t.getTrashType() == test.getTrashtype() && currentRoom.getShortDescription().equals(test.getPlace())) {
-                    System.out.println("That's the correct bin! You gained 100 points!");
-                    metaData.updateScore(100);
-                } else {
-                    System.out.println("Whoops! That didn't seem right... You lost 1000000000 points LUUUL");
-                    metaData.updateScore(-1000000000);
-                }
-                itr.remove();
-            } else {
-            System.out.println(trash + " was not found in inventory!");
-            }
-        }
+//        for (Iterator<Trash> itr = inventory.iterator(); itr.hasNext();) {
+//            Trash t = itr.next();
+//            // Checks if inventory trash String name matches requested trash String name:
+//            if (t.getDescription().equals(trash)) { // Why are we grabbing trash by description atm? Change this to getName instead when changed I presume.
+//                System.out.println("You deposit " + trash + " from your inventory");
+//                // Checks if requested inventory trash type matches room bin trash type && current room is bin location:
+//                if (t.getTrashType() == test.getTrashtype() && currentRoom.getShortDescription().equals(test.getPlace())) {
+//                    System.out.println("That's the correct bin! You gained 100 points!");
+//                    metaData.updateScore(100);
+//                } else {
+//                    System.out.println("Whoops! That didn't seem right... You lost 1000000000 points LUUUL");
+//                    metaData.updateScore(-1000000000);
+//                }
+//                itr.remove();
+//            } else {
+//            System.out.println(trash + " was not found in inventory!");
+//            }
+//        }
     }
 
     private void printHelp() 
