@@ -107,6 +107,12 @@ public class Room
         trash.add(newTrash);
     }
     
+    //Adds trash to the ArrayList trash    
+    public Room addTrash (Trash trash) {
+        this.trash.add(trash);
+        return this;
+    }
+    
     //Description of the trash in the rooms 
     public String getRoomTrash() {
         String output = "";
