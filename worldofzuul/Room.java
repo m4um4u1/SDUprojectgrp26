@@ -30,9 +30,10 @@ public class Room {
 
     //Used if there is trash but no trashbin
     public Room(String description, ArrayList<Trash> trash) {
-        this.description = description;
-        exits = new HashMap<String, Room>();
 
+       this.description = description;
+       exits = new HashMap<String, Room>();
+       
         //Saves all elements from input ArrayList into object ArrayList
 //        for (int i = 0; i < trash.size(); i++) {
 //            this.trash.add(trash.get(i));
@@ -60,18 +61,22 @@ public class Room {
         return description;
     }
 
-    public String getLongDescription() {
-        return "You are " + description + ".\n" + getExitString();
+
+    public String getLongDescription()
+    {
+        return "Du er " + description + ".\n" + getExitString();
     }
 
     //Added: Showing what trash is in the room when entering
-    private String getExitString() {
-        String returnString = "Exits:";
+    private String getExitString()
+    {
+        String returnString = "Udgange:";
+
         Set<String> keys = exits.keySet();
         for (String exit : keys) {
             returnString += " " + exit;
         }
-        returnString += "\nTrash in the room: \n";
+        returnString += "\n" + "\n" + "Affald i rummet: \n";
         returnString += getRoomTrash();
         return returnString;
     }
@@ -97,7 +102,7 @@ public class Room {
     }
 
     //Adds trash to the ArrayList trash    
-    public Room addTrash(Trash trash) {
+    public Room addTrash (Trash trash) {
         this.trash.add(trash);
         return this;
     }
@@ -120,9 +125,10 @@ public class Room {
             }
         }
     }
-
-    public TrashBin getTrashBin() {
+  
+    public TrashBin getTrashbin() {
         return trashbin;
     }
+        
 }
 

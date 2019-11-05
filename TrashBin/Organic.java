@@ -1,20 +1,29 @@
 package TrashBin;
 
 
+import worldofzuul.Room;
+
 public class Organic extends TrashBin {
     private final int trashtype = 5;
+
+    public Organic(Room Place, int id, String trash) {
+        super(Place, id, trash);
+    }
     
-    public Organic(int id, String Place) {
-        super(id,Place);
+
+    @Override
+    public void setPlace(Room Place) {
+        super.setPlace(Place); 
     }
 
     @Override
-    public void setPlace(String Place) {
-        super.setPlace(Place); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public int getTrashtype() {
         return trashtype;
+    }
+
+    @Override
+    public String getTrash() {
+        return super.getTrash(); 
     }
     
     

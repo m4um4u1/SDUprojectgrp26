@@ -13,8 +13,8 @@ public abstract class Trash {
         this.description = description;
         this.feedback = feedback;
     }
-
-    public Trash(int id, String name, String description) {
+  
+    public Trash(int id, String name, String description){
         this.id = id;
         this.name = name;
         this.description = description;

@@ -15,6 +15,4 @@ public class TrashResidualWaste extends Trash {
     public int getTrashType() {
         return trashType;
     }
-
-
 }

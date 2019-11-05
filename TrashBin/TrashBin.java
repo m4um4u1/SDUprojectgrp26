@@ -1,25 +1,39 @@
 package TrashBin;
-import Trash.Trash;
+import worldofzuul.Room;
 
 //SuperClass
-public class TrashBin {
+public abstract class TrashBin {
     
     //attributter
-    private String Place;
-    private int id;
+    private Room Place;
+    public int id;
+    private String trash;
 
     //constructor
-    public TrashBin(int id, String Place) {
-        this.id = id;
+
+    public TrashBin(Room Place, int id, String trash) {
         this.Place = Place;
+        this.id = id;
+        this.trash = trash;
     }
 
     //metoder
-    public String getPlace() {
+    public Room getPlace() {
         return Place;
     }
 
-    public void setPlace(String Place) {
+    public void setPlace(Room Place) {
         this.Place = Place;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTrash() {
+        return trash;
+    }
+    
+    public abstract int getTrashtype();
+    
 }
