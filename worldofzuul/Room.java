@@ -102,9 +102,10 @@ public class Room
         return null;
     }
     
-    //Set a particular piece of trash in the room. 
-    public void setTrash (Trash newTrash) {
-        trash.add(newTrash);
+    //Adds trash to the ArrayList trash    
+    public Room addTrash (Trash trash) {
+        this.trash.add(trash);
+        return this;
     }
     
     //Description of the trash in the rooms 
