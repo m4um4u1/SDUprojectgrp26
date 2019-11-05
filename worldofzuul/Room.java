@@ -7,9 +7,8 @@ import java.util.Iterator;
 import Trash.*;
 import TrashBin.*;
 
-public class Room 
-{
-    
+public class Room {
+
     //Adding arraylist of trash in rooms
     private String description;
     private HashMap<String, Room> exits;
@@ -17,98 +16,98 @@ public class Room
     ArrayList<Trash> trash = new ArrayList<Trash>();
 
     //Used if there isn't any trash or trashbin(s) in the room
-    public Room(String description) 
-    {
+    public Room(String description) {
         this.description = description;
         exits = new HashMap<String, Room>();
     }
-    
+
     //Used if there is a trashbin but no trash
     public Room(String description, TrashBin trashbin) {
         this.description = description;
         exits = new HashMap<String, Room>();
         this.trashbin = trashbin;
     }
-    
+
     //Used if there is trash but no trashbin
     public Room(String description, ArrayList<Trash> trash) {
+
        this.description = description;
        exits = new HashMap<String, Room>();
        
-       //Saves all elements from input ArrayList into object ArrayList
-       for (int i = 0; i < trash.size(); i++) {
-           this.trash.add(trash.get(i));
-       }
+        //Saves all elements from input ArrayList into object ArrayList
+//        for (int i = 0; i < trash.size(); i++) {
+//            this.trash.add(trash.get(i));
+//        }
+        // MIGHT WANT TO DELETE THIS CLUTTER, HAS NO USE SO FAR
     }
-    
+
     //Used if there is trash and a trashbin
     public Room(String description, TrashBin trashbin, ArrayList<Trash> trash) {
-       this.description = description;
-       exits = new HashMap<String, Room>();
-       this.trashbin = trashbin;
-       
-       //Saves all elements from input ArrayList into object ArrayList
-       for (int i = 0; i < trash.size(); i++) {
-           this.trash.add(trash.get(i));
-       }
+        this.description = description;
+        exits = new HashMap<String, Room>();
+        this.trashbin = trashbin;
+
+        //Saves all elements from input ArrayList into object ArrayList
+        for (int i = 0; i < trash.size(); i++) {
+            this.trash.add(trash.get(i));
+        }
     }
-    
-    public void setExit(String direction, Room neighbor) 
-    {
+
+    public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);
     }
 
-    public String getShortDescription()
-    {
+    public String getShortDescription() {
         return description;
     }
 
+
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "Du er " + description + ".\n" + getExitString();
     }
     
     //Added: Showing what trash is in the room when entering
     private String getExitString()
     {
-        String returnString = "Exits:";
+        String returnString = "Udgange:";
+
         Set<String> keys = exits.keySet();
-        for(String exit : keys) {
+        for (String exit : keys) {
             returnString += " " + exit;
         }
-        returnString += "\nTrash in the room: \n";
+        returnString += "\n" + "\n" + "Affald i rummet: \n";
         returnString += getRoomTrash();
         return returnString;
     }
 
-    public Room getExit(String direction) 
-    {
+    public Room getExit(String direction) {
         return exits.get(direction);
     }
-    
+
     //Get trash from the room - the index 
-    public Trash getTrash (int index) {
+    public Trash getTrash(int index) {
         return trash.get(index);
     }
-    
+
     //Method to grab the trash IF there is any and it matches the input 
-    public Trash getTrash (String trashName) {
+    public Trash getTrash(String trashName) {
         for (int i = 0; i < trash.size(); i++) {
             if (trash.get(i).getName().equals(trashName)) {
                 return trash.get(i);
             }
-            
+
         }
         return null;
     }
-    
+
     //Adds trash to the ArrayList trash    
     public Room addTrash (Trash trash) {
         this.trash.add(trash);
         return this;
     }
-    
-    //Description of the trash in the rooms 
+
+    //Name of the trash in the rooms
     public String getRoomTrash() {
         String output = "";
         for (int i = 0; i < trash.size(); i++) {
@@ -116,18 +115,24 @@ public class Room
         }
         return output;
     }
-    
+
     //Method to remove the trash from the room after grabbing it. 
     //Eventuelt lav et for each loop
-    public void removeTrash (String trashName) {
+    public void removeTrash(String trashName) {
         for (int i = 0; i < trash.size(); i++) {
             if (trash.get(i).getName().equals(trashName)) {
                 trash.remove(i);
             }
         }
     }
+
     public String getTrashBinDescription() {
         return trashbin.getTrash();
+
+  
+    public TrashBin getTrashBin() {
+        return trashbin;
+
     }
         
 }
