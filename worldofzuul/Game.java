@@ -3,6 +3,7 @@ package worldofzuul;
 import java.util.ArrayList;
 import Trash.*;
 import TrashBin.*;
+
 import java.util.Iterator;
 
 //Added an arraylist of inventory 
@@ -25,11 +26,15 @@ public class Game
     //Our rooms - which room to start in?
     private void createRooms()
     {
-      
-        livingRoom = new Room("in the living room");
-        kitchen = new Room("in the kitchen");
+        //For testing purposes
+        ArrayList<Trash> test = new ArrayList<Trash>();
+        test.add(new TrashOrganic(1,"sugerør","sugerør"));
+        
+        //id and trashType hasn't been implemented yet
+        livingRoom = new Room("in the living room", new MetalGlass("living room"));
+        kitchen = new Room("in the kitchen", new Organic("kitchen"), test);
         homeOffice = new Room ("in the home office");
-        entre = new Room("in the entre");
+        entre = new Room("in the entre", test);
         driveway = new Room ("outside in the driveway");
         
         driveway.setExit("north", entre);
@@ -48,7 +53,7 @@ public class Game
         
         
         //added these for testing
-        entre.setTrash(new TrashPlastic(1,"name","description432"));
+        entre.setTrash(new TrashPlastic(1,"Banan","en banan der blev spist"));
     }
 
     public void play() 
@@ -74,7 +79,8 @@ public class Game
     }
 
     //Adding another commandword - INVENTORY, printing the inventory
-    //Adding another commandWord - GRAB, taking items 
+    //Adding another commandWord - GRAB, taking items
+    //Adding another commandWord - INSPECT, inspecting items
     private boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
@@ -101,8 +107,13 @@ public class Game
         else if (commandWord == CommandWord.GRAB) {
             grabTrash(command);
         }
+
         else if (commandWord == CommandWord.DEPOSIT) {
             depositTrash(command);
+        }
+      
+        else if (commandWord == CommandWord.INSPECT) {
+            inspectTrash(command);
         }
         return wantToQuit;
     }
@@ -110,8 +121,8 @@ public class Game
     //Method to print the inventory - prints the String as well as the trash held
     private void printInventory() {
         String output = "";
-        for (int i = 0; i < inventory.size(); i++) {
-            output += inventory.get(i).getDescription() + " ";
+        for (Trash item : inventory) {
+            output = item.getName() + " ";
         }
         System.out.println("Your inventory currently contains: ");
         System.out.println(output);
@@ -127,7 +138,6 @@ public class Game
 
         String trash = command.getSecondWord();
 
-        
         Trash newTrash = currentRoom.getTrash(trash);
 
         if (newTrash == null) {
@@ -138,6 +148,21 @@ public class Game
             currentRoom.removeTrash(trash);
             System.out.println("Grabbed: " + trash);
         }
+    }
+    //method to inspect the trash from inventory
+    private void inspectTrash(Command command) {
+        if(!command.hasSecondWord()) {
+            System.out.println("Inspect what?");
+            return;
+        }
+        String trash = command.getSecondWord();
+        String output = null;
+        for (Trash item : inventory) {
+            if (item.getName().equals(trash)) {
+                output = item.getDescription() + " ";
+            }
+        }
+        System.out.println(output);
     }
         
     private void depositTrash(Command command) {

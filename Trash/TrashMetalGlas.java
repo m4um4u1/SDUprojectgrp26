@@ -10,7 +10,7 @@ public class TrashMetalGlas extends Trash{
         super(id, name, description);
     }
 
-    @Override
+
     public int getTrashType() {
         return trashType;
     }
