@@ -24,4 +24,5 @@ public class MetalGlass extends TrashBin {
         return trashtype;
     }
     
+    
 }

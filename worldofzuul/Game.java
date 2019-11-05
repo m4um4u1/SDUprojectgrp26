@@ -26,12 +26,12 @@ public class Game
     //Our rooms - which room to start in?
     private void createRooms()
     {   
-        livingRoom = new Room("in the living room", new ResidualWaste(livingRoom, 4, "test1"));
-        kitchen = new Room("in the kitchen", new Organic(kitchen,5, "test5"));
-        homeOffice = new Room("in the home office", new CardboardPaper(homeOffice, 2, "test2"));
-        entre = new Room("in the entre",new Plastic(entre, 1, "test1"));
-        driveway = new Room("outside in the driveway", new MetalGlass(driveway, 3, "test3"));
-        
+        livingRoom = new Room("in the living room", new ResidualWaste(livingRoom, 4, "Der er en restaffald skraldspand"));
+        kitchen = new Room("in the kitchen", new Organic(kitchen,5, "Der er en organsik skraldspand"));
+        homeOffice = new Room("in the home office", new CardboardPaper(homeOffice, 2, "Der er en pap/papir skraldspand"));
+        entre = new Room("in the entre",new Plastic(entre, 1, "Der er en plastik skraldspand"));
+        driveway = new Room("outside in the driveway", new MetalGlass(driveway, 3, "Der er en metal/glas skraldspand"));
+
         //Adds Trash into each Room object.
         livingRoom  .addTrash(new TrashMetalGlas(1,"Jakabov","dåsen er desværre er tom ;("))
                     .addTrash(new TrashPaperCardboard(2,"Toiletrulle","Der er ikke mere papir"));
@@ -56,7 +56,10 @@ public class Game
         kitchen.setExit("west", livingRoom);
 
         currentRoom = driveway;
+        
+        
     }
+    
 
     public void play() 
     {            
@@ -78,6 +81,7 @@ public class Game
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoom.getTrashBinDescription());//skraldspand
     }
 
     //Adding another commandword - INVENTORY, printing the inventory
@@ -223,8 +227,11 @@ public class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+            System.out.println(currentRoom.getTrashBinDescription());//skraldspand
         }
+        
     }
+    
 
     private boolean quit(Command command) 
     {
