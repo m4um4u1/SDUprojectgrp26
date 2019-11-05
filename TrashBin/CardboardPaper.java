@@ -20,7 +20,6 @@ public class CardboardPaper extends TrashBin {
     }
     
       
-    @Override
     public int getTrashtype() {
         return trashtype;
     }

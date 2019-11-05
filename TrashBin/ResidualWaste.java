@@ -20,7 +20,6 @@ public class ResidualWaste extends TrashBin {
         super.setPlace(Place); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public int getTrashtype() {
         return trashtype;
     }

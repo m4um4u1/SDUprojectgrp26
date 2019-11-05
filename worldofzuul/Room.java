@@ -35,11 +35,10 @@ public class Room
        this.description = description;
        exits = new HashMap<String, Room>();
        
-        //Saves all elements from input ArrayList into object ArrayList
-//        for (int i = 0; i < trash.size(); i++) {
-//            this.trash.add(trash.get(i));
-//        }
-        // MIGHT WANT TO DELETE THIS CLUTTER, HAS NO USE SO FAR
+       //Saves all elements from input ArrayList into object ArrayList
+       for (int i = 0; i < trash.size(); i++) {
+           this.trash.add(trash.get(i));
+       }
     }
     
     //Used if there is trash and a trashbin
@@ -126,10 +125,6 @@ public class Room
                 trash.remove(i);
             }
         }
-    }
-
-    public TrashBin getTrashbin() {
-        return trashbin;
     }
         
 }

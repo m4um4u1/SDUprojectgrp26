@@ -15,7 +15,6 @@ public class Plastic extends TrashBin {
         super.setPlace(place);
     }
 
-    @Override
     public int getTrashtype() {
         return trashtype;
     }

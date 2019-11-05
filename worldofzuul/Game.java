@@ -178,24 +178,24 @@ public class Game
 
         // Iterates the Trash inventory:
         // (Had to use an iterator in order to be able to remove from inventory after depositing (ConcurrentModificationException))
-        for (Iterator<Trash> itr = inventory.iterator(); itr.hasNext();) {
-            Trash t = itr.next();
-            // Checks if inventory trash String name matches requested trash String name:
-            if (t.getName().equals(trash)) {
-                System.out.println("You deposit " + trash + " from your inventory");
-                // Checks if requested inventory trash type matches room bin trash type:
-                if (t.getTrashType() == (currentRoom.getTrashbin()).getTrashtype()) {
-                    System.out.println("That's the correct bin! You gained 100 points!");
-                    metaData.updateScore(100);
-                } else {
-                    System.out.println("Whoops! That didn't seem right... You lost 1000000000 points LUUUL");
-                    metaData.updateScore(-1000000000);
-                }
-                itr.remove();
-            } else {
-            System.out.println(trash + " was not found in inventory!");
-            }
-        }
+//        for (Iterator<Trash> itr = inventory.iterator(); itr.hasNext();) {
+//            Trash t = itr.next();
+//            // Checks if inventory trash String name matches requested trash String name:
+//            if (t.getDescription().equals(trash)) { // Why are we grabbing trash by description atm? Change this to getName instead when changed I presume.
+//                System.out.println("You deposit " + trash + " from your inventory");
+//                // Checks if requested inventory trash type matches room bin trash type && current room is bin location:
+//                if (t.getTrashType() == test.getTrashtype() && currentRoom.getShortDescription().equals(test.getPlace())) {
+//                    System.out.println("That's the correct bin! You gained 100 points!");
+//                    metaData.updateScore(100);
+//                } else {
+//                    System.out.println("Whoops! That didn't seem right... You lost 1000000000 points LUUUL");
+//                    metaData.updateScore(-1000000000);
+//                }
+//                itr.remove();
+//            } else {
+//            System.out.println(trash + " was not found in inventory!");
+//            }
+//        }
     }
 
     private void printHelp() 
