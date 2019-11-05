@@ -30,7 +30,9 @@ public class Metadata {
         
         // Prompts the player for a name:
         Scanner userInput = new Scanner(System.in);
+
         System.out.println("Indtast dit brugernavn:");
+
         System.out.print("> ");
         playerName = userInput.nextLine();
     }

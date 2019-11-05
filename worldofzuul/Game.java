@@ -26,24 +26,30 @@ public class Game
     //Our rooms - which room to start in?
     private void createRooms()
     {   
-        
-        
+
+        //Adds Trash into each Room object.
+        livingRoom  .addTrash(new TrashMetalGlas(       1,  "Jakabov",          "Konservedåsen er desværre tom men lugter ikke.",           "Denne dåse er lavet af Metal og skal derfor i metal og glas-spanden hvis den er rent."))
+                    .addTrash(new TrashPaperCardboard(  2,  "Brochure",         "\"Guide til affaldssortering\", det har vi ikke brug for.","Den er lavet af papir og skal i papir og pap-spanden."))
+                    .addTrash(new TrashMetalGlas(       9,  "Vinflaske",        "Den er tom, mor har drukket igen, øv...",                  "Den er lavet af glas, så den skal i glas og metal-spanden."));
+        homeOffice  .addTrash(new TrashResidualWaste(   3,  "Pringlesrør",      "Den er tom og føles som pap.",                             "Den skal i restaffaldsspanden fordi der er metal i indersiden og det derfor er blandet materiale."))
+                    .addTrash(new TrashPaperCardboard(  10, "Kurvert med rude", "Kuverten har et lille plastikvindue.",                     "Selvom der er plastik i kuverten skal den i papir og pap-spanden."));
+        kitchen     .addTrash(new TrashPlastic(         4,  "Smørlåg",          "Den er helt ren.",                                         "Den skal i plastikspanden, fordi den er ren og lavet af plast."))
+                    .addTrash(new TrashOrganic(         11, "Gulerod",          "Den er orange, halv spist og allerede tør",                "Den skal i madaffaldsspanden, fordi der en madrest."))
+                    .addTrash(new TrashResidualWaste(   12, "Æggebakke",        "Der har været et knækket æg i bakken, ad!",                "Fordi at pappen er snavset med gammel ægrest, skal den i restaffaldsspanden."));
+        entre       .addTrash(new TrashResidualWaste(   5,  "Pizzabakke",       "Der er stadig tomatsovs og ost i bakken.",                 "Fordi der stadig er madrester på papbakken, skal det i restaffaldsspanden."))
+                    .addTrash(new TrashOrganic(         6,  "Pizzaslice",       "Dejlig hård med svamp.",                                   "Det skal i madaffaldsspanden fordi det er gammelt mad."))
+                    .addTrash(new TrashMetalGlas(       13, "Øldåser",          "De er alle tomme og importert fra Flensborg.",             "De skal i metal og glas-spanden, da aluminium er et metal."));
+        driveway    .addTrash(new TrashOrganic (        7,  "Bananskræl",       "Meget brun, pas på du ikke falder.",                       "Det skal i madaffaldsspanden fordi det er en madrest."))
+                    .addTrash(new TrashPlastic (        8,  "Sugerør",          "En rund cylinder, lavet af plast.",                        "Den skal i plastikaffald fordi den er lavet af plast."));
+
+
         livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "test1"));
         kitchen = new Room("i køkkenet", new Organic(kitchen,5, "test5"));
         homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "test2"));
         entre = new Room("i entreen",new Plastic(entre, 1, "test1"));
         driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "test3"));
-        
-        //Adds Trash into each Room object.
-        livingRoom  .addTrash(new TrashMetalGlas(1,"Jakabov","dåsen er desværre er tom ;("))
-                    .addTrash(new TrashPaperCardboard(2,"Toiletrulle","Der er ikke mere papir"));
-        kitchen     .addTrash(new TrashResidualWaste(3,"Pringlesrør","Den er tom og føles som pap"));
-        homeOffice  .addTrash(new TrashPlastic(4,"Smørlåg","Den er helt ren, undersiden ligner papir og plastik blandet"));
-        entre       .addTrash(new TrashResidualWaste(5,"Pizzabakke","Der er stadig en slice!"))
-                    .addTrash(new TrashOrganic(6,"Pizzaslice","Dejlig hård"));
-        driveway    .addTrash(new TrashOrganic (7,"Bananskræl","meget brun"))
-                    .addTrash(new TrashPlastic (8,"Sugerør","et rundt cylinder"));        
-        
+
+ 
         driveway.setExit("nord", entre);
 
         entre.setExit("syd", driveway);
@@ -128,6 +134,7 @@ public class Game
         for (Trash item : inventory) {
             output += item.getName() + ", ";
         }
+      
         System.out.println("Din rygsæk indeholder: ");
         System.out.println(output);
         
@@ -160,10 +167,10 @@ public class Game
             return;
         }
         String trash = command.getSecondWord();
-        String output = null;
+        String output = "Det ligger ikke i din Rygsæk.";
         for (Trash item : inventory) {
             if (item.getName().equals(trash)) {
-                output = item.getDescription() + " ";
+                output = item.getDescription();
             }
         }
         System.out.println(output);
@@ -183,21 +190,26 @@ public class Game
             Trash t = itr.next();
             // Checks if inventory trash String name matches requested trash String name:
             if (t.getName().equals(trash)) {
-                System.out.println("You deposit " + trash + " from your inventory");
+
+                System.out.println("Du smed " + trash + " ud fra din rygsæk.");
                 // Checks if requested inventory trash type matches room bin trash type:
-                if (t.getTrashType() == (currentRoom.getTrashbin()).getTrashtype()) {
-                    System.out.println("That's the correct bin! You gained 100 points!");
+                if (t.getTrashType() == (currentRoom.getTrashBin()).getTrashtype()) {
+                    System.out.println("Det er den rigtige skraldespand! Du fik 100 point!");
+
                     metaData.updateScore(100);
                 } else {
-                    System.out.println("Whoops! That didn't seem right... You lost 1000000000 points LUUUL");
-                    metaData.updateScore(-1000000000);
+                    System.out.println("Hov! Det virker ikke rigtigt ... "+ t.getFeedback() +" Du tabte 50 point :(.");
+
+                    metaData.updateScore(-50);
+
                 }
                 itr.remove();
             } else {
-            System.out.println(trash + " was not found in inventory!");
+            System.out.println(trash + " har du ikke i din rygsæk!");
             }
         }
     }
+
 
     private void printHelp() 
     {

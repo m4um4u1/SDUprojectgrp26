@@ -11,7 +11,9 @@ public class Parser
     public Parser() 
     {
         commands = new CommandWords();
+
         reader = new Scanner(System.in, "UTF-8");
+
     }
 
     public Command getCommand() 
