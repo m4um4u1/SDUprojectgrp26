@@ -20,6 +20,7 @@ public class MetalGlass extends TrashBin {
         super.setPlace(place);
         
     }
+    @Override
     public int getTrashtype() {
         return trashtype;
     }

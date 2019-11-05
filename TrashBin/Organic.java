@@ -16,6 +16,7 @@ public class Organic extends TrashBin {
         super.setPlace(Place); 
     }
 
+    @Override
     public int getTrashtype() {
         return trashtype;
     }
