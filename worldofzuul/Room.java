@@ -35,11 +35,10 @@ public class Room
        this.description = description;
        exits = new HashMap<String, Room>();
        
-        //Saves all elements from input ArrayList into object ArrayList
-//        for (int i = 0; i < trash.size(); i++) {
-//            this.trash.add(trash.get(i));
-//        }
-        // MIGHT WANT TO DELETE THIS CLUTTER, HAS NO USE SO FAR
+       //Saves all elements from input ArrayList into object ArrayList
+       for (int i = 0; i < trash.size(); i++) {
+           this.trash.add(trash.get(i));
+       }
     }
     
     //Used if there is trash and a trashbin
@@ -66,18 +65,18 @@ public class Room
 
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "Du er " + description + ".\n" + getExitString();
     }
 
     //Added: Showing what trash is in the room when entering
     private String getExitString()
     {
-        String returnString = "Exits:";
+        String returnString = "Udgange:";
         Set<String> keys = exits.keySet();
         for(String exit : keys) {
             returnString += " " + exit;
         }
-        returnString += "\nTrash in the room: \n";
+        returnString +=  "\n" + "\n" + "Affald i rummet: \n";
         returnString += getRoomTrash();
         return returnString;
     }
@@ -126,10 +125,6 @@ public class Room
                 trash.remove(i);
             }
         }
-    }
-
-    public TrashBin getTrashbin() {
-        return trashbin;
     }
         
 }
