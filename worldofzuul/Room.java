@@ -127,7 +127,7 @@ public class Room {
     }
   
     public TrashBin getTrashBin() {
-        return trashBin;
+        return trashbin;
     }
         
 }
