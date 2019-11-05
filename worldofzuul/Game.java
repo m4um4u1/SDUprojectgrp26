@@ -26,12 +26,13 @@ public class Game
     //Our rooms - which room to start in?
     private void createRooms()
     {   
-
-        livingRoom = new Room("in the living room", new ResidualWaste(livingRoom, 4, "test1"));
-        kitchen = new Room("in the kitchen", new Organic(kitchen,5, "test5"));
-        homeOffice = new Room("in the home office", new CardboardPaper(homeOffice, 2, "test2"));
-        entre = new Room("in the entre",new Plastic(entre, 1, "test1"));
-        driveway = new Room("outside in the driveway", new MetalGlass(driveway, 3, "test3"));
+        
+        
+        livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "test1"));
+        kitchen = new Room("i køkkenet", new Organic(kitchen,5, "test5"));
+        homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "test2"));
+        entre = new Room("i entreen",new Plastic(entre, 1, "test1"));
+        driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "test3"));
         
         //Adds Trash into each Room object.
         livingRoom  .addTrash(new TrashMetalGlas(1,"Jakabov","dåsen er desværre er tom ;("))
@@ -43,18 +44,18 @@ public class Game
         driveway    .addTrash(new TrashOrganic (7,"Bananskræl","meget brun"))
                     .addTrash(new TrashPlastic (8,"Sugerør","et rundt cylinder"));        
         
-        driveway.setExit("north", entre);
+        driveway.setExit("nord", entre);
 
-        entre.setExit("south", driveway);
-        entre.setExit("west", homeOffice);
-        entre.setExit("north", livingRoom);
+        entre.setExit("syd", driveway);
+        entre.setExit("vest", homeOffice);
+        entre.setExit("nord", livingRoom);
 
-        homeOffice.setExit("east", entre);
+        homeOffice.setExit("øst", entre);
 
-        livingRoom.setExit("south", entre);
-        livingRoom.setExit("east", kitchen);
+        livingRoom.setExit("syd", entre);
+        livingRoom.setExit("øst", kitchen);
 
-        kitchen.setExit("west", livingRoom);
+        kitchen.setExit("vest", livingRoom);
 
         currentRoom = driveway;
     }
@@ -68,15 +69,15 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Tak fordi du ville spille spillet - farvel!");
     }
 
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println("Velkommen til Sorter-Mere Odense");
+        System.out.println("Sorter-Mere Odense er et læringsspil hvor du skal lære at sortere dit affald.");
+        System.out.println("Skriv '" + CommandWord.HELP + "' hvis du har brug for hjælp.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
@@ -91,7 +92,7 @@ public class Game
         CommandWord commandWord = command.getCommandWord();
 
         if(commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...");
+            System.out.println("Jeg ved ikke hvad du mener...");
             return false;
         }
 
@@ -125,9 +126,9 @@ public class Game
     private void printInventory() {
         String output = "";
         for (Trash item : inventory) {
-            output += item.getName() + " ";
+            output += item.getName() + ", ";
         }
-        System.out.println("Your inventory currently contains: ");
+        System.out.println("Din rygsæk indeholder: ");
         System.out.println(output);
         
     }
@@ -135,7 +136,7 @@ public class Game
     //Method to grab trash in the rooms and adding it to the inventory
     private void grabTrash(Command command) {
         if(!command.hasSecondWord()) {
-            System.out.println("Grab what?");
+            System.out.println("Tag hvad?");
             return;
         }
 
@@ -144,18 +145,18 @@ public class Game
         Trash newTrash = currentRoom.getTrash(trash);
 
         if (newTrash == null) {
-            System.out.println("That piece of trash is not here!");
+            System.out.println("Det stykke skrald er her ikke!");
         }
         else {
             inventory.add(newTrash);
             currentRoom.removeTrash(trash);
-            System.out.println("Grabbed: " + trash);
+            System.out.println("Tog: " + trash);
         }
     }
     //method to inspect the trash from inventory
     private void inspectTrash(Command command) {
         if(!command.hasSecondWord()) {
-            System.out.println("Inspect what?");
+            System.out.println("Undersøg hvad?");
             return;
         }
         String trash = command.getSecondWord();
@@ -170,7 +171,7 @@ public class Game
         
     private void depositTrash(Command command) {
         if(!command.hasSecondWord()) {
-            System.out.println("Deposit what?");
+            System.out.println("Smid hvad?");
             return;
         }
         
@@ -200,17 +201,16 @@ public class Game
 
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("Du kigger forvirret rundt i huset.. der er affald i alle rum...");
         System.out.println();
-        System.out.println("Your command words are:");
+        System.out.println("Dine kommandoer er:");
         parser.showCommands();
     }
 
     private void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
-            System.out.println("Go where?");
+            System.out.println("Gå hvorhen?");
             return;
         }
 
@@ -219,7 +219,7 @@ public class Game
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            System.out.println("Der er ikke nogen dør!");
         }
         else {
             currentRoom = nextRoom;
@@ -230,7 +230,7 @@ public class Game
     private boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
+            System.out.println("Afslut hvad?");
             return false;
         }
         else {
