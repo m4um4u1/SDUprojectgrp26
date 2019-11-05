@@ -2,14 +2,9 @@ package Trash;
 
 public abstract class Trash {
 
-    private int id;
+    public int id;
     private String name;
     private String description;
-
-    public Trash(int id, String name){
-        this.id = id;
-        this.name = name;
-    }
 
     public Trash(int id, String name, String description){
         this.id = id;
