@@ -11,7 +11,7 @@ public class Parser
     public Parser() 
     {
         commands = new CommandWords();
-        reader = new Scanner(System.in);
+        reader = new Scanner(System.in, "ISO-8859-1");
     }
 
     public Command getCommand() 
