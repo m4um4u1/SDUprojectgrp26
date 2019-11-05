@@ -2,6 +2,7 @@ package worldofzuul;
 
 import java.util.ArrayList;
 import Trash.*;
+import TrashBin.*;
 
 //Added an arraylist of inventory 
 public class Game 
@@ -23,11 +24,15 @@ public class Game
     //Our rooms - which room to start in?
     private void createRooms()
     {
-      
-        livingRoom = new Room("in the living room");
-        kitchen = new Room("in the kitchen");
+        //For testing purposes
+        ArrayList<Trash> test = new ArrayList<Trash>();
+        test.add(new TrashOrganic(1,"sugerør","sugerør"));
+        
+        //id and trashType hasn't been implemented yet
+        livingRoom = new Room("in the living room", new MetalGlass("living room"));
+        kitchen = new Room("in the kitchen", new Organic("kitchen"), test);
         homeOffice = new Room ("in the home office");
-        entre = new Room("in the entre");
+        entre = new Room("in the entre", test);
         driveway = new Room ("outside in the driveway");
         
         driveway.setExit("north", entre);
