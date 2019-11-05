@@ -124,7 +124,7 @@ public class Game
     private void printInventory() {
         String output = "";
         for (Trash item : inventory) {
-            output = item.getName() + " ";
+            output += item.getName() + " ";
         }
         System.out.println("Your inventory currently contains: ");
         System.out.println(output);
