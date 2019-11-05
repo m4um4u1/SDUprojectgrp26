@@ -31,11 +31,21 @@ public class Game
         test.add(new TrashOrganic(1,"sugerør","sugerør"));
         
         //id and trashType hasn't been implemented yet
-        livingRoom = new Room("in the living room", new MetalGlass("living room"));
-        kitchen = new Room("in the kitchen", new Organic("kitchen"), test);
+        livingRoom = new Room("in the living room");
+        kitchen = new Room("in the kitchen");
         homeOffice = new Room ("in the home office");
         entre = new Room("in the entre", test);
         driveway = new Room ("outside in the driveway");
+        
+                //Adds Trash into each Room object.
+        livingRoom  .addTrash(new TrashMetalGlas(1,"Jakabov","dåsen er desværre er tom ;("))
+                    .addTrash(new TrashPaperCardboard(2,"Toiletrulle","Der er ikke mere papir"));
+        kitchen     .addTrash(new TrashResidualWaste(3,"Pringlesrør","Den er tom og føles som pap"));
+        homeOffice  .addTrash(new TrashPlastic(4,"Smørlåg","Den er helt ren, undersiden ligner papir og plastik blandet"));
+        entre       .addTrash(new TrashResidualWaste(5,"Pizzabakke","Der er stadig en slice!"))
+                    .addTrash(new TrashOrganic(6,"Pizzaslice","Dejlig hård"));
+        driveway    .addTrash(new TrashOrganic (7,"Bananskræl","meget brun"))
+                    .addTrash(new TrashPlastic (8,"Sugerør","et rundt cylinder"));        
         
         driveway.setExit("north", entre);
 
