@@ -2,7 +2,7 @@ package TrashBin;
 import worldofzuul.Room;
 
 //SuperClass
-public class TrashBin {
+public abstract class TrashBin {
     
     //attributter
     private Room Place;
@@ -34,5 +34,6 @@ public class TrashBin {
         return trash;
     }
     
+    public abstract int getTrashtype();
     
 }
