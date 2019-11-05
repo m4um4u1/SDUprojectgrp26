@@ -11,7 +11,7 @@ public class Parser
     public Parser() 
     {
         commands = new CommandWords();
-        reader = new Scanner(System.in, "ISO-8859-1");
+        reader = new Scanner(System.in, "UTF-8");
     }
 
     public Command getCommand() 
@@ -23,6 +23,8 @@ public class Parser
         System.out.print("> "); 
 
         inputLine = reader.nextLine();
+        System.out.print("\n");
+        
 
         Scanner tokenizer = new Scanner(inputLine);
         if(tokenizer.hasNext()) {
