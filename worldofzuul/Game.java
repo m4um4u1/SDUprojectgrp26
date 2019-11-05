@@ -25,7 +25,12 @@ public class Game
 
     //Our rooms - which room to start in?
     private void createRooms()
-    {   
+    {
+        livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "test1"));
+        kitchen = new Room("i køkkenet", new Organic(kitchen,5, "test5"));
+        homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "test2"));
+        entre = new Room("i entreen",new Plastic(entre, 1, "test1"));
+        driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "test3"));
 
         //Adds Trash into each Room object.
         livingRoom  .addTrash(new TrashMetalGlas(       1,  "Jakabov",          "Konservedåsen er desværre tom men lugter ikke.",           "Denne dåse er lavet af Metal og skal derfor i metal og glas-spanden hvis den er rent."))
@@ -42,14 +47,6 @@ public class Game
         driveway    .addTrash(new TrashOrganic (        7,  "Bananskræl",       "Meget brun, pas på du ikke falder.",                       "Det skal i madaffaldsspanden fordi det er en madrest."))
                     .addTrash(new TrashPlastic (        8,  "Sugerør",          "En rund cylinder, lavet af plast.",                        "Den skal i plastikaffald fordi den er lavet af plast."));
 
-
-        livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "test1"));
-        kitchen = new Room("i køkkenet", new Organic(kitchen,5, "test5"));
-        homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "test2"));
-        entre = new Room("i entreen",new Plastic(entre, 1, "test1"));
-        driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "test3"));
-
- 
         driveway.setExit("nord", entre);
 
         entre.setExit("syd", driveway);
