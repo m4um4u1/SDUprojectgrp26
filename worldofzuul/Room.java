@@ -66,7 +66,7 @@ public class Room {
     {
         return "Du er " + description + ".\n" + getExitString();
     }
-
+    
     //Added: Showing what trash is in the room when entering
     private String getExitString()
     {
@@ -125,9 +125,14 @@ public class Room {
             }
         }
     }
+
+    public String getTrashBinDescription() {
+        return trashbin.getTrash();
+
   
     public TrashBin getTrashBin() {
         return trashbin;
+
     }
         
 }
