@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+
 import Trash.*;
 import TrashBin.*;
 
@@ -31,14 +32,8 @@ public class Room {
     //Used if there is trash but no trashbin
     public Room(String description, ArrayList<Trash> trash) {
 
-       this.description = description;
-       exits = new HashMap<String, Room>();
-       
-        //Saves all elements from input ArrayList into object ArrayList
-//        for (int i = 0; i < trash.size(); i++) {
-//            this.trash.add(trash.get(i));
-//        }
-        // MIGHT WANT TO DELETE THIS CLUTTER, HAS NO USE SO FAR
+        this.description = description;
+        exits = new HashMap<String, Room>();
     }
 
     //Used if there is trash and a trashbin
@@ -62,16 +57,13 @@ public class Room {
     }
 
 
-    public String getLongDescription()
-    {
+    public String getLongDescription() {
         return "Du er " + description + ".\n" + getExitString();
     }
 
     //Added: Showing what trash is in the room when entering
-    private String getExitString()
-    {
+    private String getExitString() {
         String returnString = "Udgange:";
-
         Set<String> keys = exits.keySet();
         for (String exit : keys) {
             returnString += " " + exit;
@@ -96,13 +88,12 @@ public class Room {
             if (trash.get(i).getName().equals(trashName)) {
                 return trash.get(i);
             }
-
         }
         return null;
     }
 
     //Adds trash to the ArrayList trash    
-    public Room addTrash (Trash trash) {
+    public Room addTrash(Trash trash) {
         this.trash.add(trash);
         return this;
     }
@@ -125,14 +116,14 @@ public class Room {
             }
         }
     }
-  
+
     public TrashBin getTrashBin() {
         return trashbin;
     }
+
     //en Metode til at giver en beskrivelse af TrashBin:
     public String getTrashBinDescription() {
         return trashbin.getTrash();
     }
-        
 }
 

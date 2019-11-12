@@ -1,6 +1,6 @@
 package Trash;
 
-public class TrashMetalGlas extends Trash{
+public class TrashMetalGlas extends Trash {
     private final int trashType = 3;
 
     public TrashMetalGlas(int id, String name, String description, String feedback) {
@@ -15,6 +15,4 @@ public class TrashMetalGlas extends Trash{
     public int getTrashType() {
         return trashType;
     }
-
-
 }
