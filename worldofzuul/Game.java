@@ -158,20 +158,20 @@ public class Game
             System.out.println("Tog: " + trash);
         }
     }
-    //method to inspect the trash from inventory
+    //method to get description from inventory
     private void inspectTrash(Command command) {
         if(!command.hasSecondWord()) {
             System.out.println("Undersøg hvad?");
             return;
         }
         String trash = command.getSecondWord();
-        String output = "Det ligger ikke i din Rygsæk.";
         for (Trash item : inventory) {
             if (item.getName().equals(trash)) {
-                output = item.getDescription();
+                System.out.println(item.getDescription());
+            } else {
+                System.out.println(trash + " ligger ikke i din Ryksæk");
             }
         }
-        System.out.println(output);
     }
         
     private void depositTrash(Command command) {
