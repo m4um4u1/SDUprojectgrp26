@@ -15,5 +15,4 @@ public class TrashPaperCardboard extends Trash {
     public int getTrashType() {
         return trashType;
     }
-
 }

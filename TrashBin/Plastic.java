@@ -1,6 +1,5 @@
 package TrashBin;
 
-
 import worldofzuul.Room;
 
 public class Plastic extends TrashBin {
@@ -24,7 +23,4 @@ public class Plastic extends TrashBin {
     public String getTrash() {
         return super.getTrash();
     }
-    
-    
-
 }

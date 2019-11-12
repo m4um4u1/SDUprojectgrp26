@@ -8,9 +8,9 @@ public class CardboardPaper extends TrashBin {
     public CardboardPaper(Room Place, int id, String trash) {
         super(Place, id, trash);
     }
-    
+
     @Override
-    public void setPlace (Room place) {
+    public void setPlace(Room place) {
         super.setPlace(place);
     }
 
@@ -18,13 +18,10 @@ public class CardboardPaper extends TrashBin {
     public String getTrash() {
         return super.getTrash();
     }
-    
-      
+
+
     @Override
     public int getTrashtype() {
         return trashtype;
     }
-    
-    
-    
 }

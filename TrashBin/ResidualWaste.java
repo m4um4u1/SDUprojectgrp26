@@ -1,6 +1,5 @@
 package TrashBin;
 
-
 import worldofzuul.Room;
 
 public class ResidualWaste extends TrashBin {
@@ -24,6 +23,4 @@ public class ResidualWaste extends TrashBin {
     public int getTrashtype() {
         return trashtype;
     }
-    
-    
 }
