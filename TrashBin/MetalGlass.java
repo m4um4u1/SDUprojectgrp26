@@ -5,11 +5,16 @@ import worldofzuul.Room;
 
 public class MetalGlass extends TrashBin {
     private final int trashtype = 3;
-    
-    public MetalGlass(int id, Room Place) {
-        super(id,Place);
+
+    public MetalGlass(Room Place, int id, String trash) {
+        super(Place, id, trash);
     }
-    
+
+    @Override
+    public String getTrash() {
+        return super.getTrash();
+    }
+  
     @Override
     public void setPlace(Room place) {
         super.setPlace(place);
@@ -18,5 +23,6 @@ public class MetalGlass extends TrashBin {
     public int getTrashtype() {
         return trashtype;
     }
+    
     
 }
