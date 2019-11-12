@@ -129,6 +129,10 @@ public class Room {
     public TrashBin getTrashBin() {
         return trashbin;
     }
+    //en Metode til at giver en beskrivelse af TrashBin:
+    public String getTrashBinDescription() {
+        return trashbin.getTrash();
+    }
         
 }
 

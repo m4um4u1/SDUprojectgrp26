@@ -26,11 +26,11 @@ public class Game
     //Our rooms - which room to start in?
     private void createRooms()
     {
-        livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "test1"));
-        kitchen = new Room("i køkkenet", new Organic(kitchen,5, "test5"));
-        homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "test2"));
-        entre = new Room("i entreen",new Plastic(entre, 1, "test1"));
-        driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "test3"));
+        livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "Der er en skraldespand til restaffald "));
+        kitchen = new Room("i køkkenet", new Organic(kitchen,5, "Der er en skraldespand til organisk"));
+        homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"));
+        entre = new Room("i entreen",new Plastic(entre, 1, "Der er en skraldespand til plastik"));
+        driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"));
 
         //Adds Trash into each Room object.
         livingRoom  .addTrash(new TrashMetalGlas(       1,  "Jakabov",          "Konservedåsen er desværre tom men lugter ikke.",           "Denne dåse er lavet af Metal og skal derfor i metal og glas-spanden hvis den er rent."))
@@ -83,6 +83,7 @@ public class Game
         System.out.println("Skriv '" + CommandWord.HELP + "' hvis du har brug for hjælp.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoom.getTrashBinDescription());//skraldspand
     }
 
     //Adding another commandword - INVENTORY, printing the inventory
@@ -233,6 +234,7 @@ public class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+            System.out.println(currentRoom.getTrashBinDescription());//skraldspand
         }
     }
 
