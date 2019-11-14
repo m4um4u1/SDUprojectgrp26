@@ -16,24 +16,11 @@ public class Room {
     private TrashBin trashbin;
     ArrayList<Trash> trash = new ArrayList<Trash>();
 
-    //Used if there isn't any trash or trashbin(s) in the room
-    public Room(String description) {
-        this.description = description;
-        exits = new HashMap<String, Room>();
-    }
-
     //Used if there is a trashbin but no trash
     public Room(String description, TrashBin trashbin) {
         this.description = description;
         exits = new HashMap<String, Room>();
         this.trashbin = trashbin;
-    }
-
-    //Used if there is trash but no trashbin
-    public Room(String description, ArrayList<Trash> trash) {
-
-        this.description = description;
-        exits = new HashMap<String, Room>();
     }
 
     //Used if there is trash and a trashbin
@@ -123,7 +110,7 @@ public class Room {
 
     //en Metode til at giver en beskrivelse af TrashBin:
     public String getTrashBinDescription() {
-        return trashbin.getTrash();
+        return trashbin.getDescription();
     }
 }
 

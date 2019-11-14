@@ -7,10 +7,6 @@ public class TrashOrganic extends Trash {
         super(id, name, description, feedback);
     }
 
-    public TrashOrganic(int id, String name, String description) {
-        super(id, name, description);
-    }
-
     @Override
     public int getTrashType() {
         return trashType;

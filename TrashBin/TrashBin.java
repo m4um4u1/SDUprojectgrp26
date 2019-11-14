@@ -5,32 +5,32 @@ import worldofzuul.Room;
 //SuperClass
 public abstract class TrashBin {
     //attributter
-    private Room Place;
-    public int id;
-    private String trash;
+    private Room place;
+    private int id;
+    private String description;
 
     //constructor
     public TrashBin(Room Place, int id, String trash) {
-        this.Place = Place;
+        this.place = Place;
         this.id = id;
-        this.trash = trash;
+        this.description = trash;
     }
 
     //metoder
     public Room getPlace() {
-        return Place;
+        return place;
     }
 
     public void setPlace(Room Place) {
-        this.Place = Place;
+        this.place = Place;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getTrash() {
-        return trash;
+    public String getDescription() {
+        return description;
     }
 
     public abstract int getTrashtype();

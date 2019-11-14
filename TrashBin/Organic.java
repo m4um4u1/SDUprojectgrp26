@@ -5,8 +5,8 @@ import worldofzuul.Room;
 public class Organic extends TrashBin {
     private final int trashtype = 5;
 
-    public Organic(Room Place, int id, String trash) {
-        super(Place, id, trash);
+    public Organic(Room place, int id, String trash) {
+        super(place, id, trash);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Organic extends TrashBin {
     }
 
     @Override
-    public String getTrash() {
-        return super.getTrash();
+    public String getDescription() {
+        return super.getDescription();
     }
 }

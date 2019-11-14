@@ -2,7 +2,7 @@ package Trash;
 
 public abstract class Trash {
 
-    public int id;
+    private int id;
     private String name;
     private String description;
     private String feedback;
@@ -12,12 +12,6 @@ public abstract class Trash {
         this.name = name;
         this.description = description;
         this.feedback = feedback;
-    }
-
-    public Trash(int id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
     }
 
     public int getId() {
@@ -37,4 +31,6 @@ public abstract class Trash {
     }
 
     public abstract int getTrashType();
+
+
 }

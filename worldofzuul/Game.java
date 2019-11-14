@@ -168,23 +168,23 @@ public class Game {
         String trash = command.getSecondWord();
         // Iterates the Trash inventory:
         // (Had to use an iterator in order to be able to remove from inventory after depositing (ConcurrentModificationException))
-        for (Iterator<Trash> itr = inventory.iterator(); itr.hasNext(); ) {
+        for (Iterator<Trash> itr = inventory.iterator(); itr.hasNext();) {
             Trash t = itr.next();
             // Checks if inventory trash String name matches requested trash String name:
             if (t.getName().equals(trash)) {
                 System.out.println("Du smed " + trash + " ud fra din rygsæk.");
+                // Checks if requested inventory trash type matches room bin trash type:
+                if (t.getTrashType() == (currentRoom.getTrashBin()).getTrashtype()) {
+                    System.out.println("Det er den rigtige skraldespand! Du fik 100 point!");
+                    metaData.updateScore(100);
+                } else {
+                    System.out.println("Hov! Det virker ikke rigtigt ... "+ t.getFeedback() +" Du tabte 50 point :(.");
+                    metaData.updateScore(-50);
+                }
+                itr.remove();
             } else {
                 System.out.println(trash + " har du ikke i din rygsæk!");
             }
-            // Checks if requested inventory trash type matches room bin trash type:
-            if (t.getTrashType() == (currentRoom.getTrashBin()).getTrashtype()) {
-                System.out.println("Det er den rigtige skraldespand! Du fik 100 point!");
-                metaData.updateScore(100);
-            } else {
-                System.out.println("Hov! Det virker ikke rigtigt ... " + t.getFeedback() + " Du tabte 50 point :(.");
-                metaData.updateScore(-50);
-            }
-            itr.remove();
         }
     }
 
@@ -220,4 +220,6 @@ public class Game {
             return true;
         }
     }
+
+
 }
