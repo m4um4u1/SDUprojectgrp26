@@ -1,16 +1,18 @@
 package worldofzuul;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Metadata {
 
     // Attributes:
     private File metaData = new File("metadata.csv");
-    private ArrayList<Object> scoreArray = new ArrayList<>();
 
     private String playerName;  // Prompted at start
     private int score;          // Manipulated during
@@ -19,7 +21,7 @@ public class Metadata {
     // Constructor:
     public Metadata() {
 
-        // Creates a file in the project folder if not already existant:
+        // Creates a file in the project folder if not already there:
         if (!metaData.exists()) {
             try {
                 metaData.createNewFile();
@@ -27,53 +29,80 @@ public class Metadata {
                 System.out.println("Could not create a new metadata file.");
             }
         }
-
-        // Prompts the player for a name:
-        Scanner userInput = new Scanner(System.in);
-
+        
+        // Prompts the player for a username:
         System.out.println("Indtast dit brugernavn:");
-
         System.out.print("> ");
-        playerName = userInput.nextLine();
+        Scanner userInput = new Scanner(System.in);
+        this.playerName = userInput.nextLine();
+        
+        // Loads the score (but not room atm) if username matches one found in the metadata.csv file:
+        ArrayList<String> matcher = new ArrayList<>();
+        
+        try (
+            Scanner fileReader = new Scanner(metaData);
+            ) {
+            while(fileReader.hasNext()) {
+                matcher.add(fileReader.next());
+            }
+            fileReader.close();
+            
+            int i = 0;
+            for (String srt : matcher) {
+                i++;
+                if (srt.contains(this.playerName)) {
+                    this.score = Integer.parseInt(matcher.get(i + 1));
+                    this.currentRoom = matcher.get(i + 2); // As mentioned; not used for now, changing currentRoom in Game is not implemented.
+                    System.out.println("Gemt brugernavn fundet; indlæser tidliger score på: " + getScore());
+                    break;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("Could not find file.");
+        }
     }
-
+    
     // Methods:
-
+    
     // Updates the score:
     public void updateScore(int score) {
         this.score += score;
     }
-
-    // Gets the current score:
+    
+    // Returns the score:
     public int getScore() {
         return score;
     }
 
-    // Gets the current room (short description, when the program is quit):
+    // Gets the current room's short description when the program is quit:
     public void flushData(String currentRoom) {
         this.currentRoom = currentRoom;
-
-        // Adds the name, score and room to the ArrayList:
-        scoreArray.add("Player name: " + playerName); // String
-        scoreArray.add("Score: " + score); // String
-        scoreArray.add("Room: " + currentRoom); // String
-
-        try (
-//            Scanner reader = new Scanner(this.metaData);
-                PrintWriter output = new PrintWriter(metaData);
-        ) {
-
-//            while(reader.hasNext()); {
-//                scoreArray.add(reader.next());
-//            }
-
-            // Writes the ArrayList to the file:
-            for (Object obj : scoreArray) {
-                output.print(obj);
+        
+        // Adds the username, score and room to an ArrayList:
+        ArrayList<String> scoreArray = new ArrayList<>();
+        scoreArray.add("Player name: " + this.playerName); // String
+        scoreArray.add("Score: " + this.score); // String
+        scoreArray.add("Room: " + this.currentRoom); // String
+        
+        // Adds the contents of the metadata.csv file to the ArrayList:
+        try {
+            Scanner fileReader = new Scanner(metaData).useDelimiter("\r\n");
+            while(fileReader.hasNext()) {
+                scoreArray.add(fileReader.next());
             }
-
+            fileReader.close();
+            
+            // Writes the ArrayList to the metadata.csv file:
+            PrintWriter fileWriter = new PrintWriter(metaData);
+            for (String str : scoreArray) {
+                fileWriter.println(str);
+            }
+            fileWriter.close();
+            
         } catch (IOException ex) {
-            System.out.println("Could not flush data to the metadata file.");
+            System.out.println("Could not flush data to the metadata.csv file.");
         }
+        // Could probably also have closed the reader and writer with "try-with-materials" -
+        // - that or a "finally" block, which maybe also could save the gamestate in case of abrupt termination.
     }
 }
