@@ -1,11 +1,11 @@
-package TrashBin;
+package Trashbin;
 
 import worldofzuul.Room;
 
-public class MetalGlass extends TrashBin {
-    private final int trashtype = 3;
+public class ResidualWaste extends Trashbin {
+    private final int trashtype = 4;
 
-    public MetalGlass(Room place, int id, String trash) {
+    public ResidualWaste(Room place, int id, String trash) {
         super(place, id, trash);
     }
 
@@ -15,8 +15,8 @@ public class MetalGlass extends TrashBin {
     }
 
     @Override
-    public void setPlace(Room place) {
-        super.setPlace(place);
+    public void setPlace(Room Place) {
+        super.setPlace(Place);
     }
 
     @Override

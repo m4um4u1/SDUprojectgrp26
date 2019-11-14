@@ -3,36 +3,23 @@ package worldofzuul;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import Trash.*;
-import TrashBin.*;
+import Trashbin.*;
 
 public class Room {
 
     //Adding arraylist of trash in rooms
     private String description;
     private HashMap<String, Room> exits;
-    private TrashBin trashbin;
+    private Trashbin trashbin;
     ArrayList<Trash> trash = new ArrayList<Trash>();
 
     //Used if there is a trashbin but no trash
-    public Room(String description, TrashBin trashbin) {
+    public Room(String description, Trashbin trashbin) {
         this.description = description;
         exits = new HashMap<String, Room>();
         this.trashbin = trashbin;
-    }
-
-    //Used if there is trash and a trashbin
-    public Room(String description, TrashBin trashbin, ArrayList<Trash> trash) {
-        this.description = description;
-        exits = new HashMap<String, Room>();
-        this.trashbin = trashbin;
-
-        //Saves all elements from input ArrayList into object ArrayList
-        for (int i = 0; i < trash.size(); i++) {
-            this.trash.add(trash.get(i));
-        }
     }
 
     public void setExit(String direction, Room neighbor) {
@@ -62,11 +49,6 @@ public class Room {
 
     public Room getExit(String direction) {
         return exits.get(direction);
-    }
-
-    //Get trash from the room - the index 
-    public Trash getTrash(int index) {
-        return trash.get(index);
     }
 
     //Method to grab the trash IF there is any and it matches the input 
@@ -104,12 +86,12 @@ public class Room {
         }
     }
 
-    public TrashBin getTrashBin() {
+    public Trashbin getTrashbin() {
         return trashbin;
     }
 
     //en Metode til at giver en beskrivelse af TrashBin:
-    public String getTrashBinDescription() {
+    public String getTrashbinDescription() {
         return trashbin.getDescription();
     }
 }

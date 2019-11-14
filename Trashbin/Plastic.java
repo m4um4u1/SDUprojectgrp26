@@ -1,8 +1,8 @@
-package TrashBin;
+package Trashbin;
 
 import worldofzuul.Room;
 
-public class Plastic extends TrashBin {
+public class Plastic extends Trashbin {
     private final int trashtype = 1;
 
     public Plastic(Room place, int id, String trash) {

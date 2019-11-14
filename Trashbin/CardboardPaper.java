@@ -1,8 +1,8 @@
-package TrashBin;
+package Trashbin;
 
 import worldofzuul.Room;
 
-public class CardboardPaper extends TrashBin {
+public class CardboardPaper extends Trashbin {
     private final int trashtype = 2;
 
     public CardboardPaper(Room place, int id, String trash) {
