@@ -5,8 +5,8 @@ import worldofzuul.Room;
 public class Plastic extends TrashBin {
     private final int trashtype = 1;
 
-    public Plastic(Room Place, int id, String trash) {
-        super(Place, id, trash);
+    public Plastic(Room place, int id, String trash) {
+        super(place, id, trash);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Plastic extends TrashBin {
     }
 
     @Override
-    public String getTrash() {
-        return super.getTrash();
+    public String getDescription() {
+        return super.getDescription();
     }
 }

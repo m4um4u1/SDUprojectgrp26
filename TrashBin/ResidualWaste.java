@@ -5,18 +5,18 @@ import worldofzuul.Room;
 public class ResidualWaste extends TrashBin {
     private final int trashtype = 4;
 
-    public ResidualWaste(Room Place, int id, String trash) {
-        super(Place, id, trash);
+    public ResidualWaste(Room place, int id, String trash) {
+        super(place, id, trash);
     }
 
     @Override
-    public String getTrash() {
-        return super.getTrash(); //To change body of generated methods, choose Tools | Templates.
+    public String getDescription() {
+        return super.getDescription();
     }
 
     @Override
     public void setPlace(Room Place) {
-        super.setPlace(Place); //To change body of generated methods, choose Tools | Templates.
+        super.setPlace(Place);
     }
 
     @Override

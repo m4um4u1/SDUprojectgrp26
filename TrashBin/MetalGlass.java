@@ -5,13 +5,13 @@ import worldofzuul.Room;
 public class MetalGlass extends TrashBin {
     private final int trashtype = 3;
 
-    public MetalGlass(Room Place, int id, String trash) {
-        super(Place, id, trash);
+    public MetalGlass(Room place, int id, String trash) {
+        super(place, id, trash);
     }
 
     @Override
-    public String getTrash() {
-        return super.getTrash();
+    public String getDescription() {
+        return super.getDescription();
     }
 
     @Override
