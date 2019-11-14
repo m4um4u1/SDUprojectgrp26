@@ -1,7 +1,6 @@
 package worldofzuul;
 
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Parser {
     private CommandWords commands;
@@ -9,7 +8,7 @@ public class Parser {
 
     public Parser() {
         commands = new CommandWords();
-        reader = new Scanner(System.in, "UTF-8");
+        reader = new Scanner(System.in, "UTF-8"); // "iso-8859-1" -> Lenovo ThinkChad master race
     }
 
     public Command getCommand() {
