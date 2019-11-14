@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import Trash.*;
-import TrashBin.*;
+import Trashbin.*;
 
 
 //Added an arraylist of inventory
@@ -85,7 +85,7 @@ public class Game {
         System.out.println("Skriv '" + CommandWord.HELP + "' hvis du har brug for hjælp.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
-        System.out.println(currentRoom.getTrashBinDescription());//skraldspand
+        System.out.println(currentRoom.getTrashbinDescription());//skraldspand
     }
 
     //Adding another commandword - INVENTORY, printing the inventory
@@ -120,11 +120,16 @@ public class Game {
     //Method to print the inventory - prints the String as well as the trash held
     private void printInventory() {
         String output = "";
-        for (Trash item : inventory) {
-            output += item.getName() + ", ";
+        if (output == ""){
+            System.out.println("Din rygsæk er tom");
+        } else {
+            for (Trash item : inventory) {
+                output += item.getName() + ", ";
+
+            }
+            System.out.println("Din rygsæk indeholder: ");
+            System.out.println(output);
         }
-        System.out.println("Din rygsæk indeholder: ");
-        System.out.println(output);
     }
 
     //Method to grab trash in the rooms and adding it to the inventory
@@ -174,7 +179,7 @@ public class Game {
             if (t.getName().equals(trash)) {
                 System.out.println("Du smed " + trash + " ud fra din rygsæk.");
                 // Checks if requested inventory trash type matches room bin trash type:
-                if (t.getTrashType() == (currentRoom.getTrashBin()).getTrashtype()) {
+                if (t.getTrashType() == (currentRoom.getTrashbin()).getTrashtype()) {
                     System.out.println("Det er den rigtige skraldespand! Du fik 100 point!");
                     metaData.updateScore(100);
                 } else {
@@ -207,7 +212,7 @@ public class Game {
         } else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
-            System.out.println(currentRoom.getTrashBinDescription());//skraldspand
+            System.out.println(currentRoom.getTrashbinDescription());//skraldspand
         }
     }
 
