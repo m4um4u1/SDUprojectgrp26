@@ -120,15 +120,16 @@ public class Game {
     //Method to print the inventory - prints the String as well as the trash held
     private void printInventory() {
         String output = "";
-        if (output == ""){
-            System.out.println("Din rygsæk er tom");
-        } else {
+        if (inventory.size() != 0){
             for (Trash item : inventory) {
                 output += item.getName() + ", ";
 
             }
             System.out.println("Din rygsæk indeholder: ");
             System.out.println(output);
+
+    } else {
+            System.out.println("Din rygsæk er tom.");
         }
     }
 
