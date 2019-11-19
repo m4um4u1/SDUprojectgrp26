@@ -1,0 +1,36 @@
+package worldofzuul;
+
+import java.util.Scanner;
+
+public class Parser {
+    private CommandWords commands;
+    private Scanner reader;
+
+    public Parser() {
+        commands = new CommandWords();
+        reader = new Scanner(System.in, "UTF-8"); // "iso-8859-1" -> Lenovo ThinkChad master race
+    }
+
+    public Command getCommand() {
+        String inputLine;
+        String word1 = null;
+        String word2 = null;
+
+        System.out.print("> ");
+        inputLine = reader.nextLine();
+        System.out.print("\n");
+
+        Scanner tokenizer = new Scanner(inputLine);
+        if (tokenizer.hasNext()) {
+            word1 = tokenizer.next();
+            if (tokenizer.hasNext()) {
+                word2 = tokenizer.next();
+            }
+        }
+        return new Command(commands.getCommandWord(word1), word2);
+    }
+
+    public void showCommands() {
+        commands.showAll();
+    }
+}
