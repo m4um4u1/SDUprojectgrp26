@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="scoreLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.StartscreenController">
+   <children>
+      <TextField fx:id="nameTextField" layoutX="14.0" layoutY="355.0" promptText="Indtast dit navn">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></TextField>
+      <Button fx:id="buttonStartGame" disable="true" layoutX="232.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleButtonStart" text="Start spil" />
+      <TextArea editable="false" layoutX="221.0" layoutY="14.0" prefHeight="235.0" prefWidth="485.0" text="Vilkommen til sortering for dummies. &#10;&#10;Sortering for dummies er et læringsspil,  hvor du skal lære, at sortere dit affald,&#10;efter den nye affaldsordning lavet af Odense renovation.&#10;&#10;Dette spil er blevet lavet under et Semesterprojekt på :&#10;Syddansk Universitet&#10;Det Tekniske Fakultet&#10;Mærsk McKinney Møller Instituttet&#10;Campusvej 55, 5230 Odense&#10;&#10;@Copyright 2019 Amalie Sander, Simon Jessen, Emil Larsen,  Maurice Hansen, Hamid Qayoumi, Gamma Ishimwe" wrapText="true" />
+      <ImageView fitHeight="177.0" fitWidth="365.0" layoutX="382.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Start-picture-trashbin.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="buttonGetScore" layoutX="14.0" layoutY="439.0" mnemonicParsing="false" onAction="#handleButtonScore" text="Score" />
+      <Label fx:id="welcomeLabel" layoutX="14.0" layoutY="300.0" prefHeight="53.0" prefWidth="283.0" wrapText="true" />
+      <Button fx:id="buttonLogin" layoutX="177.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleButtonLogin" text="Login" />
+      <Label fx:id="notTheUser" layoutX="14.0" layoutY="388.0" prefHeight="47.0" prefWidth="283.0" wrapText="true" />
+   </children>
+</AnchorPane>

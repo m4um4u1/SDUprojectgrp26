@@ -16,10 +16,10 @@ public class Game {
     private Metadata metaData;
 
 
-    public Game() {
+    public Game(String playerName) {
         createRooms();
         parser = new Parser();
-        metaData = new Metadata();
+        metaData = new Metadata(playerName);
     }
 
     //Our rooms - which room to start in?
@@ -80,8 +80,6 @@ public class Game {
 
     private void printWelcome() {
         System.out.println();
-        System.out.println("Velkommen til Sorter-Mere Odense");
-        System.out.println("Sorter-Mere Odense er et læringsspil hvor du skal lære at sortere dit affald.");
         System.out.println("Skriv '" + CommandWord.HELP + "' hvis du har brug for hjælp.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -104,7 +102,7 @@ public class Game {
         } else if (commandWord == CommandWord.GO) {
             goRoom(command);
         } else if (commandWord == CommandWord.QUIT) {
-            wantToQuit = quit(command);
+            wantToQuit = quit();
         } else if (commandWord == CommandWord.INVENTORY) {
             printInventory();
         } else if (commandWord == CommandWord.GRAB) {
@@ -217,15 +215,12 @@ public class Game {
         }
     }
 
-    private boolean quit(Command command) {
-        if (command.hasSecondWord()) {
-            System.out.println("Afslut hvad?");
-            return false;
-        } else {
+
+    public boolean quit() {
             metaData.flushData(currentRoom.getShortDescription());
             return true;
         }
     }
 
 
-}
+

@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Metadata {
 
     // Attributes:
@@ -17,8 +18,7 @@ public class Metadata {
     private String currentRoom; // Acquired when quit
 
     // Constructor:
-    public Metadata() {
-
+    public Metadata(String playerName) {
         // Creates a file in the project folder if not already there:
         if (!metaData.exists()) {
             try {
@@ -27,16 +27,16 @@ public class Metadata {
                 System.out.println("Could not create a new metadata file.");
             }
         }
-        
+        this.playerName = playerName;
         // Prompts the player for a username:
-        System.out.println("Indtast dit brugernavn:");
-        System.out.print("> ");
-        Scanner userInput = new Scanner(System.in);
-        this.playerName = userInput.nextLine();
-        
+        //System.out.println("Indtast dit brugernavn:");
+        //System.out.print("> ");
+        //Scanner userInput = new Scanner(System.in);
+       // this.playerName = userInput.nextLine();
+
         // Loads the score (but not room atm) if username matches one found in the metadata.csv file:
         ArrayList<String> matcher = new ArrayList<>();
-        
+
         try (
             Scanner fileReader = new Scanner(metaData);
             ) {
@@ -48,7 +48,7 @@ public class Metadata {
             int i = 0;
             for (String srt : matcher) {
                 i++;
-                if (srt.contains(this.playerName)) {
+                if (srt.contains(playerName)) {
                     this.score = Integer.parseInt(matcher.get(i + 1));
                     this.currentRoom = matcher.get(i + 2); // As mentioned; not used for now, changing currentRoom in Game is not implemented.
                     System.out.println("Gemt brugernavn fundet; indlæser tidliger score på: " + getScore());
@@ -61,7 +61,7 @@ public class Metadata {
     }
     
     // Methods:
-    
+
     // Updates the score:
     public void updateScore(int score) {
         this.score += score;
@@ -103,4 +103,5 @@ public class Metadata {
         // Could probably also have closed the reader and writer with "try-with-materials" -
         // - that or a "finally" block, which maybe also could save the gamestate in case of abrupt termination.
     }
+
 }
