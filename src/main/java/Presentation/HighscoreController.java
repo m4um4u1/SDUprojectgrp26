@@ -30,12 +30,8 @@ public class HighscoreController {
     public void loadText() { //set the text from the arraylist in the textarea
         Metadata md = new Metadata();
         String output;
-        try {
-            output = md.getCSV();
-            highscoreText.setText(output);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
+        output = md.getCSV();
+        highscoreText.setText(output);
     }
 
 }

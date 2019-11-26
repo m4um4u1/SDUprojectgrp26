@@ -25,6 +25,7 @@ public class StartscreenController extends Application {
 
 
         private String name;
+        private IMetaData md = new Metadata();
 
         @FXML
         private static Scene scene;
@@ -70,14 +71,14 @@ public class StartscreenController extends Application {
             name = nameTextField.getText();
             nameTextField.clear();
             welcomeLabel.setText("Hej " + name + ", klik på 'start spil' for at starte, eller 'score', for at se scoren for tidligere gennemspilninger.");
-            notTheUser.setText("Er du ikke " + name + ", så login med et andet navn.");
+            notTheUser.setText(md.newUser(name));
             buttonStartGame.setDisable(false);
             Game game = new Game();
     }
 
     @FXML
     public void handleButtonStart() { // starts the game
-        IMetaData md = new Metadata();
+
         md.setPlayerName(name);
         md.readScore();
 

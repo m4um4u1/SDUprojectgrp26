@@ -16,7 +16,6 @@ public class Game {
 
     public Game() {
         createRooms();
-
     }
 
     //Our rooms - which room to start in?
