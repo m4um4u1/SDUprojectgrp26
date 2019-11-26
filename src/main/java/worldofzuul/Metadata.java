@@ -114,10 +114,21 @@ public class Metadata implements IMetaData {
             scoreArray.add(fileReader.next());
         }
         fileReader.close();
+        
         String output = "";
+        int index = 0;
+        
         for(String s: scoreArray){
            output += s;
+           output += "\n";
+           index++;
+           
+           if (index % 3 == 0) {
+               output += "---\n";
+           }
+           
         }
+        output.remove(output.size());
         return output;
     }
-    }
+}

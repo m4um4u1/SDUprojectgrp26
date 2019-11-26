@@ -69,8 +69,8 @@ public class StartscreenController extends Application {
     public void handleButtonLogin() { // changes the labels to login-text with name
             name = nameTextField.getText();
             nameTextField.clear();
-            welcomeLabel.setText("Hej " + name + ", tryk 'start spil' for at starte, eller tryk 'score', for at se din og de andres score.");
-            notTheUser.setText("Du er ikke " + name + "? Så bare login med en anden bruger.");
+            welcomeLabel.setText("Hej " + name + ", klik på 'start spil' for at starte, eller 'score', for at se scoren for tidligere gennemspilninger.");
+            notTheUser.setText("Er du ikke " + name + ", så login med et andet navn.");
             buttonStartGame.setDisable(false);
             Game game = new Game();
     }
