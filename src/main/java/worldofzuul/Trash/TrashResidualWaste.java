@@ -1,4 +1,4 @@
-package Trash;
+package worldofzuul.Trash;
 
 public class TrashResidualWaste extends Trash {
     private final int trashType = 4;

@@ -1,6 +1,6 @@
-package worldofzuul;
+package Data;
 
-import Interface.IMetaData;
+import Interface.IMetadata;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Metadata implements IMetaData {
+public class Metadata implements IMetadata {
 
     // Attributes:
     private File metaData = new File("metadata.csv");
@@ -37,7 +37,7 @@ public class Metadata implements IMetaData {
         ArrayList<String> matcher = new ArrayList<>();
 
         try (
-                Scanner fileReader = new Scanner(metaData);
+                Scanner fileReader = new Scanner(metaData)
         ) {
             while (fileReader.hasNext()) {
                 matcher.add(fileReader.next());

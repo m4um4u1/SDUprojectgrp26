@@ -1,4 +1,4 @@
-package Trash;
+package worldofzuul.Trash;
 
 public abstract class Trash {
 

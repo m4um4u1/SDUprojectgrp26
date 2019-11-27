@@ -1,11 +1,10 @@
 package Presentation;
 
-import java.io.FileNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
 import java.io.IOException;
-import worldofzuul.Metadata;
+import Data.Metadata;
 
 
 public class HighscoreController {

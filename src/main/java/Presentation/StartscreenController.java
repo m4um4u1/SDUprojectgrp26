@@ -6,7 +6,7 @@
 
 package Presentation;
 
-import Interface.IMetaData;
+import Interface.IMetadata;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import worldofzuul.Game;
-import worldofzuul.Metadata;
+import Data.Metadata;
 
 import java.io.IOException;
 
@@ -25,7 +25,7 @@ public class StartscreenController extends Application {
 
 
         private String name;
-        private IMetaData md = new Metadata();
+        private IMetadata md = new Metadata();
 
         @FXML
         private static Scene scene;
@@ -78,7 +78,6 @@ public class StartscreenController extends Application {
 
     @FXML
     public void handleButtonStart() { // starts the game
-
         md.setPlayerName(name);
         md.readScore();
 

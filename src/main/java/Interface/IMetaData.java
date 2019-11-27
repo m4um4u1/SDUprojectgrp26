@@ -1,7 +1,6 @@
 package Interface;
-import Presentation.StartscreenController.*;
 
-public interface IMetaData {
+public interface IMetadata {
 
     void setPlayerName(String playerName);
     void readScore();

@@ -3,8 +3,8 @@ package worldofzuul;
 
 import java.util.ArrayList;
 
-import Trash.*;
-import Trashbin.*;
+import worldofzuul.Trash.*;
+import worldofzuul.Trashbin.*;
 
 
 //Added an arraylist of inventory
@@ -26,7 +26,7 @@ public class Game {
         entre = new Room("i entreen", new Plastic(entre, 1, "Der er en skraldespand til plastik"));
         driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"));
 
-        //Adds Trash into each Room object.
+        //Adds worldofzuul.Trash into each Room object.
         livingRoom
                 .addTrash(new TrashMetalGlas(1, "jakabov", "Konservedåsen er desværre tom men lugter ikke.", "Denne dåse er lavet af Metal og skal derfor i metal og glas-spanden hvis den er rent."))
                 .addTrash(new TrashPaperCardboard(2, "brochure", "\"Guide til affaldssortering\", det har vi ikke brug for.", "Den er lavet af papir og skal i papir og pap-spanden."))
@@ -87,7 +87,7 @@ public class Game {
             return;
         }
         String trash = command.getSecondWord();
-        for (Trash item : inventory) {
+        for (worldofzuul.Trash item : inventory) {
             if (item.getName().equals(trash)) {
                 System.out.println(item.getDescription());
             } else {
@@ -102,10 +102,10 @@ public class Game {
             return;
         }
         String trash = command.getSecondWord();
-        // Iterates the Trash inventory:
+        // Iterates the worldofzuul.Trash inventory:
         // (Had to use an iterator in order to be able to remove from inventory after depositing (ConcurrentModificationException))
-        for (Iterator<Trash> itr = inventory.iterator(); itr.hasNext();) {
-            Trash t = itr.next();
+        for (Iterator<worldofzuul.Trash> itr = inventory.iterator(); itr.hasNext();) {
+            worldofzuul.Trash t = itr.next();
             // Checks if inventory trash String name matches requested trash String name:
             if (t.getName().equals(trash)) {
                 System.out.println("Du smed " + trash + " ud fra din rygsæk.");

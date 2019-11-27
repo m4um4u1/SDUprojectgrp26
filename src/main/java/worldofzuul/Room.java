@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 
-import Trash.*;
-import Trashbin.*;
+import worldofzuul.Trash.*;
+import worldofzuul.Trashbin.*;
 
 public class Room {
 

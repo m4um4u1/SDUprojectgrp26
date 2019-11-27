@@ -1,4 +1,4 @@
-package Trashbin;
+package worldofzuul.Trashbin;
 
 import worldofzuul.Room;
 
