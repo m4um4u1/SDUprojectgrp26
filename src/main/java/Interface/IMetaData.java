@@ -1,8 +1,15 @@
 package Interface;
 
-public interface IMetadata {
+import java.io.FileNotFoundException;
 
-    void setPlayerName(String playerName);
+public interface IMetadata {
     void readScore();
-    String newUser(String playerName);
+    void updateScore(int score);
+    int getScore();
+    void newUser(String playerName);
+    void flushData(String currentRoom) throws FileNotFoundException;
+    String getOutput();
+    void readCSV();
+    String getCSV();
+    void quit() throws FileNotFoundException;
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Metadata implements IMetadata {
+public class Metadata implements IMetadata{
 
     // Attributes:
     private File metaData = new File("metadata.csv");
@@ -18,6 +18,7 @@ public class Metadata implements IMetadata {
     private String playerName;  // Prompted at start
     private int score;          // Manipulated during
     private String currentRoom; // Acquired when quit
+    private String output = "deafault";
 
     // Constructor:
     public Metadata() {
@@ -32,6 +33,7 @@ public class Metadata implements IMetadata {
         readCSV();
     }
 
+    @Override
     public void readScore() {
         // Loads the score (but not room atm) if username matches one found in the metadata.csv file:
         ArrayList<String> matcher = new ArrayList<>();
@@ -62,28 +64,36 @@ public class Metadata implements IMetadata {
 
     }
         // Updates the score:
-        public void updateScore (int score){
+        @Override
+        public void updateScore(int score){
             this.score += score;
         }
 
         // Returns the score:
+        @Override
         public int getScore() {
             return score;
         }
 
-        public String newUser(String playerName) {
-            String output = null;
+        @Override
+        public void newUser(String playerName) {
+            this.playerName = playerName;
             for (String s : scoreArray) {
                 if (s.contains(playerName)) {
-                    output = "Er du ikke "+playerName+"? Så log på med din bruger.";
+                    this.output = "Er du ikke "+playerName+"? Så log på med din bruger.";
                 } else {
-                    output = "Du opretter en ny bruger.";
+                    this.output = "Du opretter en ny bruger.";
                 }
             }
-            return output;
         }
-        // Gets the current room's short description when the program is quit:
-        public void flushData (String currentRoom) throws FileNotFoundException {
+
+    public String getOutput() {
+        return output;
+    }
+
+    // Gets the current room's short description when the program is quit:
+        @Override
+        public void flushData(String currentRoom) throws FileNotFoundException {
             this.currentRoom = currentRoom;
 
             // Adds the username, score and room to an ArrayList:
@@ -100,10 +110,7 @@ public class Metadata implements IMetadata {
 
         }
 
-        public void setPlayerName (String playerName){
-            this.playerName = playerName;
-        }
-
+        @Override
         public void readCSV() {
             try {
                 Scanner fileReader = new Scanner(metaData).useDelimiter("\r\n");
@@ -116,6 +123,7 @@ public class Metadata implements IMetadata {
             }
         }
             //this will read the whole CSV and put it in a array
+        @Override
         public String getCSV(){
         String output = "";
         int index = 0;
@@ -131,5 +139,9 @@ public class Metadata implements IMetadata {
            
         }
         return output;
+    }
+    @Override
+    public void quit() throws FileNotFoundException {
+        flushData(this.currentRoom);
     }
 }

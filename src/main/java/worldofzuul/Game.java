@@ -1,17 +1,22 @@
 package worldofzuul;
 
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import Data.Metadata;
+import Interface.IGame;
+import Interface.IMetadata;
 import worldofzuul.Trash.*;
 import worldofzuul.Trashbin.*;
 
 
 //Added an arraylist of inventory
-public class Game {
+public class Game implements IGame {
     private Room currentRoom;
-    ArrayList<Trash> inventory = new ArrayList<Trash>();
-    Room livingRoom, kitchen, homeOffice, entre, driveway;
+    private ArrayList<Trash> inventory = new ArrayList<Trash>();
+    private Room livingRoom, kitchen, homeOffice, entre, driveway;
+    private IMetadata md = new Metadata();
 
 
     public Game() {
@@ -19,7 +24,7 @@ public class Game {
     }
 
     //Our rooms - which room to start in?
-    private void createRooms() {
+    public void createRooms() {
         livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "Der er en skraldespand til restaffald "));
         kitchen = new Room("i køkkenet", new Organic(kitchen, 5, "Der er en skraldespand til organisk"));
         homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"));
@@ -64,7 +69,7 @@ public class Game {
     }
 
     //Method to print the inventory - prints the String as well as the trash held
-    private void printInventory() {
+    public void printInventory() {
         String output = "";
         if (inventory.size() != 0) {
             for (Trash item : inventory) {
@@ -78,8 +83,13 @@ public class Game {
             System.out.println("Din rygsæk er tom.");
         }
     }
-}
 
+    public String getOutput(){
+        return md.getOutput();
+    }
+    public void newUser(String name){
+        md.newUser(name);
+    }
 
    /* private void inspectTrash(Command command) {
         if (!command.hasSecondWord()) {
@@ -144,11 +154,10 @@ public class Game {
 
     */
 
-   /* public boolean quit() {
-        metaData.flushData(currentRoom.getShortDescription());
-            return true;
+    public void quit() throws FileNotFoundException {
+        md.flushData(currentRoom.getShortDescription());
         }
     }
-*/
+
 
 

@@ -6,7 +6,7 @@
 
 package Presentation;
 
-import Interface.IMetadata;
+import Interface.IGame;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,16 +16,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import worldofzuul.Game;
 import Data.Metadata;
+import worldofzuul.Game;
 
 import java.io.IOException;
 
 public class StartscreenController extends Application {
 
-
+        private IGame game = new Game();
         private String name;
-        private IMetadata md = new Metadata();
 
         @FXML
         private static Scene scene;
@@ -71,15 +70,14 @@ public class StartscreenController extends Application {
             name = nameTextField.getText();
             nameTextField.clear();
             welcomeLabel.setText("Hej " + name + ", klik på 'start spil' for at starte, eller 'score', for at se scoren for tidligere gennemspilninger.");
-            notTheUser.setText(md.newUser(name));
+            notTheUser.setText(game.getOutput());
             buttonStartGame.setDisable(false);
-            Game game = new Game();
+
     }
 
     @FXML
     public void handleButtonStart() { // starts the game
-        md.setPlayerName(name);
-        md.readScore();
+        game.newUser(name);
 
     }
     @FXML
