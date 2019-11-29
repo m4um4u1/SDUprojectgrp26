@@ -22,8 +22,7 @@ import worldofzuul.Game;
 import java.io.IOException;
 
 public class StartscreenController extends Application {
-
-        private IGame game = new Game();
+        public static IGame game = new Game();
         private String name;
 
         @FXML
@@ -34,6 +33,9 @@ public class StartscreenController extends Application {
 
         @FXML
         private Button buttonStartGame;
+        
+        @FXML
+        private Button grabTrashTest;
 
         @FXML
         private Label welcomeLabel;
@@ -83,6 +85,11 @@ public class StartscreenController extends Application {
     @FXML
     public void handleButtonScore() throws IOException { //changes scene to highscore
         setRoot("Highscore");
+    }
+    
+    @FXML
+    public void grabTrashTest() throws IOException{
+        setRoot("GrabTrashTest");
     }
 
 }

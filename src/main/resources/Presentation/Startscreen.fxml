@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="scoreLabel" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.StartscreenController">
+<AnchorPane fx:id="scoreLabel" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.StartscreenController">
    <children>
       <TextField fx:id="nameTextField" layoutX="14.0" layoutY="355.0" promptText="Indtast dit navn">
          <cursor>
@@ -26,5 +26,6 @@
       <Label fx:id="welcomeLabel" layoutX="14.0" layoutY="300.0" prefHeight="53.0" prefWidth="283.0" wrapText="true" />
       <Button fx:id="buttonLogin" layoutX="177.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleButtonLogin" text="Login" />
       <Label fx:id="notTheUser" layoutX="14.0" layoutY="388.0" prefHeight="47.0" prefWidth="283.0" wrapText="true" />
+      <Button fx:id="grabTrashTest" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#grabTrashTest" text="GrabTrashTest" />
    </children>
 </AnchorPane>
