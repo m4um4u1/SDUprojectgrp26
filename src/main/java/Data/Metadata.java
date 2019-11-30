@@ -18,7 +18,7 @@ public class Metadata implements IMetadata{
     private String playerName;  // Prompted at start
     private int score;          // Manipulated during
     private String currentRoom; // Acquired when quit
-    private String output = "deafault";
+    private String output;
 
     // Constructor:
     public Metadata() {
@@ -34,10 +34,9 @@ public class Metadata implements IMetadata{
     }
 
     @Override
-    public void readScore() {
+    public String readScore() {
         // Loads the score (but not room atm) if username matches one found in the metadata.csv file:
         ArrayList<String> matcher = new ArrayList<>();
-
         try (
                 Scanner fileReader = new Scanner(metaData)
         ) {
@@ -45,23 +44,19 @@ public class Metadata implements IMetadata{
                 matcher.add(fileReader.next());
             }
             fileReader.close();
-
             int i = 0;
             for (String srt : matcher) {
                 i++;
                 if (srt.contains(playerName)) {
                     this.score = Integer.parseInt(matcher.get(i + 1));
                     this.currentRoom = matcher.get(i + 2); // As mentioned; not used for now, changing currentRoom in Game is not implemented.
-                    System.out.println("Gemt brugernavn fundet; indlæser tidliger score på: " + getScore());
                     break;
                 }
             }
-
-
         } catch (FileNotFoundException ex) {
             System.out.println("Could not find file.");
         }
-
+        return "Gemt brugernavn fundet; indlæser tidliger score på: " + getScore();
     }
         // Updates the score:
         @Override
@@ -110,10 +105,11 @@ public class Metadata implements IMetadata{
 
         }
 
+        //this will read the whole CSV and put it in a array
         @Override
         public void readCSV() {
             try {
-                Scanner fileReader = new Scanner(metaData).useDelimiter("\r\n");
+                Scanner fileReader = new Scanner(metaData);
                 while (fileReader.hasNext()) {
                     scoreArray.add(fileReader.next());
                 }
@@ -122,7 +118,7 @@ public class Metadata implements IMetadata{
                 e.printStackTrace();
             }
         }
-            //this will read the whole CSV and put it in a array
+        //formats the strings in the array
         @Override
         public String getCSV(){
         String output = "";

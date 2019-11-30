@@ -83,15 +83,23 @@ public class Game implements IGame {
             System.out.println("Din rygsæk er tom.");
         }
     }
-
+//returns the output string from Metadata
     public String getOutput(){
         return md.getOutput();
     }
+    //uses the newUser method from metadata (checks if you are a new user)
     public void newUser(String name){
         md.newUser(name);
     }
+    //gets the score from Metadata end prints it
+    public void getScore(){
+        System.out.println(md.readScore());
+    }
 
-   /* private void inspectTrash(Command command) {
+    /*public IMetadata getMd() {
+        return md;
+    }
+        private void inspectTrash(Command command) {
         if (!command.hasSecondWord()) {
             System.out.println("Undersøg hvad?");
             return;
@@ -153,7 +161,7 @@ public class Game implements IGame {
     }
 
     */
-
+    //saves the data for now
     public void quit() throws FileNotFoundException {
         md.flushData(currentRoom.getShortDescription());
         }

@@ -3,7 +3,7 @@ package Interface;
 import java.io.FileNotFoundException;
 
 public interface IMetadata {
-    void readScore();
+    String readScore();
     void updateScore(int score);
     int getScore();
     void newUser(String playerName);

@@ -1,5 +1,6 @@
 package Presentation;
 
+import Interface.IMetadata;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
@@ -27,7 +28,7 @@ public class HighscoreController {
     //this will load the String from the metadata array to the textarea
     @FXML
     public void loadText() { //set the text from the arraylist in the textarea
-        Metadata md = new Metadata();
+        IMetadata md = new Metadata();
         String output;
         output = md.getCSV();
         highscoreText.setText(output);

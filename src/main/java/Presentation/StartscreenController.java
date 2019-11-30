@@ -16,14 +16,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import Data.Metadata;
 import worldofzuul.Game;
 
 import java.io.IOException;
 
 public class StartscreenController extends Application {
 
-        private IGame game = new Game();
+        private IGame game = new Game(); //could maybe be made static
         private String name;
 
         @FXML
@@ -68,23 +67,26 @@ public class StartscreenController extends Application {
     @FXML
     public void handleButtonLogin() { // changes the labels to login-text with name
             name = nameTextField.getText();
+            game.newUser(name);
             nameTextField.clear();
             welcomeLabel.setText("Hej " + name + ", klik på 'start spil' for at starte, eller 'score', for at se scoren for tidligere gennemspilninger.");
             notTheUser.setText(game.getOutput());
             buttonStartGame.setDisable(false);
-
     }
 
     @FXML
-    public void handleButtonStart() { // starts the game
-        game.newUser(name);
-
+    public void handleButtonStart() throws IOException { // starts the game
+        game.getScore();
+        setRoot("debug");
     }
     @FXML
     public void handleButtonScore() throws IOException { //changes scene to highscore
         setRoot("Highscore");
     }
 
+    /*public IGame getGame() {
+        return game;
+    } */
 }
 
 
