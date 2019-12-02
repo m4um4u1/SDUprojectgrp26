@@ -5,6 +5,6 @@ public interface IGame {
     void newUser(String name);
     String getOutput();
     void grabTrash(String id);
-    void inspectTrash(String id);
+    String inspectTrash(String id);
 
 }

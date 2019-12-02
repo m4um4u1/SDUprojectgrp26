@@ -13,11 +13,13 @@ Interface\IGame.class
 worldofzuul\Trash\TrashMetalGlas.class
 worldofzuul\Room.class
 worldofzuul\Trashbin\MetalGlass.class
+Presentation\Help.class
 worldofzuul\Trash\TrashPaperCardboard.class
 worldofzuul\Trashbin\ResidualWaste.class
 worldofzuul\Trash\Trash.class
 worldofzuul\Trashbin\Plastic.class
 Presentation\HighscoreController.class
+Presentation\StartscreenController$1.class
 Presentation\Start.class
 worldofzuul\Trash\TrashResidualWaste.class
 worldofzuul\Trash\TrashPlastic.class

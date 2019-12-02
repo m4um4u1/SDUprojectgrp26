@@ -112,14 +112,18 @@ public class Game implements IGame {
     }
 
     @Override
-    public void inspectTrash(String id) {
+    public String inspectTrash(String id) {
         this.trashList = currentRoom.getRoomTrash();
+        System.out.println("Trying to inspect: ");
         
         for (int i = 0; i < trashList.size(); i++) {
             if (id.equals(trashList.get(i).getId())) {
                 System.out.println(trashList.get(i).getDescription());
+                return trashList.get(i).getDescription();
             }
         }
+        System.out.println("No Trash with that id found! Throwing NullPointException Error in inspectTrash");
+        return null;
     }
    /* private void inspectTrash(Command command) {
         if (!command.hasSecondWord()) {

@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Presentation;
 
 import Interface.IGame;
@@ -16,9 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import Data.Metadata;
 import worldofzuul.Game;
-
 import java.io.IOException;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
@@ -49,6 +41,7 @@ public class StartscreenController extends Application {
         @FXML
         private Button help;
         
+        //Sets the help window as closed when someone presses X on the window.
         EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
             @Override
             public void handle(WindowEvent we) {
@@ -76,7 +69,7 @@ public class StartscreenController extends Application {
     }
 
     public static void load(String[] args) {
-        launch();
+        launch(args);
     }
 
     //Buttons:
@@ -109,12 +102,14 @@ public class StartscreenController extends Application {
     @FXML
     public void help() throws IOException {
         if (!isHelpOpen) {
+            //First it creates a new window (scene)
             Stage stageHelp = new Stage();
             Scene sceneHelp = new Scene(loadFXML("Help"), 720, 480);
             stageHelp.show();
             stageHelp.setTitle("Hjælp");
+            //isHelpOpen is set as open.
             this.isHelpOpen = true;
-            System.out.println(isHelpOpen);
+            //Sets an event that runs when the player presses on the close window button built in from Windows/Macs side.
             stageHelp.setOnCloseRequest(helpEventClose);
         }
         else {

@@ -8,6 +8,7 @@ package Presentation;
 import static Presentation.StartscreenController.game;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -21,6 +22,9 @@ public class GrabTrashExample {
     private ImageView bananaPeel;
     
     @FXML
+    private TextArea inspect;
+    
+    @FXML
     public void grab(MouseEvent event) {
         id = event.getPickResult().getIntersectedNode().getId();
         
@@ -32,7 +36,8 @@ public class GrabTrashExample {
             game.printInventory();
         
         } else if (event.isSecondaryButtonDown()) {
-            game.inspectTrash(id);
+            inspect.setWrapText(true);
+            inspect.setText(game.inspectTrash(id));
         }
     }    
 }
