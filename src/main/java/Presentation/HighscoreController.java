@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
 import java.io.IOException;
-import Data.Metadata;
+import worldofzuul.Metadata;
 
 
 public class HighscoreController {
@@ -13,7 +13,6 @@ public class HighscoreController {
 
     @FXML
     private TextArea highscoreText = new TextArea();
-
 
     @FXML
     private void handleButtonBack() throws IOException { //goes back to startscreen
@@ -28,10 +27,9 @@ public class HighscoreController {
     //this will load the String from the metadata array to the textarea
     @FXML
     public void loadText() { //set the text from the arraylist in the textarea
-        IMetadata md = new Metadata();
         String output;
-        output = md.getCSV();
-        highscoreText.setText(output);
+        //output = md.getCSV();
+        //highscoreText.setText(output);
     }
 
 }

@@ -4,12 +4,10 @@ package worldofzuul;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import Data.Metadata;
 import Interface.IGame;
 import Interface.IMetadata;
 import worldofzuul.Trash.*;
 import worldofzuul.Trashbin.*;
-
 
 //Added an arraylist of inventory
 public class Game implements IGame {
@@ -17,7 +15,6 @@ public class Game implements IGame {
     private ArrayList<Trash> inventory = new ArrayList<Trash>();
     private Room livingRoom, kitchen, homeOffice, entre, driveway;
     private IMetadata md = new Metadata();
-
 
     public Game() {
         createRooms();
@@ -74,7 +71,6 @@ public class Game implements IGame {
         if (inventory.size() != 0) {
             for (Trash item : inventory) {
                 output += item.getName() + ", ";
-
             }
             System.out.println("Din rygsæk indeholder: ");
             System.out.println(output);
@@ -83,22 +79,16 @@ public class Game implements IGame {
             System.out.println("Din rygsæk er tom.");
         }
     }
-//returns the output string from Metadata
+
+    //returns the output string from Metadata
     public String getOutput(){
         return md.getOutput();
     }
-    //uses the newUser method from metadata (checks if you are a new user)
-    public void newUser(String name){
-        md.newUser(name);
-    }
-    //gets the score from Metadata end prints it
-    public void getScore(){
-        System.out.println(md.readScore());
-    }
 
-    /*public IMetadata getMd() {
-        return md;
-    }
+    //gets the score from Metadata end prints it
+
+
+   /*
         private void inspectTrash(Command command) {
         if (!command.hasSecondWord()) {
             System.out.println("Undersøg hvad?");
@@ -163,7 +153,7 @@ public class Game implements IGame {
     */
     //saves the data for now
     public void quit() throws FileNotFoundException {
-        md.flushData(currentRoom.getShortDescription());
+        data.saveCSV();
         }
     }
 
