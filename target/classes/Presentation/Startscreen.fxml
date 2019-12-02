@@ -27,5 +27,6 @@
       <Button fx:id="buttonLogin" layoutX="177.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleButtonLogin" text="Login" />
       <Label fx:id="notTheUser" layoutX="14.0" layoutY="388.0" prefHeight="47.0" prefWidth="283.0" wrapText="true" />
       <Button fx:id="grabTrashTest" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#grabTrashTest" text="GrabTrashTest" />
+      <Button fx:id="help" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#help" text="Hjælp" />
    </children>
 </AnchorPane>

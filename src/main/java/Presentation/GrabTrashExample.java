@@ -11,10 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-/**
- *
- * @author simon
- */
 public class GrabTrashExample {
     private String id;
     

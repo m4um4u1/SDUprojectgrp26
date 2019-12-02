@@ -20,10 +20,13 @@ import Data.Metadata;
 import worldofzuul.Game;
 
 import java.io.IOException;
+import javafx.event.EventHandler;
+import javafx.stage.WindowEvent;
 
 public class StartscreenController extends Application {
         public static IGame game = new Game();
         private String name;
+        private boolean isHelpOpen = false;
 
         @FXML
         private static Scene scene;
@@ -42,6 +45,17 @@ public class StartscreenController extends Application {
 
         @FXML
         private Label notTheUser;
+        
+        @FXML
+        private Button help;
+        
+        EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
+            @Override
+            public void handle(WindowEvent we) {
+                isHelpOpen = false;
+                System.out.println(isHelpOpen);
+            }
+        };
 
 //GUI:
     @Override
@@ -91,7 +105,22 @@ public class StartscreenController extends Application {
     public void grabTrashTest() throws IOException{
         setRoot("GrabTrashTest");
     }
-
+    
+    @FXML
+    public void help() throws IOException {
+        if (!isHelpOpen) {
+            Stage stageHelp = new Stage();
+            Scene sceneHelp = new Scene(loadFXML("Help"), 720, 480);
+            stageHelp.show();
+            stageHelp.setTitle("Hjælp");
+            this.isHelpOpen = true;
+            System.out.println(isHelpOpen);
+            stageHelp.setOnCloseRequest(helpEventClose);
+        }
+        else {
+            //Do nothing!
+        }
+    }
 }
 
 
