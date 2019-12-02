@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 public interface IMetadata {
     void updateScore(int score);
     int getScore();
-    void newUser(String playerName);
-    String getOutput();
+    String newUser(String playerName);
     void quit() throws FileNotFoundException;
     String formatScore();
+    void setPlayerName(String playerName);
 }

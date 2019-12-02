@@ -3,14 +3,10 @@ package Presentation;
 import Interface.IMetadata;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-
 import java.io.IOException;
-import worldofzuul.Metadata;
-
 
 public class HighscoreController {
-
-
+    
     @FXML
     private TextArea highscoreText = new TextArea();
 
@@ -27,9 +23,8 @@ public class HighscoreController {
     //this will load the String from the metadata array to the textarea
     @FXML
     public void loadText() { //set the text from the arraylist in the textarea
-        String output;
-        //output = md.getCSV();
-        //highscoreText.setText(output);
+        String output = Start.md.formatScore();
+        highscoreText.setText(output);
     }
 
 }

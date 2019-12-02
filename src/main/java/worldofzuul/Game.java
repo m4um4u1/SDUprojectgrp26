@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import Interface.IGame;
-import Interface.IMetadata;
+import Presentation.Start;
 import worldofzuul.Trash.*;
 import worldofzuul.Trashbin.*;
 
@@ -14,7 +14,6 @@ public class Game implements IGame {
     private Room currentRoom;
     private ArrayList<Trash> inventory = new ArrayList<Trash>();
     private Room livingRoom, kitchen, homeOffice, entre, driveway;
-    private IMetadata md = new Metadata();
 
     public Game() {
         createRooms();
@@ -78,11 +77,6 @@ public class Game implements IGame {
         } else {
             System.out.println("Din rygsæk er tom.");
         }
-    }
-
-    //returns the output string from Metadata
-    public String getOutput(){
-        return md.getOutput();
     }
 
     //gets the score from Metadata end prints it
@@ -153,7 +147,7 @@ public class Game implements IGame {
     */
     //saves the data for now
     public void quit() throws FileNotFoundException {
-        data.saveCSV();
+        Start.md.quit();
         }
     }
 
