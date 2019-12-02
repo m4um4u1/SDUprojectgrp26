@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 
-import Trash.*;
-import Trashbin.*;
+import worldofzuul.Trash.Trash;
+import worldofzuul.Trashbin.Trashbin;
 
 public class Room {
 
@@ -29,7 +29,6 @@ public class Room {
     public String getShortDescription() {
         return description;
     }
-
 
     public String getLongDescription() {
         return "Du er " + description + ".\n" + getExitString();
@@ -68,12 +67,8 @@ public class Room {
     }
 
     //Name of the trash in the rooms
-    public String getRoomTrash() {
-        String output = "";
-        for (int i = 0; i < trash.size(); i++) {
-            output += trash.get(i).getName() + " ";
-        }
-        return output;
+    public ArrayList<Trash> getRoomTrash() {
+        return this.trash;
     }
 
     //Method to remove the trash from the room after grabbing it. 
