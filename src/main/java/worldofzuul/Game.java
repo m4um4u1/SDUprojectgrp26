@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import Data.Metadata;
 import Interface.IGame;
 import Interface.IMetadata;
+import static Presentation.StartscreenController.md;
 import worldofzuul.Trash.*;
 import worldofzuul.Trashbin.*;
 
@@ -17,7 +18,6 @@ public class Game implements IGame {
     private ArrayList<Trash> inventory = new ArrayList<Trash>();
     private Room livingRoom, kitchen, homeOffice, entre, driveway;
     private ArrayList<Trash> trashList; //Used to store Trash in a Room
-    private IMetadata md = new Metadata();
 
 
     public Game() {
@@ -112,77 +112,66 @@ public class Game implements IGame {
     }
 
     @Override
-    public void inspectTrash(String id) {
+    public String inspectTrash(String id) {
         this.trashList = currentRoom.getRoomTrash();
+        System.out.println("Trying to inspect: ");
         
         for (int i = 0; i < trashList.size(); i++) {
             if (id.equals(trashList.get(i).getId())) {
                 System.out.println(trashList.get(i).getDescription());
+                return trashList.get(i).getDescription();
             }
         }
+        System.out.println("No Trash with that id found! Throwing NullPointException Error in inspectTrash");
+        return null;
     }
-   /* private void inspectTrash(Command command) {
-        if (!command.hasSecondWord()) {
-            System.out.println("Undersøg hvad?");
-            return;
+//    private void inspectTrash(Command command) {
+//        if (!command.hasSecondWord()) {
+//            System.out.println("Undersøg hvad?");
+//            return;
+//        }
+//        String trash = command.getSecondWord();
+//        for (worldofzuul.Trash item : inventory) {
+//            if (item.getName().equals(trash)) {
+//                System.out.println(item.getDescription());
+//            } else {
+//                System.out.println(trash + " ligger ikke i din Ryksæk");
+//            }
+//        }
+//    }
+    
+    public void depositTrash(Trash trash) {
+        System.out.println(trash.getTrashType() + currentRoom.getTrashbin().getTrashtype());
+        if (currentRoom.getTrashbin().getTrashtype() == trash.getTrashType()) {
+            md.updateScore(100);
+            System.out.println("Correct!");
         }
-        String trash = command.getSecondWord();
-        for (worldofzuul.Trash item : inventory) {
-            if (item.getName().equals(trash)) {
-                System.out.println(item.getDescription());
-            } else {
-                System.out.println(trash + " ligger ikke i din Ryksæk");
-            }
+        else {
+            md.updateScore(-50);
+            System.out.println("Wrong!");
         }
-    }
-
-    private void depositTrash(Command command) {
-        if (!command.hasSecondWord()) {
-            System.out.println("Smid hvad?");
-            return;
-        }
-        String trash = command.getSecondWord();
-        // Iterates the worldofzuul.Trash inventory:
-        // (Had to use an iterator in order to be able to remove from inventory after depositing (ConcurrentModificationException))
-        for (Iterator<worldofzuul.Trash> itr = inventory.iterator(); itr.hasNext();) {
-            worldofzuul.Trash t = itr.next();
-            // Checks if inventory trash String name matches requested trash String name:
-            if (t.getName().equals(trash)) {
-                System.out.println("Du smed " + trash + " ud fra din rygsæk.");
-                // Checks if requested inventory trash type matches room bin trash type:
-                if (t.getTrashType() == (currentRoom.getTrashbin()).getTrashtype()) {
-                    System.out.println("Det er den rigtige skraldespand! Du fik 100 point!");
-                    metaData.updateScore(100);
-                } else {
-                    System.out.println("Hov! Det virker ikke rigtigt ... "+ t.getFeedback() +" Du tabte 50 point :(.");
-                    metaData.updateScore(-50);
-                }
-                itr.remove();
-            } else {
-                System.out.println(trash + " har du ikke i din rygsæk!");
-            }
-        }
+        
+        //Hvis det ikke virker så lav en custom equals
+        inventory.remove(trash);
     }
 
-    private void printHelp() {
-        System.out.println("Du kigger forvirret rundt i huset.. der er affald i alle rum...");
-        System.out.println();
-        System.out.println("Dine kommandoer er:");
-    }
-
-    private void goRoom() {
-
-       Room nextRoom = currentRoom.getExit(direction);
-        if (nextRoom == null) {
-            System.out.println("Der er ikke nogen dør!");
-        } else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
-            System.out.println(currentRoom.getTrashbinDescription());//skraldspand
-        }
-    }
-
-    */
+//    private void printHelp() {
+//        System.out.println("Du kigger forvirret rundt i huset.. der er affald i alle rum...");
+//        System.out.println();
+//        System.out.println("Dine kommandoer er:");
+//    }
+//
+//    private goRoom(String id) {
+//
+//       Room nextRoom = currentRoom.getExit(direction);
+//        if (nextRoom == null) {
+//            System.out.println("Der er ikke nogen dør!");
+//        } else {
+//            currentRoom = nextRoom;
+//            System.out.println(currentRoom.getLongDescription());
+//            System.out.println(currentRoom.getTrashbinDescription());//skraldspand
+//        }
+//    }
 
     public void quit() throws FileNotFoundException {
         md.flushData(currentRoom.getShortDescription());
