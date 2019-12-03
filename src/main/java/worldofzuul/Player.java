@@ -1,6 +1,6 @@
 package worldofzuul;
 
-public class Player implements Comparable<Player> {
+public class Player implements Comparable<Player>{
     private String name;
     private int score;
     private String location;
@@ -32,15 +32,14 @@ public class Player implements Comparable<Player> {
     }
 
     @Override
+    public int compareTo(Player p) {
+        return p.getScore() - this.score;
+    }
+    @Override
     public String toString() {
         return  "Navn: " + name + "\n" +
                 "Score: " + score + "\n" +
                 "Sidst været: " + location +"\n" +
                 "-------------" + "\n";
-    }
-    
-    @Override
-    public int compareTo(Player p) {
-        return p.getScore() - this.score;
     }
 }

@@ -35,7 +35,7 @@ public class Game implements IGame {
                 .addTrash(new TrashMetalGlas(9, "vinflaske", "Den er tom, mor har drukket igen, øv...", "Den er lavet af glas, så den skal i glas og metal-spanden."));
         homeOffice
                 .addTrash(new TrashResidualWaste(3, "pringlesrør", "Den er tom og føles som pap.", "Den skal i restaffaldsspanden fordi der er metal i indersiden og det derfor er blandet materiale."))
-                .addTrash(new TrashPaperCardboard(10, "kurvert", "Kuverten har et lille plastikvindue.", "Selvom der er plastik i kuverten skal den i papir og pap-spanden."));
+                .addTrash(new TrashPaperCardboard(10, "kuvert", "Kuverten har et lille plastikvindue.", "Selvom der er plastik i kuverten skal den i papir og pap-spanden."));
         kitchen
                 .addTrash(new TrashPlastic(4, "smørlåg", "Den er helt ren.", "Den skal i plastikspanden, fordi den er ren og lavet af plast."))
                 .addTrash(new TrashOrganic(11, "gulerod", "Den er orange, halv spist og allerede tør", "Den skal i madaffaldsspanden, fordi der en madrest."))
