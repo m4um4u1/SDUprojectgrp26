@@ -12,111 +12,114 @@ import java.util.ArrayList;
 public class Metadata implements IMetadata {
 
     // Attributes:
-    private File metaData = new File("metadata.csv");
+    public File metaData = new File("metadata.csv");
     private IDataRaW data = new DataRaW();
-    private ArrayList<String> scoreArray;
+
+    private ArrayList<Player> users = new ArrayList<>();
+    private int id;
+    private int chooser;
     private String playerName;
-    private int score;
+    private int score = 0;
     private String currentRoom;
     private String output;
+    private String outp;
+    private Player player;
+    private boolean newPlayer = false;
 
     // Constructor:
     public Metadata() {
-        // Creates a file in the project folder if not already there:
+        // Creates a file and dummy player in the project folder if not already there:
         if (!metaData.exists()) {
             try {
                 metaData.createNewFile();
+                users.add(new Player(0, "Maurice", 130, "i indkørslen"));
             } catch (IOException ex) {
                 System.out.println("Could not create a new metadata file.");
             }
+        } else {
+            loadPlayers();
         }
-        scoreArray = data.readCSV();
     }
-        // Updates the score:
-        @Override
-        public void updateScore ( int score){
-            this.score += score;
-        }
 
-        // Returns the score:
-        @Override
-        public int getScore () {
-            return score;
+    public void loadPlayers(){ // adds players from CSV to array
+        ArrayList<String> scoreArray = data.readCSV();
+        for(String players : scoreArray){
+            String[] player = players.split(" ");
+            int id = Integer.parseInt(player[0]);
+            String playerName = player[1];
+            int score = Integer.parseInt(player[2]);
+            String currentRoom = player[3];
+            System.out.println(id + playerName + score + currentRoom);
+            Player user = new Player(id, playerName, score, currentRoom);
+            users.add(user);
         }
+    }
 
-        public void setCurrentRoom(String currentRoom) {
+    // Updates the score:
+    @Override
+    public void updateScore(int score) { //upsates score
+        this.score += score;
+    }
+
+    private void loadPlayer(){ //loads data from current player
+        this.playerName = users.get(chooser).getName();
+        this.score = users.get(chooser).getScore();
+        this.currentRoom = users.get(chooser).getLocation();
+    }
+
+    private void savePlayer(){ //updates player score and location in array
+        users.get(chooser).setScore(this.score);
+        users.get(chooser).setLocation(this.currentRoom);
+    }
+
+    public void setCurrentRoom(String currentRoom) {
         this.currentRoom = currentRoom;
-        }
-
-        
-        public void setPlayerName(String playerName) {
-        
-        }
-        
-        @Override
-        public String newUser(String playerName){
-        this.playerName = playerName;
-        
-        for (int i = 0; i < scoreArray.size(); i += 3) {
-                
-                System.out.println(scoreArray);
-                
-                for (String s : scoreArray) {
-                if (s.contains(playerName)) {
-                    this.output = "Er du ikke " + playerName + "? Så log på med din bruger.";
-                } else {
-                    this.output = "Du opretter en ny bruger.";
-                }
-            
-                
-                score = Integer.parseInt(scoreArray.get(i + 1));
-                currentRoom = scoreArray.get(i + 2); // As mentioned; not used for now, changing currentRoom in Game is not implemented.
-                
-                System.out.println(scoreArray);
-        
-            
-            
-        }
-        }return output;
-        }
-        
-        @Override
-        public void quit (){
-            data.saveCSV(scoreArray);
-        }
-        
-        @Override
-        public String formatScore() { //formats the strings in the array
-            for (int i = 0; i < scoreArray.size(); i += 3) {
-                
-                System.out.println(scoreArray);
-                
-                playerName = scoreArray.get(i);
-                score = Integer.parseInt(scoreArray.get(i + 1));
-                currentRoom = scoreArray.get(i + 2); // As mentioned; not used for now, changing currentRoom in Game is not implemented.
-                
-                System.out.println(scoreArray);
-                
-                // Adds the username, score and room to an ArrayList:
-                scoreArray.add("Player name: " + playerName); // String
-                scoreArray.add("Score: " + score); // String
-                scoreArray.add("Room: " + currentRoom); // String
-                
-                System.out.println(scoreArray);
-            }
-
-            int index = 0;
-            for (String s : scoreArray) {
-                output += s;
-                output += "\n";
-                index++;
-
-                if (index % 3 == 0) {
-                    output += "---\n";
-                }
-            }
-            return output;
-        }
-
-
     }
+
+    @Override
+    public String checkUser(String playerName) { //checks if new player and gets the current player
+        for (Player p : users) {
+            if (playerName.equals(p.getName())) {
+                chooser = p.getId();
+                output = "Er du ikke " + playerName + "? Så log på med din bruger, eller lav en ny.";
+                loadPlayer();
+                break;
+            } else {
+                newPlayer = true;
+                this.playerName = playerName;
+                output = "Du opretter en ny bruger.";
+            }
+        }
+        return output;
+    }
+
+    private Player addNewPlayer(){ //ceates a new player
+        System.out.println(users.size());
+        int id = users.size();
+        player = new Player(id, this.playerName, this.score, this.currentRoom);
+        return player;
+    }
+
+    @Override
+    public void quit() { // saves players to scv
+        if (newPlayer) {
+            users.add(addNewPlayer());
+        } else {
+            savePlayer();
+        }
+            ArrayList<String> player = new ArrayList<>();
+            for (Player p : users) {
+                System.out.print(p.getId() + " " + p.getName() + " " + p.getScore() + " " + p.getLocation());
+                player.add(p.getId() + " " + p.getName() + " " + p.getScore() + " " + p.getLocation());
+            }
+            data.saveCSV(player);
+        }
+
+    @Override
+    public String formatScore() { // prints players in highscore
+        for (Player p : users){
+            outp+= p.toString();
+        }
+        return outp;
+    }
+}

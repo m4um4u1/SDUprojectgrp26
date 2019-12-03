@@ -94,5 +94,10 @@ public class Room {
     public String getTrashbinDescription() {
         return trashbin.getDescription();
     }
+
+    @Override
+    public String toString() {
+        return description;
+    }
 }
 

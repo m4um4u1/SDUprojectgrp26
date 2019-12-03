@@ -1,6 +1,8 @@
 package Data;
 
 import Interface.IDataRaW;
+import worldofzuul.Player;
+
 import java.io.File;
 
 import java.io.FileNotFoundException;
@@ -13,12 +15,11 @@ private File file = new File("metadata.csv");
     //this will read the whole CSV and put it in a array
     @Override
     public ArrayList<String> readCSV() {
-    ArrayList<String> scoreArray = null;
+    ArrayList<String> scoreArray = new ArrayList<>();
     try {
-        scoreArray = new ArrayList<String>();
         Scanner fileReader = new Scanner(file);
-        while (fileReader.hasNext()) {
-            scoreArray.add(fileReader.next());
+        while (fileReader.hasNextLine()) {
+            scoreArray.add(fileReader.nextLine());
         }
         fileReader.close();
     } catch (FileNotFoundException ex) {

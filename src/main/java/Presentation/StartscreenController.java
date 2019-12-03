@@ -65,7 +65,7 @@ public class StartscreenController extends Application {
             name = nameTextField.getText();
             nameTextField.clear();
             welcomeLabel.setText("Hej " + name + ", klik på 'start spil' for at starte, eller 'score', for at se scoren for tidligere gennemspilninger.");
-            notTheUser.setText(Start.md.newUser(name));
+            notTheUser.setText(Start.game.getMd().checkUser(name));
             buttonStartGame.setDisable(false);
     }
 
@@ -77,10 +77,6 @@ public class StartscreenController extends Application {
     public void handleButtonScore() throws IOException { //changes scene to highscore
         setRoot("Highscore");
     }
-
-    /*public IGame getGame() {
-        return game;
-    } */
 }
 
 

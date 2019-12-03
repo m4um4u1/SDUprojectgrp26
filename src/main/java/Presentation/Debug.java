@@ -2,7 +2,9 @@ package Presentation;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import static Presentation.StartscreenController.setRoot;
 
 public class Debug {
 
@@ -15,11 +17,12 @@ public class Debug {
 
     @FXML
    public void buttonHandleScore(){
-        Start.md.updateScore(10);
+        Start.game.getMd().updateScore(10);
    }
    @FXML
-    public void buttonHandleQuit() throws FileNotFoundException {
-       Start.md.quit();
+    public void buttonHandleQuit() throws IOException {
+       Start.game.quit();
+       setRoot("Startscreen");
    }
 }
 

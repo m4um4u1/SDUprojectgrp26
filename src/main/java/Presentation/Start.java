@@ -7,7 +7,6 @@ import worldofzuul.Metadata;
 
 public class Start {
 
-    public static final IMetadata md = new Metadata();
     public static final IGame game = new Game();
     
     public static void main(String[] args) {

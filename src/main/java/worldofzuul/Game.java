@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import Interface.IGame;
-import Presentation.Start;
+import Interface.IMetadata;
 import worldofzuul.Trash.*;
 import worldofzuul.Trashbin.*;
 
@@ -14,6 +14,7 @@ public class Game implements IGame {
     private Room currentRoom;
     private ArrayList<Trash> inventory = new ArrayList<Trash>();
     private Room livingRoom, kitchen, homeOffice, entre, driveway;
+    private IMetadata md = new Metadata();
 
     public Game() {
         createRooms();
@@ -25,7 +26,7 @@ public class Game implements IGame {
         kitchen = new Room("i køkkenet", new Organic(kitchen, 5, "Der er en skraldespand til organisk"));
         homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"));
         entre = new Room("i entreen", new Plastic(entre, 1, "Der er en skraldespand til plastik"));
-        driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"));
+        driveway = new Room("i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"));
 
         //Adds worldofzuul.Trash into each Room object.
         livingRoom
@@ -79,6 +80,9 @@ public class Game implements IGame {
         }
     }
 
+    public IMetadata getMd() {
+        return md;
+    }
     //gets the score from Metadata end prints it
 
 
@@ -147,7 +151,8 @@ public class Game implements IGame {
     */
     //saves the data for now
     public void quit() throws FileNotFoundException {
-        Start.md.quit();
+        md.setCurrentRoom(this.currentRoom.toString());
+        md.quit();
         }
     }
 

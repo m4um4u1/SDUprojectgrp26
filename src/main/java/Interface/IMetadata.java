@@ -4,9 +4,9 @@ import java.io.FileNotFoundException;
 
 public interface IMetadata {
     void updateScore(int score);
-    int getScore();
-    String newUser(String playerName);
+    String checkUser(String playerName);
     void quit() throws FileNotFoundException;
     String formatScore();
-    void setPlayerName(String playerName);
+    void setCurrentRoom(String currentRoom);
+    void loadPlayers();
 }
