@@ -7,6 +7,7 @@ import Interface.IMetadata;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Metadata implements IMetadata {
@@ -49,7 +50,6 @@ public class Metadata implements IMetadata {
             String playerName = player[0];
             int score = Integer.parseInt(player[1]);
             String currentRoom = player[2] + " " + player[3];
-            System.out.println(playerName + score + currentRoom);
             Player user = new Player(playerName, score, currentRoom);
             users.add(user);
             }
@@ -127,6 +127,9 @@ public class Metadata implements IMetadata {
     @Override
     public String formatScore() { // prints players in highscore
         outp = ""; // Clears the highscore list
+        
+        Collections.sort(users); // Sorts the users according their score; highest to lowest.
+        
         for (Player p : users){
             outp+= p.toString();
         }
