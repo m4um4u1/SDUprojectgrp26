@@ -1,6 +1,8 @@
 package Presentation;
 
+import Data.Metadata;
 import Interface.IGame;
+import Interface.IMetadata;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +19,7 @@ import javafx.stage.WindowEvent;
 
 public class StartscreenController extends Application {
         public static IGame game = new Game();
+        public static IMetadata md = new Metadata();
         private String name;
         private boolean isHelpOpen = false;
 
