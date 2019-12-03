@@ -3,6 +3,7 @@ worldofzuul\Trashbin\Organic.class
 worldofzuul\Trashbin\Trashbin.class
 Interface\IMetadata.class
 worldofzuul\Trash\TrashOrganic.class
+worldofzuul\Player.class
 Presentation\Debug.class
 Interface\IDataRaW.class
 module-info.class

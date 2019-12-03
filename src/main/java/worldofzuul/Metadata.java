@@ -16,7 +16,6 @@ public class Metadata implements IMetadata {
     private IDataRaW data = new DataRaW();
 
     private ArrayList<Player> users = new ArrayList<>();
-    private int id;
     private int chooser;
     private String playerName;
     private int score = 0;
@@ -32,7 +31,8 @@ public class Metadata implements IMetadata {
         if (!metaData.exists()) {
             try {
                 metaData.createNewFile();
-                users.add(new Player(0, "Maurice", 130, "i indkørslen"));
+                loadPlayer();
+                quit();
             } catch (IOException ex) {
                 System.out.println("Could not create a new metadata file.");
             }
@@ -43,21 +43,22 @@ public class Metadata implements IMetadata {
 
     public void loadPlayers(){ // adds players from CSV to array
         ArrayList<String> scoreArray = data.readCSV();
-        for(String players : scoreArray){
+        if (!scoreArray.isEmpty()) {
+            for(String players : scoreArray){
             String[] player = players.split(" ");
-            int id = Integer.parseInt(player[0]);
-            String playerName = player[1];
-            int score = Integer.parseInt(player[2]);
-            String currentRoom = player[3];
-            System.out.println(id + playerName + score + currentRoom);
-            Player user = new Player(id, playerName, score, currentRoom);
+            String playerName = player[0];
+            int score = Integer.parseInt(player[1]);
+            String currentRoom = player[2] + " " + player[3];
+            System.out.println(playerName + score + currentRoom);
+            Player user = new Player(playerName, score, currentRoom);
             users.add(user);
+            }
         }
     }
 
     // Updates the score:
     @Override
-    public void updateScore(int score) { //upsates score
+    public void updateScore(int score) { //updates score
         this.score += score;
     }
 
@@ -67,7 +68,7 @@ public class Metadata implements IMetadata {
         this.currentRoom = users.get(chooser).getLocation();
     }
 
-    private void savePlayer(){ //updates player score and location in array
+    private void updatePlayer(){ //updates player score and location in array
         users.get(chooser).setScore(this.score);
         users.get(chooser).setLocation(this.currentRoom);
     }
@@ -75,48 +76,57 @@ public class Metadata implements IMetadata {
     public void setCurrentRoom(String currentRoom) {
         this.currentRoom = currentRoom;
     }
-
+    
     @Override
     public String checkUser(String playerName) { //checks if new player and gets the current player
-        for (Player p : users) {
-            if (playerName.equals(p.getName())) {
-                chooser = p.getId();
-                output = "Er du ikke " + playerName + "? Så log på med din bruger, eller lav en ny.";
-                loadPlayer();
+        this.playerName = playerName;
+        if (!users.isEmpty()) {
+            for (Player p : users) {
+                if (playerName.equals(p.getName())) {
+                    chooser = users.indexOf(p);
+                    output = "Er du ikke " + playerName + "? Så log på med din bruger, eller lav en ny.";
+                    loadPlayer();
+                    users.remove(p);
+                }
                 break;
-            } else {
-                newPlayer = true;
-                this.playerName = playerName;
-                output = "Du opretter en ny bruger.";
             }
+        } else {
+            newPlayer = true;
+            output = "Du opretter en ny bruger.";
         }
         return output;
     }
 
-    private Player addNewPlayer(){ //ceates a new player
-        System.out.println(users.size());
-        int id = users.size();
-        player = new Player(id, this.playerName, this.score, this.currentRoom);
+    private Player addNewPlayer(){ //creates a new player
+        player = new Player(this.playerName, this.score, this.currentRoom);
         return player;
     }
 
+    private void resetData() {
+        this.playerName = "";
+        this.score = 0;
+        this.currentRoom = "";
+    }
+    
     @Override
     public void quit() { // saves players to scv
-        if (newPlayer) {
+        if (newPlayer || users.isEmpty()) {
             users.add(addNewPlayer());
         } else {
-            savePlayer();
+            updatePlayer();
         }
             ArrayList<String> player = new ArrayList<>();
             for (Player p : users) {
-                System.out.print(p.getId() + " " + p.getName() + " " + p.getScore() + " " + p.getLocation());
-                player.add(p.getId() + " " + p.getName() + " " + p.getScore() + " " + p.getLocation());
+                System.out.print(p.getName() + " " + p.getScore() + " " + p.getLocation());
+                player.add(p.getName() + " " + p.getScore() + " " + p.getLocation());
             }
             data.saveCSV(player);
+            resetData();
         }
 
     @Override
     public String formatScore() { // prints players in highscore
+        outp = ""; // Clears the highscore list
         for (Player p : users){
             outp+= p.toString();
         }

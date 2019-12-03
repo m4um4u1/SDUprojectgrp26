@@ -1,13 +1,11 @@
 package worldofzuul;
 
 public class Player {
-    private int id;
     private String name;
     private int score;
     private String location;
 
-    public Player(int id, String name, int score, String location) {
-        this.id = id;
+    public Player(String name, int score, String location) {
         this.name = name;
         this.score = score;
         this.location = location;
@@ -19,14 +17,6 @@ public class Player {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -43,8 +33,9 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Navn: " + name + '\n' +
-                "Score: " + score + "\n"+
-                "Sidst været: " + location + "\n";
+        return  "Navn: " + name + "\n" +
+                "Score: " + score + "\n" +
+                "Sidst været: " + location +"\n" +
+                "-------------" + "\n";
     }
 }
