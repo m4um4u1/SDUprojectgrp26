@@ -113,6 +113,7 @@ public class StartscreenController extends Application {
             Scene sceneHelp = new Scene(loadFXML("Help"), 720, 480);
             stageHelp.show();
             stageHelp.setTitle("Hjælp");
+            stageHelp.setScene(sceneHelp);
             this.isHelpOpen = true;
             System.out.println(isHelpOpen);
             stageHelp.setOnCloseRequest(helpEventClose);
