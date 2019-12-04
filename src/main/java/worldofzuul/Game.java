@@ -7,30 +7,36 @@ import java.util.ArrayList;
 import Data.Metadata;
 import Interface.IGame;
 import Interface.IMetadata;
+import javafx.scene.control.Button;
 import worldofzuul.Trash.*;
 import worldofzuul.Trashbin.*;
 
 
 //Added an arraylist of inventory
 public class Game implements IGame {
-    private Room currentRoom;
+    public Room currentRoom;
     private ArrayList<Trash> inventory = new ArrayList<Trash>();
-    private Room livingRoom, kitchen, homeOffice, entre, driveway;
+    public Room livingRoom;
+    public Room kitchen;
+    public Room homeOffice;
+    public Room entre;
+    public Room driveway;
+    public Button north, south, east, west;
     private ArrayList<Trash> trashList; //Used to store Trash in a Room
     private IMetadata md = new Metadata();
 
 
-    public Game() {
+    public Game()  {
         createRooms();
     }
 
     //Our rooms - which room to start in?
     public void createRooms() {
-        livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "Der er en skraldespand til restaffald "));
-        kitchen = new Room("i køkkenet", new Organic(kitchen, 5, "Der er en skraldespand til organisk"));
-        homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"));
-        entre = new Room("i entreen", new Plastic(entre, 1, "Der er en skraldespand til plastik"));
-        driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"));
+        livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "Der er en skraldespand til restaffald "), "LIVINGROOM");
+        kitchen = new Room("i køkkenet", new Organic(kitchen, 5, "Der er en skraldespand til organisk"), "KITCHEN");
+        homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"), "HOMEOFFICE");
+        entre = new Room("i entreen", new Plastic(entre, 1, "Der er en skraldespand til plastik"), "ENTRE");
+        driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"), "DRIVEWAY");
 
         //Adds worldofzuul.Trash into each Room object.
         livingRoom
@@ -52,22 +58,33 @@ public class Game implements IGame {
                 .addTrash(new TrashOrganic("bananaPeel", "bananskræl", "Meget brun, pas på du ikke falder.", "Det skal i madaffaldsspanden fordi det er en madrest."))
                 .addTrash(new TrashPlastic("straw", "sugerør", "En rund cylinder, lavet af plast.", "Den skal i plastikaffald fordi den er lavet af plast."));
 
-        //set doors/exits for each room
-        driveway.setExit("nord", entre);
+       //set doors/exits for each room
+        driveway.setExit("north", entre);
 
-        entre.setExit("syd", driveway);
-        entre.setExit("vest", homeOffice);
-        entre.setExit("nord", livingRoom);
+        entre.setExit("south", driveway);
+        entre.setExit("west", homeOffice);
+        entre.setExit("north", livingRoom);
 
-        homeOffice.setExit("øst", entre);
+        homeOffice.setExit("east", entre);
 
-        livingRoom.setExit("syd", entre);
-        livingRoom.setExit("øst", kitchen);
+        livingRoom.setExit("south", entre);
+        livingRoom.setExit("east",kitchen);
 
-        kitchen.setExit("vest", livingRoom);
+        kitchen.setExit("west", livingRoom);
+        
         //which room to spawn
         currentRoom = driveway;
+        
+        if(currentRoom == driveway){
+            System.out.println("in driveway");
+        } else {
+            System.out.println("not driveway");
+        }
+        
+
     }
+
+
 
     //Method to print the inventory - prints the String as well as the trash held
     public void printInventory() {
@@ -170,19 +187,26 @@ public class Game implements IGame {
         System.out.println("Dine kommandoer er:");
     }
 
-    private void goRoom() {
 
+    */
+
+
+    public Room goRoom(String direction) {
+
+       
        Room nextRoom = currentRoom.getExit(direction);
         if (nextRoom == null) {
             System.out.println("Der er ikke nogen dør!");
+            return null;
         } else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
-            System.out.println(currentRoom.getTrashbinDescription());//skraldspand
+            this.currentRoom = nextRoom;
+            System.out.println(currentRoom.getShortDescription());
         }
+        return nextRoom;
     }
+    
 
-    */
+
 
     public void quit() throws FileNotFoundException {
         md.flushData(currentRoom.getShortDescription());

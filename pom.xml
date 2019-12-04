@@ -41,4 +41,5 @@
             </plugin>
         </plugins>
     </build>
+    <name>worldofzuulROOMS</name>
 </project>

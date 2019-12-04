@@ -20,6 +20,7 @@ public class GrabTrashExample {
     @FXML
     private ImageView bananaPeel;
     
+    
     @FXML
     public void grab(MouseEvent event) {
         id = event.getPickResult().getIntersectedNode().getId();

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.ENTREController">
+   <children>
+      <Accordion layoutX="113.0" layoutY="84.0" AnchorPane.bottomAnchor="358.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="503.0" AnchorPane.topAnchor="84.0" />
+      <Button fx:id="north" blendMode="HARD_LIGHT" defaultButton="true" layoutX="299.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="56.0" prefWidth="36.0">
+         <graphic>
+            <ImageView fitHeight="59.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/arrow3.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="south" blendMode="HARD_LIGHT" defaultButton="true" layoutX="300.0" layoutY="386.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="56.0" prefWidth="36.0">
+         <graphic>
+            <ImageView fitHeight="51.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/arrow2.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="west" blendMode="HARD_LIGHT" defaultButton="true" layoutX="14.0" layoutY="185.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="41.0" prefWidth="69.0">
+         <graphic>
+            <ImageView fitHeight="51.0" fitWidth="56.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/arrow1.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="182.0" layoutY="104.0">
+         <image>
+            <Image url="@Images/14971962_1180255405401319_1022763049_n.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="425.0" layoutY="115.0" prefHeight="23.0" prefWidth="56.0" text="ENTRE" />
+   </children>
+</AnchorPane>

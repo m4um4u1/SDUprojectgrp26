@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.HOMEOFFICEController">
+   <children>
+      <Accordion layoutX="123.0" layoutY="94.0" />
+      <Button fx:id="east" blendMode="HARD_LIGHT" defaultButton="true" layoutX="557.0" layoutY="203.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="41.0" prefWidth="69.0">
+         <graphic>
+            <ImageView fitHeight="51.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/arrow1.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fitHeight="148.0" fitWidth="200.0" layoutX="209.0" layoutY="143.0">
+         <image>
+            <Image url="@Images/828253e31f4bcb7697a7d132782ed26d--hitler-quotes-goku.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="102.0" layoutY="115.0" text="HOME OFFICE" />
+   </children>
+</AnchorPane>

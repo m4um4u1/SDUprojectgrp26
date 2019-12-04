@@ -66,6 +66,9 @@ public class StartscreenController extends Application {
         stage.setTitle("Sortering for Dummies");
     }
 
+
+
+
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
@@ -92,8 +95,9 @@ public class StartscreenController extends Application {
     }
 
     @FXML
-    public void handleButtonStart() { // starts the game
+    public void handleButtonStart() throws IOException { // starts the game
         game.newUser(name);
+        setRoot("DRIVEWAY");
 
     }
     @FXML

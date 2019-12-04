@@ -1,9 +1,11 @@
 package worldofzuul;
 
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.HashMap;
+import java.util.Set;
 
+import javafx.fxml.FXMLLoader;
 import worldofzuul.Trash.Trash;
 import worldofzuul.Trashbin.Trashbin;
 
@@ -11,29 +13,44 @@ public class Room {
 
     //Adding arraylist of trash in rooms
     private String description;
-    private HashMap<String, Room> exits;
+    public HashMap<String, Room> exits;
     private Trashbin trashbin;
     ArrayList<Trash> trash = new ArrayList<Trash>();
+    private String root;
 
     //Used if there is a trashbin but no trash
-    public Room(String description, Trashbin trashbin) {
+    /*public Room(String description, Trashbin trashbin) {
         this.description = description;
         exits = new HashMap<String, Room>();
         this.trashbin = trashbin;
+    } */
+    
+    public Room(String description, Trashbin trashbin, String root) {
+        this.description = description;
+        exits = new HashMap<String, Room>();
+        this.trashbin = trashbin;
+        this.root = root;
     }
 
+    public String getRoot() {
+        return root;
+    }
+    
     public void setExit(String direction, Room neighbor) {
-        exits.put(direction, neighbor);
+        exits.put(direction,neighbor);
     }
 
     public String getShortDescription() {
         return description;
     }
-
+    
+    
     public String getLongDescription() {
         return "Du er " + description + ".\n" + getExitString();
     }
+    
 
+    
     //Added: Showing what trash is in the room when entering
     private String getExitString() {
         String returnString = "Udgange:";
@@ -41,13 +58,16 @@ public class Room {
         for (String exit : keys) {
             returnString += " " + exit;
         }
+        /*
         returnString += "\n" + "\n" + "Affald i rummet: \n";
         returnString += getRoomTrash();
+        */
         return returnString;
     }
+    
 
-    public Room getExit(String direction) {
-        return exits.get(direction);
+    public Room getExit(String description) {
+        return exits.get(description);
     }
 
     //Method to grab the trash IF there is any and it matches the input 
@@ -84,10 +104,11 @@ public class Room {
     public Trashbin getTrashbin() {
         return trashbin;
     }
-
+    
     //en Metode til at giver en beskrivelse af TrashBin:
     public String getTrashbinDescription() {
         return trashbin.getDescription();
     }
+
 }
 
