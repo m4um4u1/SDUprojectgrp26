@@ -1,9 +1,7 @@
 package Presentation;
 
 
-import Data.Metadata;
 import Interface.IGame;
-import Interface.IMetadata;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +27,14 @@ public class StartscreenController extends Application {
     @FXML
     private static Scene scene;
 
+    @FXML
+    private Button buttonLogin;
+
+    @FXML
+    private Label welcomeLabel;
+
+    @FXML
+    private Label notTheUser;
 
     @FXML
     private Button buttonStartGame;
@@ -39,14 +45,6 @@ public class StartscreenController extends Application {
     @FXML
     private TextField nameTextField;
 
-
-    @FXML
-    private Button buttonStartGame;
-
-
-    @FXML
-    private Label notTheUser;
-        
     @FXML
     private Button help;
         
@@ -58,16 +56,6 @@ public class StartscreenController extends Application {
             System.out.println(isHelpOpen);
         }
     };
-
-    @FXML
-    private Button buttonLogin;
-
-    @FXML
-    private Label welcomeLabel;
-
-
-    @FXML
-    private Label notTheUser;
 
     //GUI:
     @Override
