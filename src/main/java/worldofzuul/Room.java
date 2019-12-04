@@ -67,14 +67,6 @@ public class Room {
         return this;
     }
 
-    //Name of the trash in the rooms
-    public String getRoomTrash() {
-        String output = "";
-        for (int i = 0; i < trash.size(); i++) {
-            output += trash.get(i).getName() + " ";
-        }
-        return output;
-    }
 
     //Method to remove the trash from the room after grabbing it. 
     //Eventuelt lav et for each loop
@@ -85,7 +77,10 @@ public class Room {
             }
         }
     }
-
+    //Name of the trash in the rooms
+    public ArrayList<Trash> getRoomTrash() {
+        return this.trash;
+    }
     public Trashbin getTrashbin() {
         return trashbin;
     }

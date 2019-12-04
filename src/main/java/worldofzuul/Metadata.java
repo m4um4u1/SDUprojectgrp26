@@ -3,8 +3,6 @@ package worldofzuul;
 import Data.DataRaW;
 import Interface.IDataRaW;
 import Interface.IMetadata;
-import worldofzuul.Exceptions.PlayernameException;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -98,39 +96,38 @@ public class Metadata implements IMetadata {
         return output;
     }
 
-        private Player addNewPlayer () { //creates a new player
-            player = new Player(this.playerName, this.score, this.currentRoom);
-            return player;
-        }
-
-        private void resetData () {
-            this.playerName = "";
-            this.score = 0;
-            this.currentRoom = "";
-        }
-
-        @Override
-        public void quit () { // saves players to scv
-            if (newPlayer || users.isEmpty()) {
-                users.add(addNewPlayer());
-            } else {
-                updatePlayer();
-            }
-            ArrayList<String> player = new ArrayList<>();
-            for (Player p : users) {
-                System.out.print(p.getName() + " " + p.getScore() + " " + p.getLocation());
-                player.add(p.getName() + " " + p.getScore() + " " + p.getLocation());
-            }
-            data.saveCSV(player);
-            resetData();
-        }
-
-        public String formatScore () { // prints players in highscore
-            outp = ""; // Clears the highscore list
-            Collections.sort(users); // Sorts the users according their score; highest to lowest.
-            for (Player p : users) {
-                outp += p.toString();
-            }
-            return outp;
-        }
+    private Player addNewPlayer() { //creates a new player
+        player = new Player(this.playerName, this.score, this.currentRoom);
+        return player;
     }
+
+    private void resetData() {
+        this.playerName = "";
+        this.score = 0;
+        this.currentRoom = "";
+    }
+
+    @Override
+    public void quit() { // saves players to scv
+        if (newPlayer || users.isEmpty()) {
+            users.add(addNewPlayer());
+        } else {
+            updatePlayer();
+        }
+        ArrayList<String> player = new ArrayList<>();
+        for (Player p : users) {
+            player.add(p.getName() + " " + p.getScore() + " " + p.getLocation());
+        }
+        data.saveCSV(player);
+        resetData();
+    }
+
+    public String formatScore() { // prints players in highscore
+        outp = ""; // Clears the highscore list
+        Collections.sort(users); // Sorts the users according their score; highest to lowest.
+        for (Player p : users) {
+            outp += p.toString();
+        }
+        return outp;
+    }
+}

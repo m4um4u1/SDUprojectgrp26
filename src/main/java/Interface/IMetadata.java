@@ -1,5 +1,7 @@
 package Interface;
 
+import worldofzuul.Trash.Trash;
+
 import java.io.FileNotFoundException;
 
 public interface IMetadata {

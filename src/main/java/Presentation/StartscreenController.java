@@ -73,7 +73,6 @@ public class StartscreenController extends Application {
                 notTheUser.setText(Start.game.getMd().checkUser(name));
                 welcomeLabel.setText("Hej " + name + ", klik på 'start spil' for at starte, eller 'score', for at se scoren for tidligere gennemspilninger.");
                 buttonStartGame.setDisable(false); //sets StartGame-button visible if logged in
-
             } catch (PlayernameException e) {
                 notTheUser.setTextFill(Color.RED);
                 notTheUser.setText("Du skal indtaste et brugernavn og det må kun bestå af et ord"); //resets label if someone was logged in before
@@ -81,14 +80,14 @@ public class StartscreenController extends Application {
                 buttonLogin.setText("OK");
                 clicked++;
             }
-        } else if (clicked == 1) { //restarts after exception
+        } else if (clicked == 1) { //genstarter efter exception
                 setRoot("Startscreen");
         }
     }
 
     @FXML
     public void handleButtonStart() throws IOException { // starts the game
-        setRoot("debug"); //can be changed to the real gamestart FXML
+        setRoot("debug");
     }
 
     @FXML
