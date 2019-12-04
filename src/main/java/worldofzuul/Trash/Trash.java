@@ -32,5 +32,4 @@ public abstract class Trash {
 
     public abstract int getTrashType();
 
-
 }

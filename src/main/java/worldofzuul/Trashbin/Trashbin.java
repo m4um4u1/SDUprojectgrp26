@@ -17,7 +17,6 @@ public abstract class Trashbin {
     }
 
     //metoder
-
     public void setPlace(Room place) {
         this.place = place;
     }
