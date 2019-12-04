@@ -1,22 +1,24 @@
 package Interface;
 
-import worldofzuul.Trash.Trash;
-
-import java.io.FileNotFoundException;
+import worldofzuul.Room;
 
 public interface IGame {
-    
+
     void printInventory();
 
-    void quit() throws FileNotFoundException;
-
-    IMetadata getMd();
-
+    void newUser(String name);
+    
     void grabTrash(String id);
 
-    String inspectTrash(String id);
+    void inspectTrash(String id);
+
+    Room goRoom(String description);
+
+    boolean winChecker();
 
     void depositTrash(Trash trash) throws FileNotFoundException;
 
-    boolean winChecker();
+    IMetadata getMd();
+
+    void quit() throws FileNotFoundException;
 }

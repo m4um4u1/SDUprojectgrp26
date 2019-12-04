@@ -10,15 +10,21 @@ public class Room {
 
     // Adding arraylist of trash in rooms
     private String description;
-    private HashMap<String, Room> exits;
+    public HashMap<String, Room> exits;
     private Trashbin trashbin;
-    ArrayList<Trash> trash = new ArrayList<>();
+    private ArrayList<Trash> trash = new ArrayList<>();
+    private String root;
 
     // Used if there is a trashbin but no trash
-    public Room(String description, Trashbin trashbin) {
+    public Room(String description, Trashbin trashbin, String root) {
         this.description = description;
         exits = new HashMap<String, Room>();
         this.trashbin = trashbin;
+        this.root = root;
+    }
+
+    public String getRoot() {
+        return root;
     }
 
     public void setExit(String direction, Room neighbor) {
@@ -29,7 +35,7 @@ public class Room {
         return description;
     }
 
-    public String getLongDescription() {
+    /*public String getLongDescription() {
         return "Du er " + description + ".\n" + getExitString();
     }
 
@@ -44,7 +50,7 @@ public class Room {
         returnString += getRoomTrash();
         return returnString;
     }
-
+*/
     public Room getExit(String direction) {
         return exits.get(direction);
     }

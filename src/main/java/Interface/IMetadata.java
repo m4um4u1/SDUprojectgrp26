@@ -16,3 +16,4 @@ public interface IMetadata {
 
     void winCondition() throws FileNotFoundException;
 }
+

@@ -21,11 +21,11 @@ public class Game implements IGame {
 
     // Our rooms - which room to start in?
     public void createRooms() {
-        livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "Der er en skraldespand til restaffald "));
-        kitchen = new Room("i køkkenet", new Organic(kitchen, 5, "Der er en skraldespand til organisk"));
-        homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"));
-        entre = new Room("i entreen", new Plastic(entre, 1, "Der er en skraldespand til plastik"));
-        driveway = new Room("i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"));
+        livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "Der er en skraldespand til restaffald "), "LIVINGROOM");
+        kitchen = new Room("i køkkenet", new Organic(kitchen, 5, "Der er en skraldespand til organisk"), "KITCHEN");
+        homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"), "HOMEOFFICE");
+        entre = new Room("i entreen", new Plastic(entre, 1, "Der er en skraldespand til plastik"), "ENTRE");
+        driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"), "DRIVEWAY");
 
         // Adds worldofzuul.Trash into each Room object.
         livingRoom
@@ -49,19 +49,20 @@ public class Game implements IGame {
 
 
         // Set doors/exits for each room
-        driveway.setExit("nord", entre);
+        driveway.setExit("north", entre);
 
-        entre.setExit("syd", driveway);
-        entre.setExit("vest", homeOffice);
-        entre.setExit("nord", livingRoom);
+        entre.setExit("south", driveway);
+        entre.setExit("west", homeOffice);
+        entre.setExit("north", livingRoom);
 
-        homeOffice.setExit("øst", entre);
+        homeOffice.setExit("east", entre);
 
-        livingRoom.setExit("syd", entre);
-        livingRoom.setExit("øst", kitchen);
+        livingRoom.setExit("south", entre);
+        livingRoom.setExit("east",kitchen);
 
-        kitchen.setExit("vest", livingRoom);
-        // Which room to spawn
+        kitchen.setExit("west", livingRoom);
+        
+        //which room to spawn
         currentRoom = driveway;
     }
 
@@ -132,6 +133,19 @@ public class Game implements IGame {
         // Hvis det ikke virker så lav en custom equals
         inventory.remove(trash);
         md.winCondition();
+    }
+
+    @Override
+    public Room goRoom(String direction) {
+       Room nextRoom = currentRoom.getExit(direction);
+        if (nextRoom == null) {
+            System.out.println("Der er ikke nogen dør!");
+            return null;
+        } else {
+            this.currentRoom = nextRoom;
+            System.out.println(currentRoom.getShortDescription());
+        }
+        return nextRoom;
     }
 
     // Saves the data for now

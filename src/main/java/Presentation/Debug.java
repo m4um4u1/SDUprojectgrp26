@@ -24,3 +24,4 @@ public class Debug {
         setRoot("Startscreen");
     }
 }
+
