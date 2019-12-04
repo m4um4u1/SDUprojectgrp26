@@ -1,5 +1,7 @@
 package Interface;
 
+import java.util.ArrayList;
+import worldofzuul.Room;
 import worldofzuul.Trash.Trash;
 
 public interface IGame {
@@ -9,4 +11,6 @@ public interface IGame {
     void grabTrash(String id);
     String inspectTrash(String id);
     void depositTrash(Trash trash);
+    ArrayList<Trash> getInventory();
+    Room goRoom(String direction);
 }

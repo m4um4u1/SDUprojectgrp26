@@ -84,6 +84,10 @@ public class Game implements IGame {
             System.out.println("Din rygsæk er tom.");
         }
     }
+    
+    public ArrayList<Trash> getInventory() {
+        return inventory;
+    }
 
     public String getOutput(){
         return md.getOutput();
@@ -161,17 +165,19 @@ public class Game implements IGame {
 //        System.out.println("Dine kommandoer er:");
 //    }
 //
-//    private goRoom(String id) {
-//
-//       Room nextRoom = currentRoom.getExit(direction);
-//        if (nextRoom == null) {
-//            System.out.println("Der er ikke nogen dør!");
-//        } else {
-//            currentRoom = nextRoom;
-//            System.out.println(currentRoom.getLongDescription());
-//            System.out.println(currentRoom.getTrashbinDescription());//skraldspand
-//        }
-//    }
+    public Room goRoom(String direction) {
+
+       Room nextRoom = currentRoom.getExit(direction);
+        if (nextRoom == null) {
+            System.out.println("Der er ikke nogen dør!");
+            return null;
+        } else {
+            currentRoom = nextRoom;
+            System.out.println(currentRoom.getLongDescription());
+            System.out.println(currentRoom.getTrashbinDescription());//skraldspand
+            return currentRoom;
+        }
+    }
 
     public void quit() throws FileNotFoundException {
         md.flushData(currentRoom.getShortDescription());
