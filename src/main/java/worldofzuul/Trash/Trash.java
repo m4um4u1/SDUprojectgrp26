@@ -32,4 +32,10 @@ public abstract class Trash {
 
     public abstract int getTrashType();
 
+    @Override
+    public String toString() {
+        return name;
+    }
+    
+    
 }

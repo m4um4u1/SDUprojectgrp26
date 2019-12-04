@@ -8,25 +8,57 @@ import javafx.scene.input.MouseEvent;
 import worldofzuul.Room;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
+import worldofzuul.Trash.Trash;
 
 public class KITCHENController {
     private String id;
     private Room currentRoom;
     private Room nextRoom;
+    private ArrayList<Trash> inventory;
 
     @FXML
     private Button west;
 
     @FXML
-    private Button north;
+    private TextArea inspect;
 
     @FXML
-    private Button east;
-
+    private ImageView carrots;
     @FXML
-    private Button south;
+    private ImageView butterLid;
+    @FXML
+    private ImageView eggBox;
 
-   
+   @FXML
+    private ObservableList<Trash> inventoryToDisplay = FXCollections.observableArrayList();
+    
+    @FXML
+    private ListView<Trash> displayInventory = new ListView<>(inventoryToDisplay);
+    
+    @FXML
+    public void loadInventory() {
+        inventory = game.getInventory();
+        displayInventory.getItems().clear();
+        
+        for (int i = 0; i < inventory.size(); i++) {
+            inventoryToDisplay.add(inventory.get(i));
+            System.out.println(inventoryToDisplay.get(i));
+            displayInventory.getItems().add(inventory.get(i));
+        }
+        
+    }
+    
+    @FXML
+    public void initialize() {
+        loadInventory();
+    }
     
     @FXML
     public void goDirection(MouseEvent event) throws IOException {
@@ -40,6 +72,23 @@ public class KITCHENController {
             nextRoom.getShortDescription();
             currentRoom = nextRoom;
             setRoot(currentRoom.getRoot());
+        }
+    }
+    
+    @FXML
+    public void grab(MouseEvent event) {
+        id = event.getPickResult().getIntersectedNode().getId();
+        
+        if (event.isPrimaryButtonDown()) {
+            System.out.println(id);
+            game.grabTrash(id);
+            Node node = (Node) event.getSource();
+            node.setVisible(false);
+            game.printInventory();
+            loadInventory();
+        
+        } else if (event.isSecondaryButtonDown()) {
+            game.inspectTrash(id);
         }
     }
 }
