@@ -15,5 +15,6 @@ public interface IMetadata {
     String formatScore();
 
     void winCondition() throws FileNotFoundException;
+
 }
 

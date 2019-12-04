@@ -1,5 +1,6 @@
 package Presentation;
 
+import static Presentation.Start.game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +11,6 @@ import worldofzuul.Room;
 
 import java.io.IOException;
 
-import static Presentation.StartscreenController.game;
 import static Presentation.StartscreenController.setRoot;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;

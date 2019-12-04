@@ -1,6 +1,6 @@
 package Presentation;
 
-import static Presentation.StartscreenController.game;
+import static Presentation.Start.game;
 import static Presentation.StartscreenController.setRoot;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
