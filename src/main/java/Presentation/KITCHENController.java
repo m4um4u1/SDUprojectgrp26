@@ -8,6 +8,10 @@ import javafx.scene.input.MouseEvent;
 import worldofzuul.Room;
 
 import java.io.IOException;
+import javafx.scene.Node;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 
 public class KITCHENController {
     private String id;
@@ -18,13 +22,17 @@ public class KITCHENController {
     private Button west;
 
     @FXML
-    private Button north;
+    private ListView<?> displayInventory;
 
     @FXML
-    private Button east;
+    private TextArea inspect;
 
     @FXML
-    private Button south;
+    private ImageView carrots;
+    @FXML
+    private ImageView butterLid;
+    @FXML
+    private ImageView eggBox;
 
    
     
@@ -40,6 +48,22 @@ public class KITCHENController {
             nextRoom.getShortDescription();
             currentRoom = nextRoom;
             setRoot(currentRoom.getRoot());
+        }
+    }
+    
+    @FXML
+    public void grab(MouseEvent event) {
+        id = event.getPickResult().getIntersectedNode().getId();
+        
+        if (event.isPrimaryButtonDown()) {
+            System.out.println(id);
+            game.grabTrash(id);
+            Node node = (Node) event.getSource();
+            node.setVisible(false);
+            game.printInventory();
+        
+        } else if (event.isSecondaryButtonDown()) {
+            game.inspectTrash(id);
         }
     }
 }

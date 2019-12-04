@@ -12,6 +12,10 @@ import worldofzuul.Room;
 
 import java.io.IOException;
 import java.util.Set;
+import javafx.scene.Node;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 
 
 public class ENTREController {
@@ -25,11 +29,19 @@ public class ENTREController {
     @FXML
     private Button north;
 
-    @FXML
-    private Button east;
 
     @FXML
     private Button south;
+    @FXML
+    private ImageView beerCan;
+    @FXML
+    private ImageView pizzaBox;
+    @FXML
+    private ImageView pizzaSlices;
+    @FXML
+    private ListView<?> displayInventory;
+    @FXML
+    private TextArea inspect;
 
     
     @FXML
@@ -46,6 +58,24 @@ public class ENTREController {
             setRoot(currentRoom.getRoot());
         }
     }
+    
+    @FXML
+    public void grab(MouseEvent event) {
+        id = event.getPickResult().getIntersectedNode().getId();
+        
+        if (event.isPrimaryButtonDown()) {
+            System.out.println(id);
+            game.grabTrash(id);
+            Node node = (Node) event.getSource();
+            node.setVisible(false);
+            game.printInventory();
+        
+        } else if (event.isSecondaryButtonDown()) {
+            game.inspectTrash(id);
+        }
+        
+    }
+    
     
     
 }

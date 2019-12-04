@@ -58,7 +58,7 @@ public class StartscreenController extends Application {
     //GUI:
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Startscreen"), 720, 480);
+        scene = new Scene(loadFXML("Startscreen"), 1080, 720);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -90,12 +90,12 @@ public class StartscreenController extends Application {
                         throw new noNameException("");
                 }
                 notTheUser.setText(Start.game.getMd().checkUser(name));
-                welcomeLabel.setText("Hej " + name + ", klik på 'start spil' for at starte, eller 'score', for at se scoren for tidligere gennemspilninger.");
+                welcomeLabel.setText("Hej " + name + ", klik pÃ¥ 'start spil' for at starte, eller 'score', for at se scoren for tidligere gennemspilninger.");
                 buttonStartGame.setDisable(false); //sets StartGame-button visible if logged in
             } catch (moreStringException e) {
-                exception("Brugernavnet må kun bestå af et ord.\nKlik \"OK\" for at prøve igen.");
+                exception("Brugernavnet mÃ¥ kun bestÃ¥ af et ord.\nKlik \"OK\" for at prÃ¸ve igen.");
             } catch (noNameException e) {
-                exception("Du skal indtaste et brugernavn.\nKlik \"OK\" for at prøve igen.");
+                exception("Du skal indtaste et brugernavn.\nKlik \"OK\" for at prÃ¸ve igen.");
             }
         } else if (clicked == 1) { // Genstarter efter exception
             setRoot("Startscreen");
@@ -132,7 +132,7 @@ public class StartscreenController extends Application {
             Stage stageHelp = new Stage();
             Scene sceneHelp = new Scene(loadFXML("Help"), 720, 480);
             stageHelp.show();
-            stageHelp.setTitle("Hjælp");
+            stageHelp.setTitle("HjÃ¦lp");
             stageHelp.setScene(sceneHelp);
             this.isHelpOpen = true;
             //Sets an event that runs when the player presses on the close window button built in from Windows/Macs side.

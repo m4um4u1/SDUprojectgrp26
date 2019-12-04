@@ -1,9 +1,7 @@
 package Presentation;
 
 import static Presentation.Start.game;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import worldofzuul.Room;
@@ -13,6 +11,8 @@ import java.io.IOException;
 
 import static Presentation.StartscreenController.setRoot;
 import javafx.scene.Node;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 
 public class DRIVEWAYController {
@@ -25,7 +25,13 @@ public class DRIVEWAYController {
     private Button north;
     
     @FXML
-    private ImageView banana;
+    private ImageView bananaPeel;
+    @FXML
+    private ListView<?> displayInventory;
+    @FXML
+    private TextArea inspect;
+    @FXML
+    private ImageView straw;
 
 
     @FXML
