@@ -110,7 +110,7 @@ public class StartscreenController extends Application {
             Scene sceneHelp = new Scene(loadFXML("Help"), 720, 480);
             stageHelp.show();
             stageHelp.setTitle("Hjælp");
-            //isHelpOpen is set as open.
+            stageHelp.setScene(sceneHelp);
             this.isHelpOpen = true;
             //Sets an event that runs when the player presses on the close window button built in from Windows/Macs side.
             stageHelp.setOnCloseRequest(helpEventClose);
