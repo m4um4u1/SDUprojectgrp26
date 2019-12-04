@@ -44,7 +44,7 @@ public class Game implements IGame {
                 .addTrash(new TrashOrganic("pizzaSlices", "pizzaslice", "Dejlig hÃ¥rd med svamp.", "Det skal i madaffaldsspanden fordi det er gammelt mad."))
                 .addTrash(new TrashMetalGlas("beerCan", "Ã¸ldÃ¥se", "De er alle tomme og importert fra Flensborg.", "De skal i metal og glas-spanden, da aluminium er et metal."));
         driveway
-                .addTrash(new TrashOrganic("bananaPeel", "bananskrÃ¦l", "Meget brun, pas pÃ¥ du ikke falder.", "Det skal i madaffaldsspanden fordi det er en madrest."))
+                .addTrash(new TrashOrganic("bananaPeel", "bananskræl", "Meget brun, pas pÃ¥ du ikke falder.", "Det skal i madaffaldsspanden fordi det er en madrest."))
                 .addTrash(new TrashPlastic("straw", "sugerÃ¸r", "En rund cylinder, lavet af plast.", "Den skal i plastikaffald fordi den er lavet af plast."));
 
 
@@ -79,6 +79,10 @@ public class Game implements IGame {
         } else {
             System.out.println("Din rygsÃ¦k er tom.");
         }
+    }
+
+    public ArrayList<Trash> getInventory() {
+        return inventory;
     }
 
     public IMetadata getMd() {

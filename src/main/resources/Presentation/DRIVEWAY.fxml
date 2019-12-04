@@ -14,6 +14,7 @@
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.DRIVEWAYController">
    <children>
       <Accordion layoutX="113.0" layoutY="84.0" AnchorPane.bottomAnchor="358.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="503.0" AnchorPane.topAnchor="84.0" />
+      <Button fx:id="trashbin" blendMode="MULTIPLY" layoutX="486.0" layoutY="334.0" mnemonicParsing="false" onMousePressed="#deposit" prefHeight="73.0" prefWidth="95.0" />
       <ImageView blendMode="MULTIPLY" fitHeight="550.0" fitWidth="688.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/driveway.png" />
@@ -27,7 +28,7 @@
             <Image url="@../Images/straw.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="bananaPeel" fitHeight="73.0" fitWidth="91.0" layoutX="551.0" layoutY="463.0" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bananaPeel" fitHeight="73.0" fitWidth="91.0" layoutX="556.0" layoutY="461.0" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/bananaPeel.png" />
          </image>
