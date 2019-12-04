@@ -1,9 +1,7 @@
 package worldofzuul;
 
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
 import Interface.IGame;
 import Interface.IMetadata;
 import worldofzuul.Trash.*;

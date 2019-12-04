@@ -12,9 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import worldofzuul.Exceptions.noNameException;
 import worldofzuul.Game;
-import worldofzuul.Exceptions.PlayernameException;
+import worldofzuul.Exceptions.moreStringException;
+
 import java.io.IOException;
+
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
 
@@ -38,7 +41,7 @@ public class StartscreenController extends Application {
 
     @FXML
     private Button buttonStartGame;
-        
+
     @FXML
     private Button grabTrashTest;
 
@@ -47,7 +50,7 @@ public class StartscreenController extends Application {
 
     @FXML
     private Button help;
-        
+
     //Sets the help window as closed when someone presses X on the window.
     EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
         @Override
@@ -86,24 +89,32 @@ public class StartscreenController extends Application {
         name = nameTextField.getText();
         if (clicked == 0) {
             try {
-                if (name.contains(" ") || name.isEmpty()) {
-                    throw new PlayernameException("Wrong formation of username");
+                if (name.contains(" ")) {
+                    throw new moreStringException("Name can only be one word");
+                } else if (name.isEmpty()) {
+                        throw new noNameException("");
                 }
                 notTheUser.setText(Start.game.getMd().checkUser(name));
                 welcomeLabel.setText("Hej " + name + ", klik på 'start spil' for at starte, eller 'score', for at se scoren for tidligere gennemspilninger.");
                 buttonStartGame.setDisable(false); //sets StartGame-button visible if logged in
-            } catch (PlayernameException e) {
-                notTheUser.setTextFill(Color.RED);
-                notTheUser.setText("Du skal indtaste et brugernavn og det må kun bestå af et ord"); //resets label if someone was logged in before
-                welcomeLabel.setText(""); //resets welcomeLabel when exception happends
-                buttonLogin.setText("OK");
-                clicked++;
+            } catch (moreStringException e) {
+                exception("Brugernavnet må kun bestå af et ord.\nKlik \"OK\" for at prøve igen.");
+            } catch (noNameException e) {
+                exception("Du skal indtaste et brugernavn.\nKlik \"OK\" for at prøve igen.");
             }
         } else if (clicked == 1) { //genstarter efter exception
-                setRoot("Startscreen");
+            setRoot("Startscreen");
         }
     }
 
+    private void exception(String ex){
+        notTheUser.setText(ex);
+        notTheUser.setTextFill(Color.RED);
+        welcomeLabel.setText(""); //resets welcomeLabel when exception happends
+        buttonLogin.setText("OK");
+        nameTextField.setDisable(true); //sets textfield to disabled so you dont get confused
+        clicked++;
+    }
     @FXML
     public void handleButtonStart() throws IOException { // starts the game
         setRoot("debug");
@@ -113,12 +124,12 @@ public class StartscreenController extends Application {
     public void handleButtonScore() throws IOException { //changes scene to highscore
         setRoot("Highscore");
     }
-    
+
     @FXML
-    public void grabTrashTest() throws IOException{
+    public void grabTrashTest() throws IOException {
         setRoot("GrabTrashTest");
     }
-    
+
     @FXML
     public void help() throws IOException {
         if (!isHelpOpen) {
@@ -131,8 +142,7 @@ public class StartscreenController extends Application {
             this.isHelpOpen = true;
             //Sets an event that runs when the player presses on the close window button built in from Windows/Macs side.
             stageHelp.setOnCloseRequest(helpEventClose);
-        }
-        else {
+        } else {
             //Do nothing!
         }
     }

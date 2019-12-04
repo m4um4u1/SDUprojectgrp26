@@ -3,6 +3,7 @@ package worldofzuul;
 import Data.DataRaW;
 import Interface.IDataRaW;
 import Interface.IMetadata;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class Metadata implements IMetadata {
         }
     }
 
-    public void loadPlayers() { // adds players from CSV to array
+    private void loadPlayers() { // adds players from CSV to array
         ArrayList<String> scoreArray = data.readCSV();
         if (!scoreArray.isEmpty()) {
             for (String players : scoreArray) {
@@ -46,31 +47,10 @@ public class Metadata implements IMetadata {
                 String playerName = player[0];
                 int score = Integer.parseInt(player[1]);
                 String currentRoom = player[2] + " " + player[3];
-                System.out.println(playerName + score + currentRoom);
                 Player user = new Player(playerName, score, currentRoom);
                 users.add(user);
             }
         }
-    }
-
-    // Updates the score:
-    public void updateScore(int score) { //updates score
-        this.score += score;
-    }
-
-    private void loadPlayer() { //loads data from current player
-        this.playerName = users.get(chooser).getName();
-        this.score = users.get(chooser).getScore();
-        this.currentRoom = users.get(chooser).getLocation();
-    }
-
-    private void updatePlayer() { //updates player score and location in array
-        users.get(chooser).setScore(this.score);
-        users.get(chooser).setLocation(this.currentRoom);
-    }
-
-    public void setCurrentRoom(String currentRoom) {
-        this.currentRoom = currentRoom;
     }
 
     @Override
@@ -99,6 +79,26 @@ public class Metadata implements IMetadata {
     private Player addNewPlayer() { //creates a new player
         player = new Player(this.playerName, this.score, this.currentRoom);
         return player;
+    }
+
+    private void loadPlayer() { //loads data from current player
+        this.playerName = users.get(chooser).getName();
+        this.score = users.get(chooser).getScore();
+        this.currentRoom = users.get(chooser).getLocation();
+    }
+
+    private void updatePlayer() { //updates player score and location in array
+        users.get(chooser).setScore(this.score);
+        users.get(chooser).setLocation(this.currentRoom);
+    }
+
+    // Updates the score:
+    public void updateScore(int score) { //updates score
+        this.score += score;
+    }
+
+    public void setCurrentRoom(String currentRoom) {
+        this.currentRoom = currentRoom;
     }
 
     private void resetData() {

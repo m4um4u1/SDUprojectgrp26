@@ -3,6 +3,7 @@ package Presentation;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+
 import java.io.IOException;
 
 
@@ -18,7 +19,7 @@ public class HighscoreController {
     private void handleButtonBack() throws IOException { //goes back to startscreen
         highscoreText.clear();
 
-      setRoot("Startscreen");
+        setRoot("Startscreen");
     }
 
     @FXML

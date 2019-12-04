@@ -75,10 +75,12 @@ public class Room {
             }
         }
     }
+
     //Name of the trash in the rooms
     public ArrayList<Trash> getRoomTrash() {
         return this.trash;
     }
+
     public Trashbin getTrashbin() {
         return trashbin;
     }
