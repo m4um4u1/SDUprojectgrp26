@@ -10,6 +10,8 @@ import javafx.scene.input.MouseEvent;
 import worldofzuul.Trash.Trash;
 import worldofzuul.Trash.TrashOrganic;
 
+import java.io.FileNotFoundException;
+
 public class GrabTrashExample {
     private String id;
     private Trash trash;
@@ -46,7 +48,7 @@ public class GrabTrashExample {
     }
 
     @FXML
-    public void deposit(MouseEvent event) {
+    public void deposit(MouseEvent event) throws FileNotFoundException {
         //Reads the current selection and hopefully returns an object. If not there is a function for getting index, use that (extend to remove?)
         //listviewObject.getSelectionModel.getSelectionItem();
 

@@ -89,7 +89,6 @@ public class Game implements IGame {
     public String inspectTrash(String id) {
         this.trashList = currentRoom.getRoomTrash();
         System.out.println("Trying to inspect: ");
-
         for (int i = 0; i < trashList.size(); i++) {
             if (id.equals(trashList.get(i).getId())) {
                 System.out.println(trashList.get(i).getDescription());
@@ -103,7 +102,6 @@ public class Game implements IGame {
     @Override
     public void grabTrash(String id) {
         this.trashList = currentRoom.getRoomTrash();
-
         for (int i = 0; i < trashList.size(); i++) {
             if (id.equals(trashList.get(i).getId())) {
                 inventory.add(trashList.get(i));
@@ -116,7 +114,13 @@ public class Game implements IGame {
         }
     }
 
-    public void depositTrash(Trash trash) {
+    public boolean winChecker(){
+        if(inventory.size() + trashList.size() == 0) {
+        }
+       return true;
+    }
+
+    public void depositTrash(Trash trash) throws FileNotFoundException {
         System.out.println(trash.getTrashType() + currentRoom.getTrashbin().getTrashtype());
         if (currentRoom.getTrashbin().getTrashtype() == trash.getTrashType()) {
             md.updateScore(100);
@@ -125,9 +129,9 @@ public class Game implements IGame {
             md.updateScore(-50);
             System.out.println("Wrong!");
         }
-
         //Hvis det ikke virker så lav en custom equals
         inventory.remove(trash);
+        md.winCondition();
     }
 
     //saves the data for now

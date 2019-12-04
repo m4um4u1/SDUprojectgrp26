@@ -3,7 +3,6 @@ package worldofzuul;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
-
 import worldofzuul.Trash.Trash;
 import worldofzuul.Trashbin.Trashbin;
 
@@ -13,7 +12,7 @@ public class Room {
     private String description;
     private HashMap<String, Room> exits;
     private Trashbin trashbin;
-    ArrayList<Trash> trash = new ArrayList<Trash>();
+    ArrayList<Trash> trash = new ArrayList<>();
 
     //Used if there is a trashbin but no trash
     public Room(String description, Trashbin trashbin) {

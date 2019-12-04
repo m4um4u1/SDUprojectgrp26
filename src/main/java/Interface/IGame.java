@@ -15,5 +15,7 @@ public interface IGame {
 
     String inspectTrash(String id);
 
-    void depositTrash(Trash trash);
+    void depositTrash(Trash trash) throws FileNotFoundException;
+
+    boolean winChecker();
 }

@@ -1,7 +1,6 @@
 package Presentation;
 
 
-import Interface.IGame;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import worldofzuul.Exceptions.noNameException;
-import worldofzuul.Game;
 import worldofzuul.Exceptions.moreStringException;
 
 import java.io.IOException;
@@ -22,7 +20,6 @@ import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
 
 public class StartscreenController extends Application {
-    public static IGame game = new Game();
     private String name;
     private boolean isHelpOpen = false;
     private int clicked = 0;

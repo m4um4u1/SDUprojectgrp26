@@ -3,11 +3,12 @@ package worldofzuul;
 import Data.DataRaW;
 import Interface.IDataRaW;
 import Interface.IMetadata;
-
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import Presentation.Start;
 
 public class Metadata implements IMetadata {
 
@@ -19,6 +20,7 @@ public class Metadata implements IMetadata {
     private int chooser;
     private String playerName;
     private int score = 0;
+    private int tries = 0;
     private String currentRoom;
     private String output;
     private String outp;
@@ -31,6 +33,8 @@ public class Metadata implements IMetadata {
         if (!metaData.exists()) {
             try {
                 metaData.createNewFile();
+                metaData.setReadable(false);
+                metaData.setWritable(false);
             } catch (IOException ex) {
                 System.out.println("Could not create a new metadata file.");
             }
@@ -47,7 +51,8 @@ public class Metadata implements IMetadata {
                 String playerName = player[0];
                 int score = Integer.parseInt(player[1]);
                 String currentRoom = player[2] + " " + player[3];
-                Player user = new Player(playerName, score, currentRoom);
+                int tries = Integer.parseInt(player[4]);
+                Player user = new Player(playerName, score, currentRoom, tries);
                 users.add(user);
             }
         }
@@ -77,19 +82,20 @@ public class Metadata implements IMetadata {
     }
 
     private Player addNewPlayer() { //creates a new player
-        player = new Player(this.playerName, this.score, this.currentRoom);
+        player = new Player(this.playerName, this.score, this.currentRoom, this.tries);
         return player;
     }
 
     private void loadPlayer() { //loads data from current player
         this.playerName = users.get(chooser).getName();
-        this.score = users.get(chooser).getScore();
         this.currentRoom = users.get(chooser).getLocation();
+        this.tries = users.get(chooser).getTries();
     }
 
     private void updatePlayer() { //updates player score and location in array
         users.get(chooser).setScore(this.score);
         users.get(chooser).setLocation(this.currentRoom);
+        users.get(chooser).setTries(this.tries);
     }
 
     // Updates the score:
@@ -105,6 +111,14 @@ public class Metadata implements IMetadata {
         this.playerName = "";
         this.score = 0;
         this.currentRoom = "";
+        this.tries = 0;
+    }
+
+    public void winCondition() throws FileNotFoundException {
+        if(Start.game.winChecker() == true){
+            this.tries++;
+            Start.game.quit();
+        }
     }
 
     @Override
@@ -116,7 +130,7 @@ public class Metadata implements IMetadata {
         }
         ArrayList<String> player = new ArrayList<>();
         for (Player p : users) {
-            player.add(p.getName() + " " + p.getScore() + " " + p.getLocation());
+            player.add(p.getName() + " " + p.getScore() + " " + p.getLocation() + " " + p.getTries());
         }
         data.saveCSV(player);
         resetData();

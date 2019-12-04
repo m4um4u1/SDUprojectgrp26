@@ -4,11 +4,13 @@ public class Player implements Comparable<Player> {
     private String name;
     private int score;
     private String location;
+    private int tries;
 
-    public Player(String name, int score, String location) {
+    public Player(String name, int score, String location, int tries) {
         this.name = name;
         this.score = score;
         this.location = location;
+        this.tries = tries;
     }
 
     public void setScore(int score) {
@@ -31,6 +33,14 @@ public class Player implements Comparable<Player> {
         return location;
     }
 
+    public void setTries(int tries) {
+        this.tries = tries;
+    }
+
+    public int getTries() {
+        return tries;
+    }
+
     @Override
     public int compareTo(Player p) {
         return p.getScore() - this.score;
@@ -41,6 +51,7 @@ public class Player implements Comparable<Player> {
         return "Navn: " + name + "\n" +
                 "Score: " + score + "\n" +
                 "Sidst været: " + location + "\n" +
+                "Forsøg: " + tries + "\n" +
                 "-------------" + "\n";
     }
 }
