@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentation;
 
-import static Presentation.StartscreenController.game;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -35,20 +29,19 @@ public class GrabTrashExample {
     @FXML 
     private TextField feedback;
     
-    @FXML
+       @FXML
     public void grab(MouseEvent event) {
         id = event.getPickResult().getIntersectedNode().getId();
         
         if (event.isPrimaryButtonDown()) {
             System.out.println(id);
-            game.grabTrash(id);
+            Start.game.grabTrash(id);
             Node node = (Node) event.getSource();
             node.setVisible(false);
-            game.printInventory();
-        
+            Start.game.printInventory();
         } else if (event.isSecondaryButtonDown()) {
             inspect.setWrapText(true);
-            inspect.setText(game.inspectTrash(id));
+            inspect.setText(Start.game.inspectTrash(id));
         }
     }
 
@@ -64,8 +57,7 @@ public class GrabTrashExample {
             feedback.setLayoutY(event.getY());
             feedback.setTranslateX(50);
             feedback.setTranslateY(20);
-            feedback.setText(trash.getFeedback());
-            game.depositTrash(this.trash);
+            Start.game.depositTrash(this.trash);
 //        }
         
 //        else {

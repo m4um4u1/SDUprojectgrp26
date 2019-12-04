@@ -66,11 +66,6 @@ public class Room {
         return this;
     }
 
-    //Name of the trash in the rooms
-    public ArrayList<Trash> getRoomTrash() {
-        return this.trash;
-    }
-
     //Method to remove the trash from the room after grabbing it. 
     //Eventuelt lav et for each loop
     public void removeTrash(String trashName) {
@@ -80,7 +75,10 @@ public class Room {
             }
         }
     }
-
+    //Name of the trash in the rooms
+    public ArrayList<Trash> getRoomTrash() {
+        return this.trash;
+    }
     public Trashbin getTrashbin() {
         return trashbin;
     }
@@ -89,5 +87,9 @@ public class Room {
     public String getTrashbinDescription() {
         return trashbin.getDescription();
     }
-}
 
+    @Override
+    public String toString() {
+        return description;
+    }
+}
