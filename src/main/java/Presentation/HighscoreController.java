@@ -3,10 +3,7 @@ package Presentation;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-
 import java.io.IOException;
-
-
 import static Presentation.StartscreenController.setRoot;
 
 public class HighscoreController {
@@ -16,9 +13,7 @@ public class HighscoreController {
     private TextArea highscoreText = new TextArea();
 
     @FXML
-    private void handleButtonBack() throws IOException { //goes back to startscreen
-        highscoreText.clear();
-
+    private void handleButtonBack() throws IOException { // Goes back to the startscreen:
         setRoot("Startscreen");
     }
 
@@ -28,13 +23,12 @@ public class HighscoreController {
         buttonLoad.setDisable(true);
     }
 
-    //this will load the String from the metadata array to the textarea
+    // Loads the String from the metadata array to the textarea:
     @FXML
     public void loadText() { //set the text from the arraylist in the textarea
         String output = Start.game.getMd().formatScore();
         highscoreText.setText(output);
-
-
+        
     }
 
 }

@@ -3,7 +3,7 @@ package Interface;
 import java.util.ArrayList;
 
 public interface IDataRaW {
-    //this will read the whole CSV and put it in a array
+    // Read the whole CSV and puts it in an array:
     ArrayList<String> readCSV();
 
     void saveCSV(ArrayList<String> scoreArray);

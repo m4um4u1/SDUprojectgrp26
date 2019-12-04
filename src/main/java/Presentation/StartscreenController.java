@@ -1,6 +1,5 @@
 package Presentation;
 
-
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,16 +12,15 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import worldofzuul.Exceptions.noNameException;
 import worldofzuul.Exceptions.moreStringException;
-
 import java.io.IOException;
-
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
 
 public class StartscreenController extends Application {
+    
     private String name;
-    private boolean isHelpOpen = false;
-    private int clicked = 0;
+    private boolean isHelpOpen;
+    private int clicked;
 
     @FXML
     private static Scene scene;
@@ -62,6 +60,7 @@ public class StartscreenController extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("Startscreen"), 720, 480);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
         stage.setTitle("Sortering for Dummies");
     }
@@ -79,8 +78,7 @@ public class StartscreenController extends Application {
         launch(args);
     }
 
-    //Buttons:
-
+    // Buttons:
     @FXML
     public void handleButtonLogin() throws IOException { // changes the labels to login-text with name
         name = nameTextField.getText();
@@ -99,7 +97,7 @@ public class StartscreenController extends Application {
             } catch (noNameException e) {
                 exception("Du skal indtaste et brugernavn.\nKlik \"OK\" for at prøve igen.");
             }
-        } else if (clicked == 1) { //genstarter efter exception
+        } else if (clicked == 1) { // Genstarter efter exception
             setRoot("Startscreen");
         }
     }
@@ -107,9 +105,9 @@ public class StartscreenController extends Application {
     private void exception(String ex){
         notTheUser.setText(ex);
         notTheUser.setTextFill(Color.RED);
-        welcomeLabel.setText(""); //resets welcomeLabel when exception happends
+        welcomeLabel.setText(""); // Resets welcomeLabel when exception happens
         buttonLogin.setText("OK");
-        nameTextField.setDisable(true); //sets textfield to disabled so you dont get confused
+        nameTextField.setDisable(true); // Disables textfield so user does not type in a working username before clicking OK
         clicked++;
     }
     @FXML

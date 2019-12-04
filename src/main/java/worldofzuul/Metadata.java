@@ -19,13 +19,13 @@ public class Metadata implements IMetadata {
     private ArrayList<Player> users = new ArrayList<>();
     private int chooser;
     private String playerName;
-    private int score = 0;
-    private int tries = 0;
+    private int score;
+    private int tries;
     private String currentRoom;
     private String output;
     private String outp;
     private Player player;
-    private boolean newPlayer = false;
+    private boolean newPlayer;
 
     // Constructor:
     public Metadata() {
@@ -43,7 +43,7 @@ public class Metadata implements IMetadata {
         }
     }
 
-    private void loadPlayers() { // adds players from CSV to array
+    private void loadPlayers() { // Adds players from CSV to array
         ArrayList<String> scoreArray = data.readCSV();
         if (!scoreArray.isEmpty()) {
             for (String players : scoreArray) {
@@ -59,7 +59,7 @@ public class Metadata implements IMetadata {
     }
 
     @Override
-    public String checkUser(String playerName) { //checks if new player and gets the current player
+    public String checkUser(String playerName) { // Checks if new player and gets the current player
         this.playerName = playerName;
         if (!users.isEmpty()) {
             for (Player p : users) {
@@ -81,18 +81,18 @@ public class Metadata implements IMetadata {
         return output;
     }
 
-    private Player addNewPlayer() { //creates a new player
+    private Player addNewPlayer() { // Creates a new player
         player = new Player(this.playerName, this.score, this.currentRoom, this.tries);
         return player;
     }
 
-    private void loadPlayer() { //loads data from current player
+    private void loadPlayer() { // Loads data from current player
         this.playerName = users.get(chooser).getName();
         this.currentRoom = users.get(chooser).getLocation();
         this.tries = users.get(chooser).getTries();
     }
 
-    private void updatePlayer() { //updates player score and location in array
+    private void updatePlayer() { // Updates player score and location in array
         users.get(chooser).setScore(this.score);
         users.get(chooser).setLocation(this.currentRoom);
         users.get(chooser).setTries(this.tries);
@@ -122,7 +122,7 @@ public class Metadata implements IMetadata {
     }
 
     @Override
-    public void quit() { // saves players to scv
+    public void quit() { // Saves players to scv
         if (newPlayer || users.isEmpty()) {
             users.add(addNewPlayer());
         } else {
@@ -136,7 +136,7 @@ public class Metadata implements IMetadata {
         resetData();
     }
 
-    public String formatScore() { // prints players in highscore
+    public String formatScore() { // Prints players in highscore
         outp = ""; // Clears the highscore list
         Collections.sort(users); // Sorts the users according their score; highest to lowest.
         for (Player p : users) {

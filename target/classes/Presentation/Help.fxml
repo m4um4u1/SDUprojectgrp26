@@ -8,22 +8,21 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.Help">
-   <children>
-      <Label layoutX="246.0" layoutY="54.0" prefHeight="48.0" prefWidth="109.0" text="Hjælp">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <TextArea editable="false" layoutX="7.0" layoutY="138.0" prefHeight="254.0" prefWidth="585.0" text="Venstreklik på de forskellige pile i hvert rum, for at bevæge dig mellem rummene.&#10;&#10;Venstreklik på affald i rummet for at tilføje det til din rygsæk.&#10;Højreklik på affaldet i din rygsæk for at undersøge det.&#10;&#10;Højreklik på skraldespanden i rummet for at undersøge hvilken type skraldespand der er tale om.&#10;Venstreklik på et stykke affald i din rygsæk, og venstreklik igen på skraldespanden for at smide affaldet ud. &#10;&#10;Venstreklik på &quot;afslut&quot; for at lukke spillet. &#10;&#10;Alt efter hvor godt eller dårligt du sorterer affaldet, vil du få en score man kan se øverst til venstre." wrapText="true" />
-      <ImageView fitHeight="102.0" fitWidth="150.0" layoutX="389.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-         <viewport>
-            <Rectangle2D />
-         </viewport>
-         <image>
-            <Image url="@../../../../../../../../../Downloads/mus2.png" />
-         </image>
-      </ImageView>
-   </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.Help">
+    <children>
+        <Label layoutX="306.0" layoutY="49.0" prefHeight="48.0" prefWidth="109.0" text="Hjælp">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <TextArea editable="false" layoutX="7.0" layoutY="138.0" prefHeight="254.0" prefWidth="706.0" text="Venstreklik på de forskellige pile i hvert rum, for at bevæge dig mellem rummene.&#10;&#10;Venstreklik på affald i rummet for at tilføje det til din rygsæk.&#10;Højreklik på affaldet i din rygsæk for at undersøge det.&#10;&#10;Højreklik på skraldespanden i rummet for at undersøge hvilken type skraldespand der er tale om.&#10;Venstreklik på et stykke affald i din rygsæk, og venstreklik igen på skraldespanden for at smide affaldet ud. &#10;&#10;Venstreklik på &quot;afslut&quot; for at lukke spillet. &#10;&#10;Alt efter hvor godt eller dårligt du sorterer affaldet, vil du få en score man kan se øverst til venstre." wrapText="true" />
+        <ImageView fitHeight="102.0" fitWidth="150.0" layoutX="389.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <viewport>
+                <Rectangle2D />
+            </viewport>
+            <image>
+                <Image url="@../../../../../../../../../Downloads/mus2.png" />
+            </image>
+        </ImageView>
+    </children>
 </Pane>

@@ -8,13 +8,13 @@ import worldofzuul.Trashbin.Trashbin;
 
 public class Room {
 
-    //Adding arraylist of trash in rooms
+    // Adding arraylist of trash in rooms
     private String description;
     private HashMap<String, Room> exits;
     private Trashbin trashbin;
     ArrayList<Trash> trash = new ArrayList<>();
 
-    //Used if there is a trashbin but no trash
+    // Used if there is a trashbin but no trash
     public Room(String description, Trashbin trashbin) {
         this.description = description;
         exits = new HashMap<String, Room>();
@@ -33,7 +33,7 @@ public class Room {
         return "Du er " + description + ".\n" + getExitString();
     }
 
-    //Added: Showing what trash is in the room when entering
+    // Added: Showing what trash is in the room when entering
     private String getExitString() {
         String returnString = "Udgange:";
         Set<String> keys = exits.keySet();
@@ -49,7 +49,7 @@ public class Room {
         return exits.get(direction);
     }
 
-    //Method to grab the trash IF there is any and it matches the input 
+    // Method to grab the trash IF there is any and it matches the input 
     public Trash getTrash(String trashName) {
         for (int i = 0; i < trash.size(); i++) {
             if (trash.get(i).getName().equals(trashName)) {
@@ -59,14 +59,14 @@ public class Room {
         return null;
     }
 
-    //Adds trash to the ArrayList trash    
+    // Adds trash to the ArrayList trash    
     public Room addTrash(Trash trash) {
         this.trash.add(trash);
         return this;
     }
 
-    //Method to remove the trash from the room after grabbing it. 
-    //Eventuelt lav et for each loop
+    // Method to remove the trash from the room after grabbing it. 
+    // Eventuelt lav et for each loop
     public void removeTrash(String trashName) {
         for (int i = 0; i < trash.size(); i++) {
             if (trash.get(i).getName().equals(trashName)) {
@@ -75,7 +75,7 @@ public class Room {
         }
     }
 
-    //Name of the trash in the rooms
+    // Name of the trash in the rooms
     public ArrayList<Trash> getRoomTrash() {
         return this.trash;
     }
@@ -84,7 +84,7 @@ public class Room {
         return trashbin;
     }
 
-    //en Metode til at giver en beskrivelse af TrashBin:
+    // En Metode til at giver en beskrivelse af TrashBin:
     public String getTrashbinDescription() {
         return trashbin.getDescription();
     }

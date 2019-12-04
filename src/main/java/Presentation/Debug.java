@@ -2,9 +2,7 @@ package Presentation;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-
 import java.io.IOException;
-
 import static Presentation.StartscreenController.setRoot;
 
 public class Debug {
@@ -26,4 +24,3 @@ public class Debug {
         setRoot("Startscreen");
     }
 }
-
