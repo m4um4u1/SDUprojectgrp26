@@ -25,7 +25,7 @@ public class Game implements IGame {
         kitchen = new Room("i køkkenet", new Organic(kitchen, 5, "Der er en skraldespand til organisk"), "KITCHEN");
         homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"), "HOMEOFFICE");
         entre = new Room("i entreen", new Plastic(entre, 1, "Der er en skraldespand til plastik"), "ENTRE");
-        driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"), "DRIVEWAY");
+        driveway = new Room("i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"), "DRIVEWAY");
 
         // Adds worldofzuul.Trash into each Room object.
         livingRoom
@@ -130,7 +130,7 @@ public class Game implements IGame {
             md.updateScore(-50);
             System.out.println("Wrong!");
         }
-        // Hvis det ikke virker så lav en custom equals
+        // Hvis det ikke virker sÃ¥ lav en custom equals
         inventory.remove(trash);
         md.winCondition();
     }
@@ -153,4 +153,6 @@ public class Game implements IGame {
         md.setCurrentRoom(this.currentRoom.toString());
         md.quit();
     }
+    
+    
 }

@@ -1,5 +1,6 @@
 package Presentation;
 
+import static Presentation.Start.game;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -42,7 +43,7 @@ public class GrabTrashExample {
             Start.game.printInventory();
         } else if (event.isSecondaryButtonDown()) {
             inspect.setWrapText(true);
-            inspect.setText(Start.game.inspectTrash(id));
+            inspect.setText(game.inspectTrash(id));
         }
     }
 
