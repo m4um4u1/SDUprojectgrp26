@@ -1,16 +1,17 @@
 package Interface;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import worldofzuul.Room;
+import worldofzuul.Trash.Trash;
 
 public interface IGame {
 
     void printInventory();
-
-    void newUser(String name);
     
     void grabTrash(String id);
 
-    void inspectTrash(String id);
+    String inspectTrash(String id);
 
     Room goRoom(String description);
 
@@ -21,4 +22,6 @@ public interface IGame {
     IMetadata getMd();
 
     void quit() throws FileNotFoundException;
+    
+    ArrayList<Trash> getInventory();
 }

@@ -25,24 +25,24 @@ public class Game implements IGame {
         kitchen = new Room("i køkkenet", new Organic(kitchen, 5, "Der er en skraldespand til organisk"), "KITCHEN");
         homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"), "HOMEOFFICE");
         entre = new Room("i entreen", new Plastic(entre, 1, "Der er en skraldespand til plastik"), "ENTRE");
-        driveway = new Room("udenfor i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"), "DRIVEWAY");
+        driveway = new Room("i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"), "DRIVEWAY");
 
         // Adds worldofzuul.Trash into each Room object.
         livingRoom
-                .addTrash(new TrashMetalGlas("", "jakabov", "Konservedåsen er desværre tom men lugter ikke.", "Denne dåse er lavet af Metal og skal derfor i metal og glas-spanden hvis den er rent."))
-                .addTrash(new TrashPaperCardboard("", "brochure", "\"Guide til affaldssortering\", det har vi ikke brug for.", "Den er lavet af papir og skal i papir og pap-spanden."))
-                .addTrash(new TrashMetalGlas("", "vinflaske", "Den er tom, mor har drukket igen, øv...", "Den er lavet af glas, så den skal i glas og metal-spanden."));
+                .addTrash(new TrashMetalGlas("jakabov", "jakabov", "Konservedåsen er desværre tom men lugter ikke.", "Denne dåse er lavet af metal og skal derfor i metal og glas-spanden hvis den er ren."))
+                .addTrash(new TrashPaperCardboard("brochure", "brochure", "\"Guide til affaldssortering\", det har vi ikke brug for.", "Den er lavet af papir og skal i papir og pap-spanden."))
+                .addTrash(new TrashMetalGlas("wineBottle", "vinflaske", "Den er tom, mor har drukket igen, Øv...", "Den er lavet af glas, så den skal i glas og metal-spanden."));
         homeOffice
-                .addTrash(new TrashResidualWaste("", "pringlesrør", "Den er tom og føles som pap.", "Den skal i restaffaldsspanden fordi der er metal i indersiden og det derfor er blandet materiale."))
-                .addTrash(new TrashPaperCardboard("", "kuvert", "Kuverten har et lille plastikvindue.", "Selvom der er plastik i kuverten skal den i papir og pap-spanden."));
+                .addTrash(new TrashResidualWaste("pringles", "pringlesrør", "Den er tom og føles som pap.", "Den skal i restaffaldsspanden fordi der er metal i indersiden og det derfor er blandet materiale."))
+                .addTrash(new TrashPaperCardboard("envelope", "kuvert", "Kuverten har et lille plastikvindue.", "Selvom der er plastik i kuverten skal den i papir og pap-spanden."));
         kitchen
-                .addTrash(new TrashPlastic("", "smørlåg", "Den er helt ren.", "Den skal i plastikspanden, fordi den er ren og lavet af plast."))
-                .addTrash(new TrashOrganic("", "gulerod", "Den er orange, halv spist og allerede tør", "Den skal i madaffaldsspanden, fordi der en madrest."))
-                .addTrash(new TrashResidualWaste("", "æggebakke", "Der har været et knækket æg i bakken, ad!", "Fordi at pappen er snavset med gammel ægrest, skal den i restaffaldsspanden."));
+                .addTrash(new TrashPlastic("butterLid", "smørlåg", "Den er helt ren.", "Den skal i plastikspanden, fordi den er ren og lavet af plast."))
+                .addTrash(new TrashOrganic("carrots", "gulerod", "Den er orange, halv spist og allerede tør", "Den skal i madaffaldsspanden, fordi der en madrest."))
+                .addTrash(new TrashResidualWaste("eggBox", "æggebakke", "Der har været et knækket æg i bakken, ad!", "Fordi at pappet er snavset til med gammel æg, skal den i restaffaldsspanden."));
         entre
-                .addTrash(new TrashResidualWaste("", "pizzabakke", "Der er stadig tomatsovs og ost i bakken.", "Fordi der stadig er madrester på papbakken, skal det i restaffaldsspanden."))
-                .addTrash(new TrashOrganic("", "pizzaslice", "Dejlig hård med svamp.", "Det skal i madaffaldsspanden fordi det er gammelt mad."))
-                .addTrash(new TrashMetalGlas("", "øldåser", "De er alle tomme og importert fra Flensborg.", "De skal i metal og glas-spanden, da aluminium er et metal."));
+                .addTrash(new TrashResidualWaste("pizzaBox", "pizzabakke", "Der er stadig tomatsovs og ost i bakken.", "Fordi der stadig er madrester på papbakken, skal det i restaffaldsspanden."))
+                .addTrash(new TrashOrganic("pizzaSlices", "pizzaslice", "Dejlig hård med svamp.", "Det skal i madaffaldsspanden fordi det er gammelt mad."))
+                .addTrash(new TrashMetalGlas("beerCan", "øldåse", "De er alle tomme og importert fra Flensborg.", "De skal i metal og glas-spanden, da aluminium er et metal."));
         driveway
                 .addTrash(new TrashOrganic("bananaPeel", "bananskræl", "Meget brun, pas på du ikke falder.", "Det skal i madaffaldsspanden fordi det er en madrest."))
                 .addTrash(new TrashPlastic("straw", "sugerør", "En rund cylinder, lavet af plast.", "Den skal i plastikaffald fordi den er lavet af plast."));
@@ -79,6 +79,10 @@ public class Game implements IGame {
         } else {
             System.out.println("Din rygsæk er tom.");
         }
+    }
+
+    public ArrayList<Trash> getInventory() {
+        return inventory;
     }
 
     public IMetadata getMd() {
@@ -130,7 +134,7 @@ public class Game implements IGame {
             md.updateScore(-50);
             System.out.println("Wrong!");
         }
-        // Hvis det ikke virker så lav en custom equals
+        // Hvis det ikke virker sÃƒÂ¥ lav en custom equals
         inventory.remove(trash);
         md.winCondition();
     }
@@ -153,4 +157,6 @@ public class Game implements IGame {
         md.setCurrentRoom(this.currentRoom.toString());
         md.quit();
     }
+    
+    
 }

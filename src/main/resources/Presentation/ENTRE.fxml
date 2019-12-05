@@ -3,45 +3,75 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.ENTREController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.ENTREController">
    <children>
-      <Accordion layoutX="113.0" layoutY="84.0" AnchorPane.bottomAnchor="358.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="503.0" AnchorPane.topAnchor="84.0" />
-      <Button fx:id="north" blendMode="HARD_LIGHT" defaultButton="true" layoutX="299.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="56.0" prefWidth="36.0">
-         <graphic>
-            <ImageView fitHeight="59.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/arrow3.PNG" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="south" blendMode="HARD_LIGHT" defaultButton="true" layoutX="300.0" layoutY="386.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="56.0" prefWidth="36.0">
-         <graphic>
-            <ImageView fitHeight="51.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/arrow2.PNG" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="west" blendMode="HARD_LIGHT" defaultButton="true" layoutX="14.0" layoutY="185.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="41.0" prefWidth="69.0">
-         <graphic>
-            <ImageView fitHeight="51.0" fitWidth="56.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/arrow1.PNG" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="182.0" layoutY="104.0">
+      <Accordion layoutX="59.0" layoutY="14.0" AnchorPane.bottomAnchor="428.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="557.0" AnchorPane.topAnchor="14.0" />
+      <ImageView fitHeight="726.0" fitWidth="1298.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/14971962_1180255405401319_1022763049_n.png" />
+            <Image url="@../Images/entre.png" />
          </image>
       </ImageView>
-      <Label layoutX="425.0" layoutY="115.0" prefHeight="23.0" prefWidth="56.0" text="ENTRE" />
+      <ImageView fx:id="beerCan" fitHeight="90.0" fitWidth="91.0" layoutX="925.0" layoutY="282.0" onMouseClicked="#grab" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/beerCan.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pizzaBox" fitHeight="186.0" fitWidth="391.0" layoutX="114.0" layoutY="357.0" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/pizzaBox.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pizzaSlices" fitHeight="72.0" fitWidth="81.0" layoutX="893.0" layoutY="610.0" onMouseClicked="#grab" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/pizzaSlices.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="south" blendMode="DARKEN" defaultButton="true" layoutX="581.0" layoutY="622.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="82.0" prefWidth="62.0">
+         <graphic>
+            <ImageView fitHeight="76.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/arrow2.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="north" blendMode="DARKEN" defaultButton="true" layoutX="591.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="87.0" prefWidth="48.0">
+         <graphic>
+            <ImageView fitHeight="139.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/arrow3.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="west" blendMode="DARKEN" defaultButton="true" layoutY="368.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="51.0" prefWidth="95.0">
+         <graphic>
+            <ImageView fitHeight="66.0" fitWidth="80.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/arrow1.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextArea fx:id="inspect" editable="false" layoutX="980.0" layoutY="45.0" prefHeight="197.0" prefWidth="139.0" wrapText="true" />
+      <Label alignment="CENTER" layoutX="988.0" layoutY="15.0" prefHeight="36.0" prefWidth="123.0" text="Undersøg" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ListView fx:id="displayInventory" layoutX="1127.0" layoutY="45.0" prefHeight="197.0" prefWidth="139.0" />
+      <Label alignment="CENTER" layoutX="1135.0" layoutY="14.0" prefHeight="37.0" prefWidth="131.0" text="Rygsæk" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="trashbin1" blendMode="MULTIPLY" layoutX="585.0" layoutY="272.0" mnemonicParsing="false" onMousePressed="#deposit" prefHeight="186.0" prefWidth="99.0" wrapText="true" />
    </children>
 </AnchorPane>

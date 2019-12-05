@@ -8,7 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import Presentation.Start;
+
+import static Presentation.StartscreenController.game;
 
 public class Metadata implements IMetadata {
 
@@ -115,9 +116,9 @@ public class Metadata implements IMetadata {
     }
 
     public void winCondition() throws FileNotFoundException {
-        if(Start.game.winChecker() == true){
+        if(game.winChecker() == true){
             this.tries++;
-            Start.game.quit();
+            game.quit();
         }
     }
 

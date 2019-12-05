@@ -1,5 +1,6 @@
 package Presentation;
 
+import Interface.IGame;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,15 +13,19 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import worldofzuul.Exceptions.noNameException;
 import worldofzuul.Exceptions.moreStringException;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
+import worldofzuul.Game;
 
 public class StartscreenController extends Application {
     
     private String name;
     private boolean isHelpOpen;
     private int clicked;
+    public static final IGame game = new Game();
 
     @FXML
     private static Scene scene;
@@ -46,7 +51,11 @@ public class StartscreenController extends Application {
     @FXML
     private Button help;
 
-    //Sets the help window as closed when someone presses X on the window.
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+        //Sets the help window as closed when someone presses X on the window.
     EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
         @Override
         public void handle(WindowEvent we) {
@@ -55,14 +64,26 @@ public class StartscreenController extends Application {
         }
     };
 
+    EventHandler<WindowEvent> gameEventClose = new EventHandler<>() {
+        @Override
+        public void handle(WindowEvent we) {
+            try {
+                game.quit();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
     //GUI:
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Startscreen"), 720, 480);
+        scene = new Scene(loadFXML("Startscreen"), 1280, 720);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
         stage.setTitle("Sortering for Dummies");
+        stage.setOnCloseRequest(gameEventClose);
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -73,11 +94,6 @@ public class StartscreenController extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(StartscreenController.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-
-    public static void load(String[] args) {
-        launch(args);
-    }
-
     // Buttons:
     @FXML
     public void handleButtonLogin() throws IOException { // changes the labels to login-text with name
@@ -89,7 +105,7 @@ public class StartscreenController extends Application {
                 } else if (name.isEmpty()) {
                         throw new noNameException("");
                 }
-                notTheUser.setText(Start.game.getMd().checkUser(name));
+                notTheUser.setText(game.getMd().checkUser(name));
                 welcomeLabel.setText("Hej " + name + ", klik på 'start spil' for at starte, eller 'score', for at se scoren for tidligere gennemspilninger.");
                 buttonStartGame.setDisable(false); //sets StartGame-button visible if logged in
             } catch (moreStringException e) {
@@ -112,17 +128,12 @@ public class StartscreenController extends Application {
     }
     @FXML
     public void handleButtonStart() throws IOException { // starts the game
-        setRoot("debug");
+        setRoot("DRIVEWAY");
     }
 
     @FXML
     public void handleButtonScore() throws IOException { //changes scene to highscore
         setRoot("Highscore");
-    }
-
-    @FXML
-    public void grabTrashTest() throws IOException {
-        setRoot("GrabTrashTest");
     }
 
     @FXML
