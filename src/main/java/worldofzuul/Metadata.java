@@ -1,5 +1,6 @@
 package worldofzuul;
 
+import static Presentation.StartscreenController.game;
 import Data.DataRaW;
 import Interface.IDataRaW;
 import Interface.IMetadata;
@@ -115,9 +116,9 @@ public class Metadata implements IMetadata {
     }
 
     public void winCondition() throws FileNotFoundException {
-        if(Start.game.winChecker() == true){
+        if(game.winChecker() == true){
             this.tries++;
-            Start.game.quit();
+            game.quit();
         }
     }
 

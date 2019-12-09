@@ -1,6 +1,6 @@
 package Presentation;
 
-import static Presentation.Start.game;
+import static Presentation.StartscreenController.game;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -37,10 +37,10 @@ public class GrabTrashExample {
 
         if (event.isPrimaryButtonDown()) {
             System.out.println(id);
-            Start.game.grabTrash(id);
+            game.grabTrash(id);
             Node node = (Node) event.getSource();
             node.setVisible(false);
-            Start.game.printInventory();
+            game.printInventory();
         } else if (event.isSecondaryButtonDown()) {
             inspect.setWrapText(true);
             inspect.setText(game.inspectTrash(id));
@@ -59,7 +59,7 @@ public class GrabTrashExample {
         feedback.setLayoutY(event.getY());
         feedback.setTranslateX(50);
         feedback.setTranslateY(20);
-        Start.game.depositTrash(this.trash);
+        game.depositTrash(this.trash);
 //        }
 
 //        else {

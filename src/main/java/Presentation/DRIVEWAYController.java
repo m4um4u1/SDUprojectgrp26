@@ -1,6 +1,5 @@
 package Presentation;
-
-import static Presentation.Start.game;
+import static Presentation.StartscreenController.game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -25,9 +24,9 @@ public class DRIVEWAYController {
     private Room currentRoom;
     private Room nextRoom;
     private ArrayList<Trash> inventory;
+    private ArrayList<Trash> trashInRoom;
     private Trash trash;
-
-
+    
     @FXML
     private Button north;
     
@@ -36,6 +35,7 @@ public class DRIVEWAYController {
 
     @FXML
     private TextArea inspect;
+    
     @FXML
     private ImageView straw;
     
@@ -60,6 +60,7 @@ public class DRIVEWAYController {
     
     @FXML
     public void initialize() {
+        checkTrash();
         loadInventory();
     }
 
@@ -93,15 +94,14 @@ public class DRIVEWAYController {
             loadInventory();
         
         } else if (event.isSecondaryButtonDown()) {
-            game.inspectTrash(id);
+            inspect.setText(game.inspectTrash(id));
         }
     }
     
     @FXML
     public void deposit(MouseEvent event) throws FileNotFoundException {
         trash = displayInventory.getSelectionModel().getSelectedItem();
-        
-        
+
         if (trash != null) {
 //            feedback.setVisible(true);
 //            feedback.setLayoutX(event.getX());
@@ -110,6 +110,7 @@ public class DRIVEWAYController {
 //            feedback.setTranslateY(20);
 //            feedback.setText(trash.getFeedback());
             game.depositTrash(trash);
+            inspect.setText(trash.getFeedback());
             loadInventory();
         }
         
@@ -117,4 +118,19 @@ public class DRIVEWAYController {
             //Do nothing!
         }
     }
+    
+    public void checkTrash() {
+        trashInRoom = game.getTrashRoom();
+        
+        for (int i = 0; i < trashInRoom.size(); i++) {
+            System.out.println("Checking Trash!");
+            if (trashInRoom.get(i).getId().equals("bananaPeel")) {
+                bananaPeel.setVisible(true);
+            }
+            else if (trashInRoom.get(i).getId().equals("straw")) {
+                straw.setVisible(true);
+            }
+        }
+   }
+    
 }

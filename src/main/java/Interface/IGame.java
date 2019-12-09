@@ -24,4 +24,6 @@ public interface IGame {
     void quit() throws FileNotFoundException;
     
     ArrayList<Trash> getInventory();
+    
+    ArrayList<Trash> getTrashRoom();
 }

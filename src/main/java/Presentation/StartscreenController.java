@@ -1,5 +1,7 @@
 package Presentation;
 
+import static Presentation.StartscreenController.game;
+import Interface.IGame;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,12 +17,15 @@ import worldofzuul.Exceptions.moreStringException;
 import java.io.IOException;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
+import worldofzuul.Game;
 
 public class StartscreenController extends Application {
     
+    public static final IGame game = new Game();
     private String name;
     private boolean isHelpOpen;
     private int clicked;
+    
 
     @FXML
     private static Scene scene;
@@ -58,7 +63,7 @@ public class StartscreenController extends Application {
     //GUI:
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Startscreen"), 1080, 720);
+        scene = new Scene(loadFXML("Startscreen"), 1280, 720);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -77,6 +82,8 @@ public class StartscreenController extends Application {
     public static void load(String[] args) {
         launch(args);
     }
+    
+    
 
     // Buttons:
     @FXML
@@ -89,7 +96,7 @@ public class StartscreenController extends Application {
                 } else if (name.isEmpty()) {
                         throw new noNameException("");
                 }
-                notTheUser.setText(Start.game.getMd().checkUser(name));
+                notTheUser.setText(game.getMd().checkUser(name));
                 welcomeLabel.setText("Hej " + name + ", klik pÃ¥ 'start spil' for at starte, eller 'score', for at se scoren for tidligere gennemspilninger.");
                 buttonStartGame.setDisable(false); //sets StartGame-button visible if logged in
             } catch (moreStringException e) {

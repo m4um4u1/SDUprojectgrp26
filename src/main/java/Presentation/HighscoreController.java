@@ -1,5 +1,6 @@
 package Presentation;
 
+import static Presentation.StartscreenController.game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -26,7 +27,7 @@ public class HighscoreController {
     // Loads the String from the metadata array to the textarea:
     @FXML
     public void loadText() { //set the text from the arraylist in the textarea
-        String output = Start.game.getMd().formatScore();
+        String output = game.getMd().formatScore();
         highscoreText.setText(output);
         
     }

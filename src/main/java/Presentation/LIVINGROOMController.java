@@ -1,6 +1,6 @@
 package Presentation;
 
-import static Presentation.Start.game;
+import static Presentation.StartscreenController.game;
 import static Presentation.StartscreenController.setRoot;
 import java.io.FileNotFoundException;
 import javafx.fxml.FXML;
@@ -23,6 +23,7 @@ public class LIVINGROOMController {
     private Room currentRoom;
     private Room nextRoom;
     private ArrayList<Trash> inventory;
+    private ArrayList<Trash> trashInRoom;
     private Trash trash;
 
     @FXML
@@ -67,6 +68,7 @@ public class LIVINGROOMController {
     
     @FXML
     public void initialize() {
+        checkTrash();
         loadInventory();
     }
     
@@ -98,7 +100,7 @@ public class LIVINGROOMController {
             loadInventory();
         
         } else if (event.isSecondaryButtonDown()) {
-            game.inspectTrash(id);
+            inspect.setText(game.inspectTrash(id));
         }
     }
     
@@ -116,6 +118,7 @@ public class LIVINGROOMController {
 //            feedback.setTranslateY(20);
 //            feedback.setText(trash.getFeedback());
             game.depositTrash(trash);
+            inspect.setText(trash.getFeedback());
             loadInventory();
         }
         
@@ -123,5 +126,24 @@ public class LIVINGROOMController {
             //Do nothing!
         }
     }
+    
+        public void checkTrash() {
+        trashInRoom = game.getTrashRoom();
+        
+        for (int i = 0; i < trashInRoom.size(); i++) {
+            System.out.println("Checking Trash!");
+            if (trashInRoom.get(i).getId().equals("jakabov")) {
+                jakabov.setVisible(true);
+            }
+            else if (trashInRoom.get(i).getId().equals("wineBottle")) {
+                wineBottle.setVisible(true);
+            }
+            else if (trashInRoom.get(i).getId().equals("brochure")) {
+                brochure.setVisible(true);
+            }
+        }
+   }
+    
+    
 }
 

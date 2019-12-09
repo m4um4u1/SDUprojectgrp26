@@ -1,5 +1,6 @@
 package Presentation;
 
+import static Presentation.StartscreenController.game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import java.io.IOException;
@@ -15,12 +16,12 @@ public class Debug {
 
     @FXML
     public void buttonHandleScore() {
-        Start.game.getMd().updateScore(10);
+        game.getMd().updateScore(10);
     }
 
     @FXML
     public void buttonHandleQuit() throws IOException {
-        Start.game.quit();
+        game.quit();
         setRoot("Startscreen");
     }
 }

@@ -1,7 +1,8 @@
 package Presentation;
 
-import static Presentation.Start.game;
+import static Presentation.StartscreenController.game;
 import static Presentation.StartscreenController.setRoot;
+import java.io.FileNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +23,8 @@ public class HOMEOFFICEController {
     private Room currentRoom;
     private Room nextRoom;
     private ArrayList<Trash> inventory;
+    private ArrayList<Trash> trashInRoom;
+    private Trash trash;
 
 
     @FXML
@@ -55,6 +58,7 @@ public class HOMEOFFICEController {
     
     @FXML
     public void initialize() {
+        checkTrash();
         loadInventory();
     }   
     
@@ -86,7 +90,42 @@ public class HOMEOFFICEController {
             loadInventory();
         
         } else if (event.isSecondaryButtonDown()) {
-            game.inspectTrash(id);
+            inspect.setText(game.inspectTrash(id));
         }
     }
+    
+    @FXML
+    public void deposit(MouseEvent event) throws FileNotFoundException {
+        trash = displayInventory.getSelectionModel().getSelectedItem();
+
+        if (trash != null) {
+//            feedback.setVisible(true);
+//            feedback.setLayoutX(event.getX());
+//            feedback.setLayoutY(event.getY());
+//            feedback.setTranslateX(50);
+//            feedback.setTranslateY(20);
+//            feedback.setText(trash.getFeedback());
+            game.depositTrash(trash);
+            inspect.setText(trash.getFeedback());
+            loadInventory();
+        }
+        
+        else {
+            //Do nothing!
+        }
+    }
+    
+        public void checkTrash() {
+        trashInRoom = game.getTrashRoom();
+        
+        for (int i = 0; i < trashInRoom.size(); i++) {
+            System.out.println("Checking Trash!");
+            if (trashInRoom.get(i).getId().equals("envelope")) {
+                envelope.setVisible(true);
+            }
+            else if (trashInRoom.get(i).getId().equals("straw")) {
+                pringles.setVisible(true);
+            }
+        }
+   }
 }
