@@ -1,5 +1,6 @@
 package Presentation;
 
+import static Presentation.StartscreenController.game;
 import Interface.IGame;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -13,8 +14,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import worldofzuul.Exceptions.noNameException;
 import worldofzuul.Exceptions.moreStringException;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
@@ -22,10 +21,11 @@ import worldofzuul.Game;
 
 public class StartscreenController extends Application {
     
+    public static final IGame game = new Game();
     private String name;
     private boolean isHelpOpen;
     private int clicked;
-    public static final IGame game = new Game();
+    
 
     @FXML
     private static Scene scene;
@@ -48,37 +48,6 @@ public class StartscreenController extends Application {
     @FXML
     private TextField nameTextField;
 
-    @FXML
-    private Button help;
-
-    public static void load(String[] args) {
-        launch(args);
-    }
-    
-    public static void main(String[] args) {
-    StartscreenController.load(args);
-    }    
-
-        //Sets the help window as closed when someone presses X on the window.
-    EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
-        @Override
-        public void handle(WindowEvent we) {
-            isHelpOpen = false;
-            System.out.println(isHelpOpen);
-        }
-    };
-
-    EventHandler<WindowEvent> gameEventClose = new EventHandler<>() {
-        @Override
-        public void handle(WindowEvent we) {
-            try {
-                game.quit();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-    };
-
     //GUI:
     @Override
     public void start(Stage stage) throws IOException {
@@ -87,17 +56,23 @@ public class StartscreenController extends Application {
         stage.setResizable(false);
         stage.show();
         stage.setTitle("Sortering for Dummies");
-        stage.setOnCloseRequest(gameEventClose);
     }
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(StartscreenController.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
+    public static void load(String[] args) {
+        launch(args);
+    }
+    
+    
+
     // Buttons:
     @FXML
     public void handleButtonLogin() throws IOException { // changes the labels to login-text with name
@@ -141,20 +116,10 @@ public class StartscreenController extends Application {
     }
 
     @FXML
-    public void help() throws IOException {
-        if (!isHelpOpen) {
-            //First it creates a new window (scene)
-            Stage stageHelp = new Stage();
-            Scene sceneHelp = new Scene(loadFXML("Help"), 720, 480);
-            stageHelp.show();
-            stageHelp.setTitle("Hjælp");
-            stageHelp.setScene(sceneHelp);
-            this.isHelpOpen = true;
-            //Sets an event that runs when the player presses on the close window button built in from Windows/Macs side.
-            stageHelp.setOnCloseRequest(helpEventClose);
-        } else {
-            //Do nothing!
-        }
+    public void grabTrashTest() throws IOException {
+        setRoot("GrabTrashTest");
     }
+
+    
 
 }

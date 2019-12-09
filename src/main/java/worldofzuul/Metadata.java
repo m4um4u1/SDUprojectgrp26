@@ -1,5 +1,6 @@
 package worldofzuul;
 
+import static Presentation.StartscreenController.game;
 import Data.DataRaW;
 import Interface.IDataRaW;
 import Interface.IMetadata;
@@ -8,8 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import static Presentation.StartscreenController.game;
+import Presentation.Start;
 
 public class Metadata implements IMetadata {
 

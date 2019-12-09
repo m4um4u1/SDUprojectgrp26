@@ -1,20 +1,26 @@
 package Presentation;
 
 import static Presentation.StartscreenController.game;
+import static Presentation.StartscreenController.loadFXML;
 import static Presentation.StartscreenController.setRoot;
 import java.io.FileNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import worldofzuul.Room;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import worldofzuul.Trash.Trash;
 
 public class KITCHENController {
@@ -22,24 +28,28 @@ public class KITCHENController {
     private Room currentRoom;
     private Room nextRoom;
     private ArrayList<Trash> inventory;
+    private ArrayList<Trash> trashInRoom;
     private Trash trash;
+    private boolean isHelpOpen;
+    private boolean isCorrect;
 
     @FXML
     private Button west;
+    
+    @FXML
+    private Button help;
 
     @FXML
     private TextArea inspect;
 
     @FXML
     private ImageView carrots;
-
     @FXML
     private ImageView butterLid;
-
     @FXML
     private ImageView eggBox;
 
-    @FXML
+   @FXML
     private ObservableList<Trash> inventoryToDisplay = FXCollections.observableArrayList();
     
     @FXML
@@ -60,6 +70,7 @@ public class KITCHENController {
     
     @FXML
     public void initialize() {
+        checkTrash();
         loadInventory();
     }
     
@@ -96,6 +107,17 @@ public class KITCHENController {
     }
     
     @FXML
+    public void inspectInventory(MouseEvent event) {
+        if (event.isSecondaryButtonDown()) {
+            if (displayInventory.getSelectionModel().getSelectedItem() != null) {
+                trash = displayInventory.getSelectionModel().getSelectedItem();
+                inspect.setText(trash.getDescription());
+            }
+        }
+        
+    }
+    
+    @FXML
     public void deposit(MouseEvent event) throws FileNotFoundException {
         trash = displayInventory.getSelectionModel().getSelectedItem();
 
@@ -106,13 +128,62 @@ public class KITCHENController {
 //            feedback.setTranslateX(50);
 //            feedback.setTranslateY(20);
 //            feedback.setText(trash.getFeedback());
-                game.depositTrash(trash);
-            inspect.setText(trash.getFeedback());
+            isCorrect = game.depositTrash(trash);
+            
+            if (isCorrect) {
+                inspect.setText("Sådan min ven! Det er korrekt.");
+            }
+            else {
+                inspect.setText(trash.getFeedback());
+            }
             loadInventory();
+            trash = null;
         }
         
         else {
             //Do nothing!
         }
     }
+    
+        public void checkTrash() {
+        trashInRoom = game.getTrashRoom();
+        
+        for (int i = 0; i < trashInRoom.size(); i++) {
+            if (trashInRoom.get(i).getId().equals("carrots")) {
+                carrots.setVisible(true);
+            }
+            else if (trashInRoom.get(i).getId().equals("butterLid")) {
+                butterLid.setVisible(true);
+            }
+            else if (trashInRoom.get(i).getId().equals("eggBox")) {
+                eggBox.setVisible(true);
+            }
+        }
+   }
+        
+   @FXML
+    public void help() throws IOException {
+        if (!isHelpOpen) {
+            //First it creates a new window (scene)
+            Stage stageHelp = new Stage();
+            Scene sceneHelp = new Scene(loadFXML("Help"), 720, 480);
+            stageHelp.show();
+            stageHelp.setTitle("Hjælp");
+            stageHelp.setScene(sceneHelp);
+            this.isHelpOpen = true;
+            //Sets an event that runs when the player presses on the close window button built in from Windows/Macs side.
+            stageHelp.setOnCloseRequest(helpEventClose);
+        } else {
+            //Do nothing!
+        }
+    }
+    
+    //Sets the help window as closed when someone presses X on the window.
+    EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
+        @Override
+        public void handle(WindowEvent we) {
+            isHelpOpen = false;
+            System.out.println(isHelpOpen);
+        }
+    };
 }
