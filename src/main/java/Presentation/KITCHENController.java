@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import worldofzuul.Room;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
@@ -33,12 +32,14 @@ public class KITCHENController {
 
     @FXML
     private ImageView carrots;
+
     @FXML
     private ImageView butterLid;
+
     @FXML
     private ImageView eggBox;
 
-   @FXML
+    @FXML
     private ObservableList<Trash> inventoryToDisplay = FXCollections.observableArrayList();
     
     @FXML
