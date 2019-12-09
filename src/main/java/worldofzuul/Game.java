@@ -73,11 +73,11 @@ public class Game implements IGame {
             for (Trash item : inventory) {
                 output += item.getName() + ", ";
             }
-            System.out.println("Din rygsæk indeholder: ");
+            System.out.println("Din rygsÃ¦k indeholder: ");
             System.out.println(output);
 
         } else {
-            System.out.println("Din rygsæk er tom.");
+            System.out.println("Din rygsÃ¦k er tom.");
         }
     }
 
@@ -118,6 +118,11 @@ public class Game implements IGame {
             }
         }
     }
+    
+    @Override
+    public ArrayList<Trash> getTrashRoom() {
+        return currentRoom.getRoomTrash();
+    }
 
     public boolean winChecker(){
         if(inventory.size() + trashList.size() == 0) {
@@ -125,18 +130,21 @@ public class Game implements IGame {
        return true;
     }
 
-    public void depositTrash(Trash trash) throws FileNotFoundException {
+    public boolean depositTrash(Trash trash) throws FileNotFoundException {
         System.out.println(trash.getTrashType() + currentRoom.getTrashbin().getTrashtype());
         if (currentRoom.getTrashbin().getTrashtype() == trash.getTrashType()) {
             md.updateScore(100);
             System.out.println("Correct!");
+            inventory.remove(trash);
+            md.winCondition();
+            return true;
         } else {
             md.updateScore(-50);
             System.out.println("Wrong!");
+            inventory.remove(trash);
+            md.winCondition();
+            return false;
         }
-        // Hvis det ikke virker sÃƒÂ¥ lav en custom equals
-        inventory.remove(trash);
-        md.winCondition();
     }
 
     @Override

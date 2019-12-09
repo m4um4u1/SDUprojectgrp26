@@ -17,11 +17,13 @@ public interface IGame {
 
     boolean winChecker();
 
-    void depositTrash(Trash trash) throws FileNotFoundException;
+    boolean depositTrash(Trash trash) throws FileNotFoundException;
 
     IMetadata getMd();
 
     void quit() throws FileNotFoundException;
     
     ArrayList<Trash> getInventory();
+    
+    ArrayList<Trash> getTrashRoom();
 }

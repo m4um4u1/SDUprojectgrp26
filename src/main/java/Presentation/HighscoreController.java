@@ -1,11 +1,10 @@
 package Presentation;
 
+import static Presentation.StartscreenController.game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import java.io.IOException;
-
-import static Presentation.StartscreenController.game;
 import static Presentation.StartscreenController.setRoot;
 
 public class HighscoreController {

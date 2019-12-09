@@ -10,45 +10,46 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.HOMEOFFICEController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.HOMEOFFICEController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1307.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="-2.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/kontor.png" />
          </image>
       </ImageView>
       <Accordion layoutX="123.0" layoutY="94.0" />
-      <Button fx:id="east" blendMode="DARKEN" defaultButton="true" layoutX="1140.0" layoutY="338.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="62.0" prefWidth="107.0">
+      <Button fx:id="east" blendMode="DARKEN" defaultButton="true" layoutX="993.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="62.0" prefWidth="107.0">
          <graphic>
             <ImageView fitHeight="63.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/arrow1.PNG" />
+                  <Image url="@Images/arrow1.PNG" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <TextArea fx:id="inspect" editable="false" layoutX="971.0" layoutY="53.0" prefHeight="197.0" prefWidth="141.0" wrapText="true" />
-      <Label alignment="CENTER" layoutX="984.0" layoutY="19.0" prefHeight="34.0" prefWidth="115.0" text="Undersøg" textAlignment="CENTER" textFill="WHITE">
+      <TextArea fx:id="inspect" editable="false" layoutX="1131.0" layoutY="282.0" prefHeight="160.0" prefWidth="141.0" wrapText="true" />
+      <Label alignment="CENTER" layoutX="1153.0" layoutY="240.0" prefHeight="34.0" prefWidth="115.0" text="Undersøg" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ImageView fx:id="envelope" fitHeight="69.0" fitWidth="172.0" layoutX="81.0" layoutY="593.0" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="envelope" fitHeight="69.0" fitWidth="172.0" layoutX="81.0" layoutY="593.0" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../Images/envelope.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pringles" fitHeight="138.0" fitWidth="146.0" layoutX="833.0" layoutY="565.0" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pringles" fitHeight="138.0" fitWidth="146.0" layoutX="833.0" layoutY="565.0" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../Images/pringles.png" />
          </image>
       </ImageView>
-      <ListView fx:id="displayInventory" layoutX="1127.0" layoutY="51.0" prefHeight="197.0" prefWidth="139.0" />
+      <ListView fx:id="displayInventory" layoutX="1127.0" layoutY="51.0" onMousePressed="#inspectInventory" prefHeight="197.0" prefWidth="139.0" />
       <Label alignment="CENTER" layoutX="1131.0" layoutY="17.0" prefHeight="37.0" prefWidth="131.0" text="Rygsæk" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
       <Button fx:id="trashbin" blendMode="MULTIPLY" layoutX="6.0" layoutY="283.0" mnemonicParsing="false" onMousePressed="#deposit" prefHeight="233.0" prefWidth="121.0" wrapText="true" />
+      <Button fx:id="help" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#help" prefWidth="142.0" text="Hjælp" />
    </children>
 </AnchorPane>
