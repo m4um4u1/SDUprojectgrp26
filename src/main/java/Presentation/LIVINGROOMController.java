@@ -80,6 +80,7 @@ public class LIVINGROOMController {
     public void initialize() {
         checkTrash();
         loadInventory();
+        inspect.setStyle("-focus-color: transparent; -fx-text-box-border: transparent;");
     }
     
     @FXML

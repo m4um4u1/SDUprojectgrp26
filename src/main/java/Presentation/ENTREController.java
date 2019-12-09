@@ -85,6 +85,7 @@ public class ENTREController {
     public void initialize() {
         checkTrash();
         loadInventory();
+        inspect.setStyle("-focus-color: transparent; -fx-text-box-border: transparent;");
     }
 
     

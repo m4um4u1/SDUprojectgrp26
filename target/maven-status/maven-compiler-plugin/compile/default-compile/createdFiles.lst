@@ -1,6 +1,5 @@
 worldofzuul\Metadata.class
 Presentation\ENTREController.class
-Presentation\GrabTrashExample.class
 worldofzuul\Trashbin\Trashbin.class
 Presentation\KITCHENController.class
 Interface\IMetadata.class
@@ -31,7 +30,6 @@ worldofzuul\Room.class
 Data\DataRaW.class
 worldofzuul\Trashbin\MetalGlass.class
 Presentation\DRIVEWAYController$1.class
-Presentation\Help.class
 worldofzuul\Trash\TrashPaperCardboard.class
 worldofzuul\Trash\Trash.class
 Presentation\LIVINGROOMController$1.class
