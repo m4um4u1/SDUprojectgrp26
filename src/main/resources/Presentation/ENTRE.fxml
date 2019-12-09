@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.ENTREController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Presentation.ENTREController">
    <children>
       <Accordion layoutX="59.0" layoutY="14.0" AnchorPane.bottomAnchor="428.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="557.0" AnchorPane.topAnchor="14.0" />
       <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="-31.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
@@ -35,7 +35,7 @@
       </ImageView>
       <Button fx:id="south" blendMode="DARKEN" defaultButton="true" layoutX="581.0" layoutY="622.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="82.0" prefWidth="62.0">
          <graphic>
-            <ImageView fitHeight="76.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="DARKEN" fitHeight="76.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/arrow2.PNG" />
                </image>
@@ -44,7 +44,7 @@
       </Button>
       <Button fx:id="north" blendMode="DARKEN" defaultButton="true" layoutX="591.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="87.0" prefWidth="48.0">
          <graphic>
-            <ImageView fitHeight="139.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="DARKEN" fitHeight="139.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/arrow3.PNG" />
                </image>
@@ -53,19 +53,13 @@
       </Button>
       <Button fx:id="west" blendMode="DARKEN" defaultButton="true" layoutY="368.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="51.0" prefWidth="95.0">
          <graphic>
-            <ImageView fitHeight="66.0" fitWidth="80.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="DARKEN" fitHeight="66.0" fitWidth="80.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/arrow1.PNG" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <TextArea fx:id="inspect" editable="false" layoutX="1114.0" layoutY="267.0" prefHeight="163.0" prefWidth="123.0" wrapText="true" />
-      <Label alignment="CENTER" layoutX="1097.0" layoutY="235.0" prefHeight="36.0" prefWidth="123.0" text="Undersøg" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
       <ListView fx:id="displayInventory" layoutX="1104.0" layoutY="46.0" onMousePressed="#inspectInventory" prefHeight="197.0" prefWidth="139.0" />
       <Label alignment="CENTER" layoutX="1108.0" layoutY="12.0" prefHeight="37.0" prefWidth="131.0" text="Rygsæk" textAlignment="CENTER">
          <font>
@@ -74,5 +68,14 @@
       </Label>
       <Button fx:id="trashbin1" blendMode="MULTIPLY" layoutX="545.0" layoutY="267.0" mnemonicParsing="false" onMousePressed="#deposit" prefHeight="186.0" prefWidth="112.0" wrapText="true" />
       <Button fx:id="help" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#help" prefWidth="142.0" text="Hjælp" />
+      <ImageView fitHeight="228.0" fitWidth="279.0" layoutX="792.0" layoutY="424.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/speaking_bubble_trans_upright.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="inspect" editable="false" layoutX="852.0" layoutY="472.0" prefHeight="140.0" prefWidth="150.0" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></TextArea>
    </children>
 </AnchorPane>

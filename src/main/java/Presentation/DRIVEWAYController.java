@@ -49,13 +49,13 @@ public class DRIVEWAYController {
     @FXML
     private ImageView straw;
     
-   @FXML
     private ObservableList<Trash> inventoryToDisplay = FXCollections.observableArrayList();
     
     @FXML
     private ListView<Trash> displayInventory = new ListView<>(inventoryToDisplay);
-    
     @FXML
+    private Button trashbin;
+    
     public void loadInventory() {
         inventory = game.getInventory();
         displayInventory.getItems().clear();
@@ -68,10 +68,11 @@ public class DRIVEWAYController {
         
     }
     
-    @FXML
     public void initialize() {
         checkTrash();
         loadInventory();
+        inspect.setStyle("-focus-color: transparent; -fx-text-box-border: transparent;");
+        
     }
 
 
