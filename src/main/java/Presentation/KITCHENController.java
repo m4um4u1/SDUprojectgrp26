@@ -1,12 +1,12 @@
 package Presentation;
 
-import static Presentation.Start.game;
+import static Presentation.StartscreenController.game;
 import static Presentation.StartscreenController.setRoot;
+import java.io.FileNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import worldofzuul.Room;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
@@ -22,6 +22,7 @@ public class KITCHENController {
     private Room currentRoom;
     private Room nextRoom;
     private ArrayList<Trash> inventory;
+    private Trash trash;
 
     @FXML
     private Button west;
@@ -31,12 +32,14 @@ public class KITCHENController {
 
     @FXML
     private ImageView carrots;
+
     @FXML
     private ImageView butterLid;
+
     @FXML
     private ImageView eggBox;
 
-   @FXML
+    @FXML
     private ObservableList<Trash> inventoryToDisplay = FXCollections.observableArrayList();
     
     @FXML
@@ -88,7 +91,28 @@ public class KITCHENController {
             loadInventory();
         
         } else if (event.isSecondaryButtonDown()) {
-            game.inspectTrash(id);
+            inspect.setText(game.inspectTrash(id));
+        }
+    }
+    
+    @FXML
+    public void deposit(MouseEvent event) throws FileNotFoundException {
+        trash = displayInventory.getSelectionModel().getSelectedItem();
+
+        if (trash != null) {
+//            feedback.setVisible(true);
+//            feedback.setLayoutX(event.getX());
+//            feedback.setLayoutY(event.getY());
+//            feedback.setTranslateX(50);
+//            feedback.setTranslateY(20);
+//            feedback.setText(trash.getFeedback());
+                game.depositTrash(trash);
+            inspect.setText(trash.getFeedback());
+            loadInventory();
+        }
+        
+        else {
+            //Do nothing!
         }
     }
 }

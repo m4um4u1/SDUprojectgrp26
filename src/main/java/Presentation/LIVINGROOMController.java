@@ -1,6 +1,6 @@
 package Presentation;
 
-import static Presentation.Start.game;
+import static Presentation.StartscreenController.game;
 import static Presentation.StartscreenController.setRoot;
 import java.io.FileNotFoundException;
 import javafx.fxml.FXML;
@@ -98,7 +98,7 @@ public class LIVINGROOMController {
             loadInventory();
         
         } else if (event.isSecondaryButtonDown()) {
-            game.inspectTrash(id);
+            inspect.setText(game.inspectTrash(id));
         }
     }
     
@@ -116,6 +116,7 @@ public class LIVINGROOMController {
 //            feedback.setTranslateY(20);
 //            feedback.setText(trash.getFeedback());
             game.depositTrash(trash);
+            inspect.setText(trash.getFeedback());
             loadInventory();
         }
         
@@ -123,5 +124,7 @@ public class LIVINGROOMController {
             //Do nothing!
         }
     }
+    
+    
 }
 

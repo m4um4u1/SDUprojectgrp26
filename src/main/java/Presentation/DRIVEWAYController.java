@@ -1,6 +1,6 @@
 package Presentation;
 
-import static Presentation.Start.game;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -9,6 +9,7 @@ import worldofzuul.Room;
 
 import java.io.IOException;
 
+import static Presentation.StartscreenController.game;
 import static Presentation.StartscreenController.setRoot;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -93,15 +94,14 @@ public class DRIVEWAYController {
             loadInventory();
         
         } else if (event.isSecondaryButtonDown()) {
-            game.inspectTrash(id);
+            inspect.setText(game.inspectTrash(id));
         }
     }
     
     @FXML
     public void deposit(MouseEvent event) throws FileNotFoundException {
         trash = displayInventory.getSelectionModel().getSelectedItem();
-        
-        
+
         if (trash != null) {
 //            feedback.setVisible(true);
 //            feedback.setLayoutX(event.getX());
@@ -109,7 +109,8 @@ public class DRIVEWAYController {
 //            feedback.setTranslateX(50);
 //            feedback.setTranslateY(20);
 //            feedback.setText(trash.getFeedback());
-            game.depositTrash(trash);
+                game.depositTrash(trash);
+            inspect.setText(trash.getFeedback());
             loadInventory();
         }
         

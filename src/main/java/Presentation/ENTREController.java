@@ -1,7 +1,9 @@
 package Presentation;
 
-import static Presentation.Start.game;
+
+import static Presentation.StartscreenController.game;
 import static Presentation.StartscreenController.setRoot;
+import java.io.FileNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,6 +29,7 @@ public class ENTREController {
     private Room currentRoom;
     private Room nextRoom;
     private ArrayList<Trash> inventory;
+    private Trash trash;
 
     @FXML
     private Button west;
@@ -100,11 +103,30 @@ public class ENTREController {
             loadInventory();
         
         } else if (event.isSecondaryButtonDown()) {
-            game.inspectTrash(id);
+            inspect.setText(game.inspectTrash(id));
         }
         
     }
     
-    
+    @FXML
+    public void deposit(MouseEvent event) throws FileNotFoundException {
+        trash = displayInventory.getSelectionModel().getSelectedItem();
+
+        if (trash != null) {
+//            feedback.setVisible(true);
+//            feedback.setLayoutX(event.getX());
+//            feedback.setLayoutY(event.getY());
+//            feedback.setTranslateX(50);
+//            feedback.setTranslateY(20);
+//            feedback.setText(trash.getFeedback());
+                game.depositTrash(trash);
+            inspect.setText(trash.getFeedback());            
+            loadInventory();
+        }
+        
+        else {
+            //Do nothing!
+        }
+    }
     
 }
