@@ -51,9 +51,13 @@ public class StartscreenController extends Application {
     @FXML
     private Button help;
 
-    public static void main(String[] args) {
+    public static void load(String[] args) {
         launch(args);
     }
+    
+    public static void main(String[] args) {
+    StartscreenController.load(args);
+    }    
 
         //Sets the help window as closed when someone presses X on the window.
     EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
