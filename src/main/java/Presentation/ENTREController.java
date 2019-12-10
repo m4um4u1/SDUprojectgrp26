@@ -126,6 +126,14 @@ public class ENTREController {
 //            feedback.setTranslateX(50);
 //            feedback.setTranslateY(20);
 //            feedback.setText(trash.getFeedback());
+
+            if (game.getMd().winCondition() == true) {
+                inspect.setText("Godt gået! Der er ikke mere skrald i huset. Klip på en af pilene for at gå til highscore og se hvordan det gik.");
+                
+                game.quit();
+            }
+            
+
             isCorrect = game.depositTrash(trash);
 
             if (isCorrect) {
