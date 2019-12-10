@@ -44,6 +44,10 @@ public class Metadata implements IMetadata {
         }
     }
 
+    public int getScore() {
+        return score;
+    }
+
     private void loadPlayers() { // Adds players from CSV to array
         ArrayList<String> scoreArray = data.readCSV();
         if (!scoreArray.isEmpty()) {
@@ -58,6 +62,7 @@ public class Metadata implements IMetadata {
             }
         }
     }
+
 
     @Override
     public String checkUser(String playerName) { // Checks if new player and gets the current player

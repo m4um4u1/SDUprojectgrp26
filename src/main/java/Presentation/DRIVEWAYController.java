@@ -1,17 +1,26 @@
 package Presentation;
+
 import static Presentation.StartscreenController.game;
 import static Presentation.StartscreenController.loadFXML;
+import static Presentation.StartscreenController.setRoot;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import worldofzuul.Room;
 
+<<<<<<< Updated upstream
 
 import java.io.IOException;
 
 import static Presentation.StartscreenController.setRoot;
+=======
+import java.io.IOException;
+>>>>>>> Stashed changes
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -25,6 +34,7 @@ import javafx.stage.WindowEvent;
 import worldofzuul.Trash.Trash;
 
 public class DRIVEWAYController {
+
     private String id;
     private Room currentRoom;
     private Room nextRoom;
@@ -33,82 +43,101 @@ public class DRIVEWAYController {
     private Trash trash;
     private boolean isHelpOpen;
     private boolean isCorrect;
-    
+
     @FXML
-    private Button north;
-    
-    @FXML
-    private Button help;
-    
+    private Label scoreLabel;
     @FXML
     private ImageView bananaPeel;
 
     @FXML
     private TextArea inspect;
-    
+
     @FXML
     private ImageView straw;
-    
+
     private ObservableList<Trash> inventoryToDisplay = FXCollections.observableArrayList();
-    
+
     @FXML
     private ListView<Trash> displayInventory = new ListView<>(inventoryToDisplay);
     @FXML
     private Button trashbin;
-    
+
     public void loadInventory() {
         inventory = game.getInventory();
         displayInventory.getItems().clear();
-        
+
         for (int i = 0; i < inventory.size(); i++) {
             inventoryToDisplay.add(inventory.get(i));
             System.out.println(inventoryToDisplay.get(i));
             displayInventory.getItems().add(inventory.get(i));
         }
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
     }
-    
+
     public void initialize() {
+        scoreLabel.setText("Score: " + (String.valueOf(game.getMd().getScore())));
         checkTrash();
         loadInventory();
         inspect.setStyle("-focus-color: transparent; -fx-text-box-border: transparent;");
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
     }
 
 
     @FXML
     public void goDirection(MouseEvent event) throws IOException {
-        nextRoom =  game.goRoom(event.getPickResult().getIntersectedNode().getId());
+        nextRoom = game.goRoom(event.getPickResult().getIntersectedNode().getId());
         //testroom = game.goRoom("north");
 
         if (nextRoom == null) {
             System.out.println(currentRoom);
+<<<<<<< Updated upstream
         }
         else {
+=======
+        } else {
+>>>>>>> Stashed changes
             nextRoom.getShortDescription();
             currentRoom = nextRoom;
             setRoot(currentRoom.getRoot());
         }
     }
-    
+
     //example
     @FXML
     public void grab(MouseEvent event) {
         id = event.getPickResult().getIntersectedNode().getId();
+<<<<<<< Updated upstream
         
         if (event.isPrimaryButtonDown()) {
+=======
+        if (event.isPrimaryButtonDown() && inventory.size() < 4) {
+>>>>>>> Stashed changes
             System.out.println(id);
             game.grabTrash(id);
             Node node = (Node) event.getSource();
             node.setVisible(false);
+<<<<<<< Updated upstream
             game.printInventory();
+=======
+            //game.printInventory();
+>>>>>>> Stashed changes
             loadInventory();
-        
+
         } else if (event.isSecondaryButtonDown()) {
             inspect.setText(game.inspectTrash(id));
+        }else{
+            inspect.setText("Din ryksæk er fyldt!");
         }
     }
-    
+
     @FXML
     public void inspectInventory(MouseEvent event) {
         if (event.isSecondaryButtonDown()) {
@@ -117,9 +146,13 @@ public class DRIVEWAYController {
                 inspect.setText(trash.getDescription());
             }
         }
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
     }
-    
+
     @FXML
     public void deposit(MouseEvent event) throws FileNotFoundException {
         trash = displayInventory.getSelectionModel().getSelectedItem();
@@ -132,35 +165,41 @@ public class DRIVEWAYController {
 //            feedback.setTranslateY(20);
 //            feedback.setText(trash.getFeedback());
             isCorrect = game.depositTrash(trash);
-            
+
             if (isCorrect) {
                 inspect.setText("Sådan min ven! Det er korrekt.");
-            }
-            else {
+            } else {
                 inspect.setText(trash.getFeedback());
             }
             loadInventory();
             trash = null;
+            scoreLabel.setText("Score: " + (String.valueOf(game.getMd().getScore())));
+        } else {
+            //Do nothing!
         }
         
         else {
             //Do nothing!
         }
     }
-    
+
     public void checkTrash() {
         trashInRoom = game.getTrashRoom();
-        
+
         for (int i = 0; i < trashInRoom.size(); i++) {
             if (trashInRoom.get(i).getId().equals("bananaPeel")) {
                 bananaPeel.setVisible(true);
-            }
-            else if (trashInRoom.get(i).getId().equals("straw")) {
+            } else if (trashInRoom.get(i).getId().equals("straw")) {
                 straw.setVisible(true);
             }
         }
+<<<<<<< Updated upstream
    }
     
+=======
+    }
+
+>>>>>>> Stashed changes
     @FXML
     public void help() throws IOException {
         if (!isHelpOpen) {
@@ -177,7 +216,7 @@ public class DRIVEWAYController {
             //Do nothing!
         }
     }
-    
+
     //Sets the help window as closed when someone presses X on the window.
     EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
         @Override
@@ -186,5 +225,5 @@ public class DRIVEWAYController {
             System.out.println(isHelpOpen);
         }
     };
-    
+
 }

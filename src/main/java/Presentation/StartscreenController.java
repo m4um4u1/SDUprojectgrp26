@@ -1,6 +1,5 @@
 package Presentation;
 
-import static Presentation.StartscreenController.game;
 import Interface.IGame;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -12,20 +11,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import worldofzuul.Exceptions.noNameException;
-import worldofzuul.Exceptions.moreStringException;
+import Exceptions.noNameException;
+import Exceptions.moreStringException;
+
 import java.io.IOException;
-import javafx.event.EventHandler;
-import javafx.stage.WindowEvent;
+
 import worldofzuul.Game;
 
 public class StartscreenController extends Application {
-    
+
     public static final IGame game = new Game();
     private String name;
-    private boolean isHelpOpen;
     private int clicked;
-    
+
 
     @FXML
     private static Scene scene;
@@ -41,9 +39,6 @@ public class StartscreenController extends Application {
 
     @FXML
     private Button buttonStartGame;
-
-    @FXML
-    private Button grabTrashTest;
 
     @FXML
     private TextField nameTextField;
@@ -70,8 +65,6 @@ public class StartscreenController extends Application {
     public static void load(String[] args) {
         launch(args);
     }
-    
-    
 
     // Buttons:
     @FXML
@@ -82,11 +75,12 @@ public class StartscreenController extends Application {
                 if (name.contains(" ")) {
                     throw new moreStringException("Name can only be one word");
                 } else if (name.isEmpty()) {
-                        throw new noNameException("");
+                    throw new noNameException("");
                 }
                 notTheUser.setText(game.getMd().checkUser(name));
                 welcomeLabel.setText("Hej " + name + ", klik på 'start spil' for at starte, eller 'score', for at se scoren for tidligere gennemspilninger.");
                 buttonStartGame.setDisable(false); //sets StartGame-button visible if logged in
+                nameTextField.clear();
             } catch (moreStringException e) {
                 exception("Brugernavnet må kun bestå af et ord.\nKlik \"OK\" for at prøve igen.");
             } catch (noNameException e) {
@@ -97,7 +91,7 @@ public class StartscreenController extends Application {
         }
     }
 
-    private void exception(String ex){
+    private void exception(String ex) {
         notTheUser.setText(ex);
         notTheUser.setTextFill(Color.RED);
         welcomeLabel.setText(""); // Resets welcomeLabel when exception happens
@@ -105,6 +99,7 @@ public class StartscreenController extends Application {
         nameTextField.setDisable(true); // Disables textfield so user does not type in a working username before clicking OK
         clicked++;
     }
+
     @FXML
     public void handleButtonStart() throws IOException { // starts the game
         setRoot("DRIVEWAY");
@@ -114,6 +109,7 @@ public class StartscreenController extends Application {
     public void handleButtonScore() throws IOException { //changes scene to highscore
         setRoot("Highscore");
     }
+<<<<<<< Updated upstream
 
     @FXML
     public void grabTrashTest() throws IOException {
@@ -122,4 +118,6 @@ public class StartscreenController extends Application {
 
     
 
+=======
+>>>>>>> Stashed changes
 }

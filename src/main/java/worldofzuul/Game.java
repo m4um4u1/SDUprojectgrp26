@@ -12,7 +12,7 @@ public class Game implements IGame {
     private Room currentRoom;
     private ArrayList<Trash> inventory = new ArrayList<Trash>();
     private ArrayList<Trash> trashList; // Used to store Trash in a Room
-    private Room livingRoom, kitchen, homeOffice, entre, driveway;
+    private Room livingRoom, kitchen, homeOffice, entre, driveway, bathroom;
     private IMetadata md = new Metadata();
 
     public Game() {
@@ -26,6 +26,7 @@ public class Game implements IGame {
         homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"), "HOMEOFFICE");
         entre = new Room("i entreen", new Plastic(entre, 1, "Der er en skraldespand til plastik"), "ENTRE");
         driveway = new Room("i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"), "DRIVEWAY");
+        bathroom = new Room("i badeværslet", "BATHROOM");
 
         // Adds worldofzuul.Trash into each Room object.
         livingRoom
@@ -46,7 +47,9 @@ public class Game implements IGame {
         driveway
                 .addTrash(new TrashOrganic("bananaPeel", "bananskræl", "Meget brun, pas på du ikke falder.", "Det skal i madaffaldsspanden fordi det er en madrest."))
                 .addTrash(new TrashPlastic("straw", "sugerør", "En rund cylinder, lavet af plast.", "Den skal i plastikaffald fordi den er lavet af plast."));
-
+        bathroom
+                .addTrash(new TrashResidualWaste("toothbrush", "tandbørste", "Den er brugt, og uhygiejnisk.", "Den skal i restaffaldsspanden, fordi det er uhygiejnisk"))
+                .addTrash(new TrashPaperCardboard("toiletpaperroll", "toiletrulle", "Der er ingen papir tilbage på rullen", "Den skal i papirspanden fordi den er lavet af pap"));
 
         // Set doors/exits for each room
         driveway.setExit("north", entre);
@@ -58,12 +61,16 @@ public class Game implements IGame {
         homeOffice.setExit("east", entre);
 
         livingRoom.setExit("south", entre);
-        livingRoom.setExit("east",kitchen);
+        livingRoom.setExit("east", kitchen);
+        livingRoom.setExit("west", bathroom);
+
+        bathroom.setExit("east", livingRoom);
 
         kitchen.setExit("west", livingRoom);
         
         //which room to spawn
         currentRoom = driveway;
+<<<<<<< Updated upstream
     }
 
     // Method to print the inventory - prints the String as well as the trash held
@@ -79,6 +86,8 @@ public class Game implements IGame {
         } else {
             System.out.println("Din rygsÃ¦k er tom.");
         }
+=======
+>>>>>>> Stashed changes
     }
 
     public ArrayList<Trash> getInventory() {

@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 
 public interface IMetadata {
 
+    int getScore();
+
     void updateScore(int score);
 
     void quit() throws FileNotFoundException;

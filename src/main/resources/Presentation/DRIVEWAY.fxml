@@ -29,34 +29,39 @@
             <Image url="@../Images/bananaPeel.png" />
          </image>
       </ImageView>
-      <Button fx:id="north" blendMode="DARKEN" defaultButton="true" layoutX="623.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="87.0" prefWidth="53.0">
+      <Button fx:id="north" blendMode="DARKEN" cache="true" defaultButton="true" layoutX="612.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#goDirection" prefHeight="87.0" prefWidth="53.0" style="-fx-background-color: white;">
          <graphic>
             <ImageView blendMode="DARKEN" fitHeight="78.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Images/arrow3.PNG" />
+                  <Image url="@../Images/arrow3.PNG" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <ListView fx:id="displayInventory" layoutX="1132.0" layoutY="36.0" onMousePressed="#inspectInventory" prefHeight="197.0" prefWidth="139.0" />
-      <Label alignment="CENTER" layoutX="1136.0" layoutY="2.0" prefHeight="37.0" prefWidth="131.0" text="Rygsæk" textAlignment="CENTER">
+      <ListView fx:id="displayInventory" layoutX="1125.0" layoutY="46.0" onMousePressed="#inspectInventory" opacity="0.8" prefHeight="102.0" prefWidth="139.0" />
+      <Label alignment="CENTER" layoutX="1129.0" layoutY="9.0" prefHeight="37.0" prefWidth="131.0" text="Rygsæk" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="trashbin" blendMode="MULTIPLY" layoutX="952.0" layoutY="423.0" mnemonicParsing="false" onMousePressed="#deposit" prefHeight="139.0" prefWidth="173.0" />
+      <Button fx:id="trashbin" blendMode="MULTIPLY" layoutX="952.0" layoutY="423.0" mnemonicParsing="false" onMousePressed="#deposit" prefHeight="139.0" prefWidth="173.0" style="-fx-background-color: white;" />
       <Button fx:id="help" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#help" prefWidth="142.0" text="Hjælp" />
       <ImageView fitHeight="178.0" fitWidth="203.0" layoutX="951.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/speaking_bubble_trans_upright.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="inspect" cache="true" editable="false" focusTraversable="false" layoutX="991.0" layoutY="562.0" prefHeight="95.0" prefWidth="118.0" wrapText="true">
+      <TextArea fx:id="inspect" cache="true" editable="false" focusTraversable="false" layoutX="991.0" layoutY="562.0" prefHeight="95.0" prefWidth="118.0" style="-fx-background-color: white;" wrapText="true">
          <effect>
             <Blend />
          </effect>
          <font>
             <Font size="14.0" />
          </font></TextArea>
+      <Label fx:id="scoreLabel" layoutX="14.0" layoutY="55.0" text=" Score: ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
