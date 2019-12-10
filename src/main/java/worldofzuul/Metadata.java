@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import Presentation.Start;
 
 public class Metadata implements IMetadata {
 
@@ -27,6 +26,7 @@ public class Metadata implements IMetadata {
     private String outp;
     private Player player;
     private boolean newPlayer;
+    private int trashCountdown;
 
     // Constructor:
     public Metadata() {
@@ -115,8 +115,11 @@ public class Metadata implements IMetadata {
         this.tries = 0;
     }
 
+    // It was first attempted as a size check of inventory + room trash, but each room had its size, and not game-wide as needed.
     public void winCondition() throws FileNotFoundException {
-        if(game.winChecker() == true){
+        trashCountdown += 1;
+        // When trash has been deposited 13 times (the hardcoded number of trash in the game, the condition is met and the game starts to end
+        if (trashCountdown == 13) {
             this.tries++;
             game.quit();
         }
@@ -135,6 +138,7 @@ public class Metadata implements IMetadata {
         }
         data.saveCSV(player);
         resetData();
+        System.out.println("GAME QUITS HERE");
     }
 
     public String formatScore() { // Prints players in highscore

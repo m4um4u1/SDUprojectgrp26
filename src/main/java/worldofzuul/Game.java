@@ -124,12 +124,6 @@ public class Game implements IGame {
         return currentRoom.getRoomTrash();
     }
 
-    public boolean winChecker(){
-        if(inventory.size() + trashList.size() == 0) {
-        }
-       return true;
-    }
-
     public boolean depositTrash(Trash trash) throws FileNotFoundException {
         System.out.println(trash.getTrashType() + currentRoom.getTrashbin().getTrashtype());
         if (currentRoom.getTrashbin().getTrashtype() == trash.getTrashType()) {

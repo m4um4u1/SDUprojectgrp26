@@ -15,8 +15,6 @@ public interface IGame {
 
     Room goRoom(String description);
 
-    boolean winChecker();
-
     boolean depositTrash(Trash trash) throws FileNotFoundException;
 
     IMetadata getMd();
