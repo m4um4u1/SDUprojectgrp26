@@ -124,7 +124,7 @@ public class Metadata implements IMetadata {
     public void winCondition() throws FileNotFoundException {
         trashCountdown += 1;
         // When trash has been deposited 13 times (the hardcoded number of trash in the game, the condition is met and the game starts to end
-        if (trashCountdown == 13) {
+        if (trashCountdown == 15) {
             this.tries++;
             game.quit();
         }
@@ -143,6 +143,7 @@ public class Metadata implements IMetadata {
         }
         data.saveCSV(player);
         resetData();
+        
         System.out.println("GAME QUITS HERE");
     }
 
