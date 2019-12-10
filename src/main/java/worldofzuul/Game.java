@@ -64,21 +64,8 @@ public class Game implements IGame {
         
         //which room to spawn
         currentRoom = driveway;
-    }
-
-    // Method to print the inventory - prints the String as well as the trash held
-    public void printInventory() {
-        String output = "";
-        if (inventory.size() != 0) {
-            for (Trash item : inventory) {
-                output += item.getName() + ", ";
-            }
-            System.out.println("Din rygsÃ¦k indeholder: ");
-            System.out.println(output);
-
-        } else {
-            System.out.println("Din rygsÃ¦k er tom.");
-        }
+        md.setCurrentRoom(currentRoom.getShortDescription());
+        
     }
 
     public ArrayList<Trash> getInventory() {
@@ -128,13 +115,11 @@ public class Game implements IGame {
         System.out.println(trash.getTrashType() + currentRoom.getTrashbin().getTrashtype());
         if (currentRoom.getTrashbin().getTrashtype() == trash.getTrashType()) {
             md.updateScore(100);
-            System.out.println("Correct!");
             inventory.remove(trash);
             md.winCondition();
             return true;
         } else {
             md.updateScore(-50);
-            System.out.println("Wrong!");
             inventory.remove(trash);
             md.winCondition();
             return false;
@@ -149,12 +134,13 @@ public class Game implements IGame {
             return null;
         } else {
             this.currentRoom = nextRoom;
-            System.out.println(currentRoom.getShortDescription());
+            md.setCurrentRoom(currentRoom.getShortDescription());
         }
         return nextRoom;
     }
 
     // Saves the data for now
+    @Override
     public void quit() throws FileNotFoundException {
         md.setCurrentRoom(this.currentRoom.toString());
         md.quit();

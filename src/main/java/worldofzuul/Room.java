@@ -1,7 +1,6 @@
 package worldofzuul;
 
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.HashMap;
 import worldofzuul.Trash.Trash;
 import worldofzuul.Trashbin.Trashbin;

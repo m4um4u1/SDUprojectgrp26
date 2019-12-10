@@ -62,7 +62,6 @@ public class KITCHENController {
         
         for (int i = 0; i < inventory.size(); i++) {
             inventoryToDisplay.add(inventory.get(i));
-            System.out.println(inventoryToDisplay.get(i));
             displayInventory.getItems().add(inventory.get(i));
         }
         
@@ -80,10 +79,7 @@ public class KITCHENController {
         nextRoom =  game.goRoom(event.getPickResult().getIntersectedNode().getId());
         //testroom = game.goRoom("north");
 
-        if (nextRoom == null) {
-            System.out.println(currentRoom);
-        }
-        else {
+        if (nextRoom != null) {
             nextRoom.getShortDescription();
             currentRoom = nextRoom;
             setRoot(currentRoom.getRoot());
@@ -95,11 +91,9 @@ public class KITCHENController {
         id = event.getPickResult().getIntersectedNode().getId();
         
         if (event.isPrimaryButtonDown()) {
-            System.out.println(id);
             game.grabTrash(id);
             Node node = (Node) event.getSource();
             node.setVisible(false);
-            game.printInventory();
             loadInventory();
         
         } else if (event.isSecondaryButtonDown()) {
@@ -184,7 +178,6 @@ public class KITCHENController {
         @Override
         public void handle(WindowEvent we) {
             isHelpOpen = false;
-            System.out.println(isHelpOpen);
         }
     };
 }
