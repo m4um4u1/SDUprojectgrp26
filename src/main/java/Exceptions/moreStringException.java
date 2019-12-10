@@ -1,4 +1,4 @@
-package worldofzuul.Exceptions;
+package Exceptions;
 
 public class moreStringException extends Exception {
 

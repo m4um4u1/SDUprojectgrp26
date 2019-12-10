@@ -14,11 +14,17 @@ public class Room {
     private ArrayList<Trash> trash = new ArrayList<>();
     private String root;
 
-    // Used if there is a trashbin but no trash
+    // Used if there is a trashbin
     public Room(String description, Trashbin trashbin, String root) {
         this.description = description;
         exits = new HashMap<String, Room>();
         this.trashbin = trashbin;
+        this.root = root;
+    }
+
+    public Room(String description, String root) {
+        this.description = description;
+        exits = new HashMap<String, Room>();
         this.root = root;
     }
 
