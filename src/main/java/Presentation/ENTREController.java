@@ -6,15 +6,11 @@ import static Presentation.StartscreenController.setRoot;
 import java.io.FileNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import worldofzuul.Game;
 import worldofzuul.Room;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -94,10 +90,7 @@ public class ENTREController {
         nextRoom =  game.goRoom(event.getPickResult().getIntersectedNode().getId());
         //testroom = game.goRoom("north");
 
-        if (nextRoom == null) {
-            System.out.println(currentRoom);
-        }
-        else {
+        if (nextRoom != null) {
             nextRoom.getShortDescription();
             currentRoom = nextRoom;
             setRoot(currentRoom.getRoot());
@@ -113,7 +106,6 @@ public class ENTREController {
             game.grabTrash(id);
             Node node = (Node) event.getSource();
             node.setVisible(false);
-            game.printInventory();
             loadInventory();
         
         } else if (event.isSecondaryButtonDown()) {

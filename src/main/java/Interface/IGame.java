@@ -7,8 +7,6 @@ import worldofzuul.Trash.Trash;
 
 public interface IGame {
 
-    void printInventory();
-    
     void grabTrash(String id);
 
     String inspectTrash(String id);

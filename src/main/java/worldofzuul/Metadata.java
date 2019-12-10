@@ -126,7 +126,7 @@ public class Metadata implements IMetadata {
     }
 
     @Override
-    public void quit() { // Saves players to scv
+    public void quit() { // Saves players to csv
         if (newPlayer || users.isEmpty()) {
             users.add(addNewPlayer());
         } else {

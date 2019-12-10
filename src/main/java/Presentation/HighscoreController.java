@@ -12,24 +12,17 @@ public class HighscoreController {
     private Button buttonLoad;
     @FXML
     private TextArea highscoreText = new TextArea();
+    
+    // Loads the String from the metadata array to the textarea:
+    @FXML
+    public void initialize() { //set the text from the arraylist in the textarea
+        String output = game.getMd().formatScore();
+        highscoreText.setText(output);
+    }
 
     @FXML
     private void handleButtonBack() throws IOException { // Goes back to the startscreen:
         setRoot("Startscreen");
-    }
-
-    @FXML
-    private void handleButtonLoad() { //loads the text from the arraylist, because does not work automatic until now (want it to load when opening scene)
-        loadText();
-        buttonLoad.setDisable(true);
-    }
-
-    // Loads the String from the metadata array to the textarea:
-    @FXML
-    public void loadText() { //set the text from the arraylist in the textarea
-        String output = game.getMd().formatScore();
-        highscoreText.setText(output);
-        
     }
 
 }

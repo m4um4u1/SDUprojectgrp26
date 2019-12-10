@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import worldofzuul.Room;
-
-
 import java.io.IOException;
-
 import static Presentation.StartscreenController.setRoot;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -62,29 +59,22 @@ public class DRIVEWAYController {
         
         for (int i = 0; i < inventory.size(); i++) {
             inventoryToDisplay.add(inventory.get(i));
-            System.out.println(inventoryToDisplay.get(i));
             displayInventory.getItems().add(inventory.get(i));
         }
-        
     }
     
     public void initialize() {
         checkTrash();
         loadInventory();
         inspect.setStyle("-focus-color: transparent; -fx-text-box-border: transparent;");
-        
     }
-
 
     @FXML
     public void goDirection(MouseEvent event) throws IOException {
         nextRoom =  game.goRoom(event.getPickResult().getIntersectedNode().getId());
         //testroom = game.goRoom("north");
 
-        if (nextRoom == null) {
-            System.out.println(currentRoom);
-        }
-        else {
+        if (nextRoom != null) {
             nextRoom.getShortDescription();
             currentRoom = nextRoom;
             setRoot(currentRoom.getRoot());
@@ -97,11 +87,9 @@ public class DRIVEWAYController {
         id = event.getPickResult().getIntersectedNode().getId();
         
         if (event.isPrimaryButtonDown()) {
-            System.out.println(id);
             game.grabTrash(id);
             Node node = (Node) event.getSource();
             node.setVisible(false);
-            game.printInventory();
             loadInventory();
         
         } else if (event.isSecondaryButtonDown()) {
@@ -117,7 +105,6 @@ public class DRIVEWAYController {
                 inspect.setText(trash.getDescription());
             }
         }
-        
     }
     
     @FXML
@@ -142,10 +129,6 @@ public class DRIVEWAYController {
             loadInventory();
             trash = null;
         }
-        
-        else {
-            //Do nothing!
-        }
     }
     
     public void checkTrash() {
@@ -159,7 +142,7 @@ public class DRIVEWAYController {
                 straw.setVisible(true);
             }
         }
-   }
+    }
     
     @FXML
     public void help() throws IOException {
@@ -173,8 +156,6 @@ public class DRIVEWAYController {
             this.isHelpOpen = true;
             //Sets an event that runs when the player presses on the close window button built in from Windows/Macs side.
             stageHelp.setOnCloseRequest(helpEventClose);
-        } else {
-            //Do nothing!
         }
     }
     
@@ -183,7 +164,6 @@ public class DRIVEWAYController {
         @Override
         public void handle(WindowEvent we) {
             isHelpOpen = false;
-            System.out.println(isHelpOpen);
         }
     };
     

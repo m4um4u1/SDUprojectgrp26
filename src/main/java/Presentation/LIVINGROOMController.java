@@ -88,10 +88,7 @@ public class LIVINGROOMController {
         nextRoom =  game.goRoom(event.getPickResult().getIntersectedNode().getId());
         //testroom = game.goRoom("north");
 
-        if (nextRoom == null) {
-            System.out.println(currentRoom);
-        }
-        else {
+        if (nextRoom != null) {
             nextRoom.getShortDescription();
             currentRoom = nextRoom;
             setRoot(currentRoom.getRoot());
@@ -103,11 +100,9 @@ public class LIVINGROOMController {
         id = event.getPickResult().getIntersectedNode().getId();
         
         if (event.isPrimaryButtonDown()) {
-            System.out.println(id);
             game.grabTrash(id);
             Node node = (Node) event.getSource();
             node.setVisible(false);
-            game.printInventory();
             loadInventory();
         
         } else if (event.isSecondaryButtonDown()) {
@@ -187,6 +182,8 @@ public class LIVINGROOMController {
         }
     }
     
+    
+    
     //Sets the help window as closed when someone presses X on the window.
     EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
         @Override
@@ -196,6 +193,4 @@ public class LIVINGROOMController {
         }
     };
     
-    
 }
-

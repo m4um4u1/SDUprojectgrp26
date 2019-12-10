@@ -2,6 +2,7 @@ package Presentation;
 
 import static Presentation.StartscreenController.game;
 import Interface.IGame;
+import java.io.FileNotFoundException;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,6 +57,7 @@ public class StartscreenController extends Application {
         stage.setResizable(false);
         stage.show();
         stage.setTitle("Sortering for Dummies");
+        stage.setOnCloseRequest(closeGameWindow);
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -120,6 +122,16 @@ public class StartscreenController extends Application {
         setRoot("GrabTrashTest");
     }
 
+    EventHandler<WindowEvent> closeGameWindow = new EventHandler<>() {
+        @Override
+        public void handle(WindowEvent we) {
+            try {
+                // Gets the metadata object from Game and calls its quit method:
+                game.getMd().quit();
+            } catch (FileNotFoundException ex) {
+                System.out.println("File not found");
+            }
+        }
+    };
     
-
 }
