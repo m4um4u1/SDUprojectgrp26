@@ -103,7 +103,7 @@ public class Game implements IGame {
             if (id.equals(trashList.get(i).getId())) {
                 inventory.add(trashList.get(i));
                 currentRoom.removeTrash(trashList.get(i).getName());
-            } else if (i >= trashList.size() - 1) {
+            } else if (i > trashList.size() - 1) {
                 System.out.println("Error in: " + id + ". Check " + currentRoom.getShortDescription() + "s controller and html");
                 System.out.println("TRASH NOT FOUND! CRASHING NOW... BYE BYE");
                 // Implement a way to exit the game and post crash screen

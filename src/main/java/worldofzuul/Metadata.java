@@ -102,6 +102,7 @@ public class Metadata implements IMetadata {
         users.get(chooser).setScore(this.score);
         users.get(chooser).setLocation(this.currentRoom);
         users.get(chooser).setTries(this.tries);
+        addNewPlayer();
     }
 
     // Updates the score:
@@ -121,18 +122,20 @@ public class Metadata implements IMetadata {
     }
 
     // It was first attempted as a size check of inventory + room trash, but each room had its size, and not game-wide as needed.
-    public void winCondition() throws FileNotFoundException {
+    public boolean winCondition() throws FileNotFoundException {
         trashCountdown += 1;
-        // When trash has been deposited 13 times (the hardcoded number of trash in the game, the condition is met and the game starts to end
+        // When trash has been deposited 15 times (the hardcoded number of trash in the game, the condition is met and the game starts to end
         if (trashCountdown == 15) {
             this.tries++;
-            game.quit();
+            return true;
+        } else {
+            return false;
         }
     }
 
     @Override
     public void quit() { // Saves players to csv
-        if (newPlayer || users.isEmpty()) {
+        if (newPlayer) {
             users.add(addNewPlayer());
         } else {
             updatePlayer();
@@ -143,7 +146,6 @@ public class Metadata implements IMetadata {
         }
         data.saveCSV(player);
         resetData();
-        
         System.out.println("GAME QUITS HERE");
     }
 
