@@ -51,7 +51,7 @@
             <Image url="@../Images/jakabov.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="wineBottle" fitHeight="72.0" fitWidth="230.0" layoutX="215.0" layoutY="333.0" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="wineBottle" fitHeight="72.0" fitWidth="230.0" layoutX="215.0" layoutY="333.0" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../Images/wineBottle.png" />
          </image>
