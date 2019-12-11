@@ -2,14 +2,14 @@ package worldofzuul;
 
 public class Player implements Comparable<Player> {
     private String name;
-    private int score;
     private String location;
+    private int score;
     private int tries;
 
     public Player(String name, int score, String location, int tries) {
         this.name = name;
-        this.score = score;
         this.location = location;
+        this.score = score;
         this.tries = tries;
     }
 

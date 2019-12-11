@@ -1,6 +1,5 @@
 package worldofzuul;
 
-import static Presentation.StartscreenController.game;
 import Data.DataRaW;
 import Interface.IDataRaW;
 import Interface.IMetadata;
@@ -12,10 +11,8 @@ import java.util.Collections;
 
 public class Metadata implements IMetadata {
 
-    // Attributes:
     public File metaData = new File("metadata.csv");
     private IDataRaW data = new DataRaW();
-
     private ArrayList<Player> users = new ArrayList<>();
     private int chooser;
     private String playerName;
@@ -23,12 +20,11 @@ public class Metadata implements IMetadata {
     private int tries;
     private String currentRoom;
     private String output;
-    private String outp;
+    private String clearOutput;
     private Player player;
     private boolean newPlayer;
     private int trashCountdown;
 
-    // Constructor:
     public Metadata() {
         // Creates a file and dummy player in the project folder if not already there:
         if (!metaData.exists()) {
@@ -43,7 +39,8 @@ public class Metadata implements IMetadata {
             loadPlayers();
         }
     }
-
+    
+    @Override
     public int getScore() {
         return score;
     }
@@ -65,7 +62,7 @@ public class Metadata implements IMetadata {
 
 
     @Override
-    public String checkUser(String playerName) { // Checks if new player and gets the current player
+    public String checkUser(String playerName) { // Checks if login is a new player, if so it gets the saved data on that player
         this.playerName = playerName;
         if (!users.isEmpty()) {
             for (Player p : users) {
@@ -121,10 +118,9 @@ public class Metadata implements IMetadata {
         this.tries = 0;
     }
 
-    // It was first attempted as a size check of inventory + room trash, but each room had its size, and not game-wide as needed.
     public boolean winCondition() throws FileNotFoundException {
         trashCountdown += 1;
-        // When trash has been deposited 15 times (the hardcoded number of trash in the game, the condition is met and the game starts to end
+        // When trash has been deposited 15 times the game ends
         if (trashCountdown == 15) {
             this.tries++;
             return true;
@@ -150,11 +146,11 @@ public class Metadata implements IMetadata {
     }
 
     public String formatScore() { // Prints players in highscore
-        outp = ""; // Clears the highscore list
+        clearOutput = "";
         Collections.sort(users); // Sorts the users according their score; highest to lowest.
         for (Player p : users) {
-            outp += p.toString();
+            clearOutput += p.toString();
         }
-        return outp;
+        return clearOutput;
     }
 }
