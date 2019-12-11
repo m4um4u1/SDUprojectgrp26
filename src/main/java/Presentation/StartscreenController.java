@@ -15,16 +15,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import Exceptions.noNameException;
 import Exceptions.moreStringException;
-
 import java.io.IOException;
-
 import javafx.stage.WindowEvent;
 import worldofzuul.Game;
 
 public class StartscreenController extends Application {
-
-    public static final IGame game = new Game();
-
+    
+    public static final IGame game = new Game(); 
     private String name;
     private int clicked;
 
@@ -54,7 +51,7 @@ public class StartscreenController extends Application {
         stage.setResizable(false);
         stage.show();
         stage.setTitle("Sortering for Dummies");
-        stage.setOnCloseRequest(closeGameWindow);
+        stage.setOnCloseRequest(closeGameWindow); //Saves the game when x is pressed on the window. See EventHandler
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -70,15 +67,14 @@ public class StartscreenController extends Application {
         launch(args);
     }
 
-    // Buttons:
     @FXML
-    public void handleButtonLogin() throws IOException { // changes the labels to login-text with name
+    public void handleButtonLogin() throws IOException { // Changes the labels to login-text with name
         name = nameTextField.getText();
         if (clicked == 0) {
             try {
-                if (name.contains(" ")) {
+                if (name.contains(" ")) { //Makes sure that the user doesn't include spaces in their name.
                     throw new moreStringException("Name can only be one word");
-                } else if (name.isEmpty()) {
+                } else if (name.isEmpty()) { 
                     throw new noNameException("");
                 }
                 notTheUser.setText(game.getMd().checkUser(name));
@@ -90,7 +86,7 @@ public class StartscreenController extends Application {
             } catch (noNameException e) {
                 exception("Du skal indtaste et brugernavn.\nKlik \"OK\" for at prøve igen.");
             }
-        } else if (clicked == 1) { // Genstarter efter exception
+        } else if (clicked == 1) { // Restarts after exception
             setRoot("Startscreen");
         }
     }

@@ -1,7 +1,6 @@
 package Data;
 
 import Interface.IDataRaW;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -11,10 +10,10 @@ import java.util.Scanner;
 public class DataRaW implements IDataRaW {
     private File file = new File("metadata.csv");
 
-    // Reads the whole CSV and puts it in an array:
+    // Reads the whole CSV file and puts it in an array:
     @Override
     public ArrayList<String> readCSV() {
-        file.setReadable(true); // makes it harder to manipulate highscore
+        file.setReadable(true); // makes it harder for the user to manipulate highscore
         ArrayList<String> scoreArray = new ArrayList<>();
         try {
             Scanner fileReader = new Scanner(file);
@@ -34,7 +33,7 @@ public class DataRaW implements IDataRaW {
     public void saveCSV(ArrayList<String> scoreArray) {
         // Writes the ArrayList to the metadata.csv file:
         try {
-            file.setWritable(true); // makes it harder to manipulate highscore
+            file.setWritable(true); // makes it harder for the user to manipulate highscore
             PrintWriter fileWriter = new PrintWriter(file);
             for (String s : scoreArray) {
                 fileWriter.println(s);

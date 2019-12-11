@@ -7,7 +7,6 @@ import Interface.IMetadata;
 import worldofzuul.Trash.*;
 import worldofzuul.Trashbin.*;
 
-// Added an arraylist of inventory
 public class Game implements IGame {
     private Room currentRoom;
     private ArrayList<Trash> inventory = new ArrayList<Trash>();
@@ -19,16 +18,15 @@ public class Game implements IGame {
         createRooms();
     }
 
-    // Our rooms - which room to start in?
     public void createRooms() {
-        livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "Der er en skraldespand til restaffald "), "LIVINGROOM");
-        kitchen = new Room("i køkkenet", new Organic(kitchen, 5, "Der er en skraldespand til organisk"), "KITCHEN");
-        homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"), "HOMEOFFICE");
-        entre = new Room("i entreen", new Plastic(entre, 1, "Der er en skraldespand til plastik"), "ENTRE");
-        driveway = new Room("i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"), "DRIVEWAY");
+        livingRoom = new Room("i stuen", new TrashbinResidualWaste(livingRoom, 4, "Der er en skraldespand til restaffald "), "LIVINGROOM");
+        kitchen = new Room("i køkkenet", new TrashbinOrganic(kitchen, 5, "Der er en skraldespand til organisk"), "KITCHEN");
+        homeOffice = new Room("på kontoret", new TrashbinCardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"), "HOMEOFFICE");
+        entre = new Room("i entreen", new TrashbinPlastic(entre, 1, "Der er en skraldespand til plastik"), "ENTRE");
+        driveway = new Room("i indkørslen", new TrashbinMetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"), "DRIVEWAY");
         bathroom = new Room("i badeværslet", "BATHROOM");
 
-        // Adds worldofzuul.Trash into each Room object.
+        // Adds Trash into each Room object.
         livingRoom
                 .addTrash(new TrashMetalGlas("jakabov", "jakabov", "Konservedåsen er desværre tom men lugter ikke.", "Denne dåse er lavet af metal og skal derfor i metal og glas-spanden hvis den er ren."))
                 .addTrash(new TrashPaperCardboard("brochure", "brochure", "\"Guide til affaldssortering\", det har vi ikke brug for.", "Den er lavet af papir og skal i papir og pap-spanden."))
@@ -51,7 +49,7 @@ public class Game implements IGame {
                 .addTrash(new TrashResidualWaste("toothbrush", "tandbørste", "Den er brugt, og uhygiejnisk.", "Den skal i restaffaldsspanden, fordi det er uhygiejnisk"))
                 .addTrash(new TrashPaperCardboard("toiletpaperroll", "toiletrulle", "Der er ingen papir tilbage på rullen", "Den skal i papirspanden fordi den er lavet af pap"));
 
-        // Set doors/exits for each room
+        //Sets exits in each Room object
         driveway.setExit("north", entre);
 
         entre.setExit("south", driveway);
@@ -68,7 +66,7 @@ public class Game implements IGame {
 
         kitchen.setExit("west", livingRoom);
         
-        //which room to spawn
+        //Sets starting Room
         currentRoom = driveway;
         md.setCurrentRoom(currentRoom.getShortDescription());
     }
@@ -80,19 +78,16 @@ public class Game implements IGame {
     public IMetadata getMd() {
         return md;
     }
-    // Gets the score from Metadata end prints it
 
     @Override
     public String inspectTrash(String id) {
         this.trashList = currentRoom.getRoomTrash();
-        System.out.println("Trying to inspect: ");
         for (int i = 0; i < trashList.size(); i++) {
             if (id.equals(trashList.get(i).getId())) {
-                System.out.println(trashList.get(i).getDescription());
                 return trashList.get(i).getDescription();
             }
         }
-        System.out.println("No Trash with that id found! Throwing NullPointException Error in inspectTrash");
+        System.out.println("Error in inspectTrash: " + id + ". Check " + currentRoom.getShortDescription() + "s controller and FXML");
         return null;
     }
 
@@ -104,9 +99,7 @@ public class Game implements IGame {
                 inventory.add(trashList.get(i));
                 currentRoom.removeTrash(trashList.get(i).getName());
             } else if (i > trashList.size() - 1) {
-                System.out.println("Error in: " + id + ". Check " + currentRoom.getShortDescription() + "s controller and html");
-                System.out.println("TRASH NOT FOUND! CRASHING NOW... BYE BYE");
-                // Implement a way to exit the game and post crash screen
+                System.out.println("Error in grabTrash: " + id + ". Check " + currentRoom.getShortDescription() + "s controller and FXML");
             }
         }
     }
@@ -116,8 +109,8 @@ public class Game implements IGame {
         return currentRoom.getRoomTrash();
     }
 
+    @Override
     public boolean depositTrash(Trash trash) throws FileNotFoundException {
-        System.out.println(trash.getTrashType() + currentRoom.getTrashbin().getTrashtype());
         if (currentRoom.getTrashbin().getTrashtype() == trash.getTrashType()) {
             md.updateScore(100);
             inventory.remove(trash);
@@ -133,13 +126,12 @@ public class Game implements IGame {
 
     @Override
     public Room goRoom(String direction) {
-       Room nextRoom = currentRoom.getExit(direction);
+       Room nextRoom = currentRoom.getExit(direction); 
         if (nextRoom == null) {
-            System.out.println("Der er ikke nogen dør!");
             return null;
         } else {
-            this.currentRoom = nextRoom;
-            md.setCurrentRoom(currentRoom.getShortDescription());
+            this.currentRoom = nextRoom; //After setting the exit as nextRoom it's saved into currentRoom thus changing where the player is.
+            md.setCurrentRoom(currentRoom.getShortDescription()); //Also saves currentRoom into the
         }
         return nextRoom;
     }

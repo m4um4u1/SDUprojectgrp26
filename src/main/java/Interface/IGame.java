@@ -11,9 +11,9 @@ public interface IGame {
 
     String inspectTrash(String id);
 
-    Room goRoom(String description);
-
     boolean depositTrash(Trash trash) throws FileNotFoundException;
+    
+    Room goRoom(String description);
 
     IMetadata getMd();
 

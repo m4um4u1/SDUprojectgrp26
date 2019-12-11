@@ -8,13 +8,13 @@ public interface IMetadata {
 
     void updateScore(int score);
 
+    String formatScore();
+    
     void quit() throws FileNotFoundException;
 
     void setCurrentRoom(String currentRoom);
 
     String checkUser(String playerName);
-
-    String formatScore();
 
     boolean winCondition() throws FileNotFoundException;
 

@@ -3,7 +3,6 @@ package Presentation;
 import static Presentation.StartscreenController.game;
 import static Presentation.StartscreenController.loadFXML;
 import static Presentation.StartscreenController.setRoot;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -17,11 +16,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import worldofzuul.Trash.Trash;
 import worldofzuul.Room;
 
@@ -75,8 +72,6 @@ public class HOMEOFFICEController {
     @FXML
     public void goDirection(MouseEvent event) throws IOException {
         nextRoom = game.goRoom(event.getPickResult().getIntersectedNode().getId());
-        //testroom = game.goRoom("north");
-
 
         if (nextRoom != null) {
             nextRoom.getShortDescription();
@@ -89,9 +84,8 @@ public class HOMEOFFICEController {
     public void grab(MouseEvent event) {
         id = event.getPickResult().getIntersectedNode().getId();
         if (event.isPrimaryButtonDown() && inventory.size() < 4) {
-            System.out.println(id);
             game.grabTrash(id);
-            Node node = (Node) event.getSource();
+            Node node = (Node) event.getSource(); //Casts an ImageView to a node inorder to manipulate any ImageView
             node.setVisible(false);
             loadInventory();
         } else if (event.isSecondaryButtonDown()) {
@@ -117,12 +111,6 @@ public class HOMEOFFICEController {
         trash = displayInventory.getSelectionModel().getSelectedItem();
 
         if (trash != null) {
-//            feedback.setVisible(true);
-//            feedback.setLayoutX(event.getX());
-//            feedback.setLayoutY(event.getY());
-//            feedback.setTranslateX(50);
-//            feedback.setTranslateY(20);
-//            feedback.setText(trash.getFeedback());
             isCorrect = game.depositTrash(trash);
 
             if (isCorrect) {
@@ -172,7 +160,6 @@ public class HOMEOFFICEController {
         @Override
         public void handle(WindowEvent we) {
             isHelpOpen = false;
-            System.out.println(isHelpOpen);
         }
     };
 }
