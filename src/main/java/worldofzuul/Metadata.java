@@ -60,7 +60,6 @@ public class Metadata implements IMetadata {
         }
     }
 
-
     @Override
     public String checkUser(String playerName) { // Checks if login is a new player, if so it gets the saved data on that player
         this.playerName = playerName;
@@ -70,7 +69,7 @@ public class Metadata implements IMetadata {
                     chooser = users.indexOf(p);
                     output = "Er du ikke " + playerName + "? Så log på med din bruger, eller lav en ny.";
                     loadPlayer();
-                    users.remove(p);
+                    users.remove(p); //sletter den gamle bruger så der kan blive lavet en ny
                     break;
                 } else {
                     newPlayer = true;
@@ -93,13 +92,6 @@ public class Metadata implements IMetadata {
         this.playerName = users.get(chooser).getName();
         this.currentRoom = users.get(chooser).getLocation();
         this.tries = users.get(chooser).getTries();
-    }
-
-    private void updatePlayer() { // Updates player score and location in array
-        users.get(chooser).setScore(this.score);
-        users.get(chooser).setLocation(this.currentRoom);
-        users.get(chooser).setTries(this.tries);
-        addNewPlayer();
     }
 
     // Updates the score:
@@ -131,11 +123,7 @@ public class Metadata implements IMetadata {
 
     @Override
     public void quit() { // Saves players to csv
-        if (newPlayer) {
-            users.add(addNewPlayer());
-        } else {
-            updatePlayer();
-        }
+        users.add(addNewPlayer());
         ArrayList<String> player = new ArrayList<>();
         for (Player p : users) {
             player.add(p.getName() + " " + p.getScore() + " " + p.getLocation() + " " + p.getTries());
