@@ -19,11 +19,11 @@ public class Game implements IGame {
     }
 
     public void createRooms() {
-        livingRoom = new Room("i stuen", new ResidualWaste(livingRoom, 4, "Der er en skraldespand til restaffald "), "LIVINGROOM");
-        kitchen = new Room("i køkkenet", new Organic(kitchen, 5, "Der er en skraldespand til organisk"), "KITCHEN");
-        homeOffice = new Room("på kontoret", new CardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"), "HOMEOFFICE");
-        entre = new Room("i entreen", new Plastic(entre, 1, "Der er en skraldespand til plastik"), "ENTRE");
-        driveway = new Room("i indkørslen", new MetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"), "DRIVEWAY");
+        livingRoom = new Room("i stuen", new TrashbinResidualWaste(livingRoom, 4, "Der er en skraldespand til restaffald "), "LIVINGROOM");
+        kitchen = new Room("i køkkenet", new TrashbinOrganic(kitchen, 5, "Der er en skraldespand til organisk"), "KITCHEN");
+        homeOffice = new Room("på kontoret", new TrashbinCardboardPaper(homeOffice, 2, "Der er en skraldespand til pap/papir"), "HOMEOFFICE");
+        entre = new Room("i entreen", new TrashbinPlastic(entre, 1, "Der er en skraldespand til plastik"), "ENTRE");
+        driveway = new Room("i indkørslen", new TrashbinMetalGlass(driveway, 3, "Der er en skraldespand til metal/glas"), "DRIVEWAY");
         bathroom = new Room("i badeværslet", "BATHROOM");
 
         // Adds Trash into each Room object.
@@ -131,7 +131,7 @@ public class Game implements IGame {
             return null;
         } else {
             this.currentRoom = nextRoom; //After setting the exit as nextRoom it's saved into currentRoom thus changing where the player is.
-            md.setCurrentRoom(currentRoom.getShortDescription()); //Also saves currentRoom into the MetaData object
+            md.setCurrentRoom(currentRoom.getShortDescription()); //Also saves currentRoom into the
         }
         return nextRoom;
     }

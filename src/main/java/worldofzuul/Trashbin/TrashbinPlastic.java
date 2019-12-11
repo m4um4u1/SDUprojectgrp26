@@ -2,10 +2,10 @@ package worldofzuul.Trashbin;
 
 import worldofzuul.Room;
 
-public class Plastic extends Trashbin {
+public class TrashbinPlastic extends Trashbin {
     private final int trashtype = 1;
 
-    public Plastic(Room place, int id, String trash) {
+    public TrashbinPlastic(Room place, int id, String trash) {
         super(place, id, trash);
     }
 
@@ -15,12 +15,13 @@ public class Plastic extends Trashbin {
     }
 
     @Override
-    public int getTrashtype() {
-        return trashtype;
-    }
-
-    @Override
     public String getDescription() {
         return super.getDescription();
+    }
+
+
+    @Override
+    public int getTrashtype() {
+        return trashtype;
     }
 }

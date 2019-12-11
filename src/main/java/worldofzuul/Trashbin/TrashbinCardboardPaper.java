@@ -2,10 +2,10 @@ package worldofzuul.Trashbin;
 
 import worldofzuul.Room;
 
-public class CardboardPaper extends Trashbin {
+public class TrashbinCardboardPaper extends Trashbin {
     private final int trashtype = 2;
 
-    public CardboardPaper(Room place, int id, String trash) {
+    public TrashbinCardboardPaper(Room place, int id, String trash) {
         super(place, id, trash);
     }
 
