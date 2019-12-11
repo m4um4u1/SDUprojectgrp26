@@ -63,7 +63,6 @@ public class Metadata implements IMetadata {
         }
     }
 
-
     @Override
     public String checkUser(String playerName) { // Checks if new player and gets the current player
         this.playerName = playerName;
@@ -98,13 +97,6 @@ public class Metadata implements IMetadata {
         this.tries = users.get(chooser).getTries();
     }
 
-    private void updatePlayer() { // Updates player score and location in array
-        users.get(chooser).setScore(this.score);
-        users.get(chooser).setLocation(this.currentRoom);
-        users.get(chooser).setTries(this.tries);
-        addNewPlayer();
-    }
-
     // Updates the score:
     public void updateScore(int score) { //updates score
         this.score += score;
@@ -114,12 +106,12 @@ public class Metadata implements IMetadata {
         this.currentRoom = currentRoom;
     }
 
-    private void resetData() {
+   /* private void resetData() {
         this.playerName = "";
         this.score = 0;
         this.currentRoom = "";
         this.tries = 0;
-    }
+    }*/
 
     // It was first attempted as a size check of inventory + room trash, but each room had its size, and not game-wide as needed.
     public boolean winCondition() throws FileNotFoundException {
@@ -135,18 +127,14 @@ public class Metadata implements IMetadata {
 
     @Override
     public void quit() { // Saves players to csv
-        if (newPlayer) {
-            users.add(addNewPlayer());
-        } else {
-            updatePlayer();
-        }
+        users.add(addNewPlayer());
         ArrayList<String> player = new ArrayList<>();
         for (Player p : users) {
             player.add(p.getName() + " " + p.getScore() + " " + p.getLocation() + " " + p.getTries());
         }
         data.saveCSV(player);
-        resetData();
-        System.out.println("GAME QUITS HERE");
+       // resetData();
+        System.out.println("GAME ENDS/QUITS HERE");
     }
 
     public String formatScore() { // Prints players in highscore

@@ -4,6 +4,7 @@ import static Presentation.StartscreenController.game;
 import static Presentation.StartscreenController.loadFXML;
 import static Presentation.StartscreenController.setRoot;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -89,7 +90,6 @@ public class DRIVEWAYController {
     public void grab(MouseEvent event) {
         id = event.getPickResult().getIntersectedNode().getId();
         if (event.isPrimaryButtonDown() && inventory.size() < 4) {
-            System.out.println(id);
             game.grabTrash(id);
             Node node = (Node) event.getSource();
             node.setVisible(false);
@@ -97,7 +97,7 @@ public class DRIVEWAYController {
         } else if (event.isSecondaryButtonDown()) {
             inspect.setText(game.inspectTrash(id));
         } else {
-            inspect.setText("Din ryksæk er fyldt!");
+            inspect.setText("Din rygsæk er fyldt!");
         }
     }
 
@@ -165,7 +165,7 @@ public class DRIVEWAYController {
     }
 
     //Sets the help window as closed when someone presses X on the window.
-    EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
+    EventHandler<WindowEvent> helpEventClose = new EventHandler<WindowEvent>() {
         @Override
         public void handle(WindowEvent we) {
             isHelpOpen = false;

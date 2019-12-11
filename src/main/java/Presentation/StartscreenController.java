@@ -52,6 +52,7 @@ public class StartscreenController extends Application {
         scene = new Scene(loadFXML("Startscreen"), 1280, 720);
         stage.setScene(scene);
         stage.setResizable(false);
+        stage.sizeToScene();
         stage.show();
         stage.setTitle("Sortering for Dummies");
         stage.setOnCloseRequest(closeGameWindow);
@@ -114,7 +115,7 @@ public class StartscreenController extends Application {
         setRoot("Highscore");
     }
 
-    EventHandler<WindowEvent> closeGameWindow = new EventHandler<>() {
+    EventHandler<WindowEvent> closeGameWindow = new EventHandler<WindowEvent>() {
         @Override
         public void handle(WindowEvent we) {
             try {

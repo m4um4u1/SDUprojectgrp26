@@ -6,7 +6,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -50,16 +49,11 @@ public class BATHROOMController {
     @FXML
     private ListView<Trash> displayInventory = new ListView<>(inventoryToDisplay);
 
-    @FXML
-    private Button trashbin;
-
     public void loadInventory() {
         inventory = game.getInventory();
         displayInventory.getItems().clear();
-
         for (int i = 0; i < inventory.size(); i++) {
             inventoryToDisplay.add(inventory.get(i));
-            System.out.println(inventoryToDisplay.get(i));
             displayInventory.getItems().add(inventory.get(i));
         }
 
@@ -77,7 +71,6 @@ public class BATHROOMController {
     public void goDirection(MouseEvent event) throws IOException {
         nextRoom = game.goRoom(event.getPickResult().getIntersectedNode().getId());
         //testroom = game.goRoom("north");
-
         if (nextRoom == null) {
             System.out.println(currentRoom);
         } else {
@@ -92,7 +85,6 @@ public class BATHROOMController {
     public void grab(MouseEvent event) {
         id = event.getPickResult().getIntersectedNode().getId();
         if (event.isPrimaryButtonDown() && inventory.size() < 4) {
-            System.out.println(id);
             game.grabTrash(id);
             Node node = (Node) event.getSource();
             node.setVisible(false);
@@ -102,7 +94,7 @@ public class BATHROOMController {
         } else if (event.isSecondaryButtonDown()) {
             inspect.setText(game.inspectTrash(id));
         }else{
-            inspect.setText("Din ryksæk er fyldt!");
+            inspect.setText("Din rygsæk er fyldt!");
         }
     }
         @FXML
@@ -119,7 +111,6 @@ public class BATHROOMController {
     @FXML
     public void deposit(MouseEvent event) throws FileNotFoundException {
         trash = displayInventory.getSelectionModel().getSelectedItem();
-
         if (trash != null) {
 //            feedback.setVisible(true);
 //            feedback.setLayoutX(event.getX());
@@ -145,7 +136,6 @@ public class BATHROOMController {
 
     public void checkTrash() {
         trashInRoom = game.getTrashRoom();
-
         for (int i = 0; i < trashInRoom.size(); i++) {
             if (trashInRoom.get(i).getId().equals("toothbrush")) {
                 toothbrush.setVisible(true);
@@ -173,13 +163,12 @@ public class BATHROOMController {
     }
 
     //Sets the help window as closed when someone presses X on the window.
-    EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
+    EventHandler<WindowEvent> helpEventClose = new EventHandler<WindowEvent>() {
         @Override
         public void handle(WindowEvent we) {
             isHelpOpen = false;
             System.out.println(isHelpOpen);
         }
     };
-
 }
 

@@ -63,7 +63,6 @@ public class LIVINGROOMController {
         displayInventory.getItems().clear();
         for (int i = 0; i < inventory.size(); i++) {
             inventoryToDisplay.add(inventory.get(i));
-            System.out.println(inventoryToDisplay.get(i));
             displayInventory.getItems().add(inventory.get(i));
         }
 
@@ -92,7 +91,6 @@ public class LIVINGROOMController {
     public void grab(MouseEvent event) {
         id = event.getPickResult().getIntersectedNode().getId();
         if (event.isPrimaryButtonDown() && inventory.size() < 4) {
-            System.out.println(id);
             game.grabTrash(id);
             Node node = (Node) event.getSource();
             node.setVisible(false);
@@ -100,7 +98,7 @@ public class LIVINGROOMController {
         } else if (event.isSecondaryButtonDown()) {
             inspect.setText(game.inspectTrash(id));
         } else {
-            inspect.setText("Din ryksæk er fyldt!");
+            inspect.setText("Din rygsæk er fyldt!");
         }
     }
 
@@ -172,7 +170,7 @@ public class LIVINGROOMController {
     }
 
     //Sets the help window as closed when someone presses X on the window.
-    EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
+    EventHandler<WindowEvent> helpEventClose = new EventHandler<WindowEvent>() {
         @Override
         public void handle(WindowEvent we) {
             isHelpOpen = false;

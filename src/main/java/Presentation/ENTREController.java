@@ -4,6 +4,7 @@ import static Presentation.StartscreenController.game;
 import static Presentation.StartscreenController.loadFXML;
 import static Presentation.StartscreenController.setRoot;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -63,7 +64,6 @@ public class ENTREController {
         displayInventory.getItems().clear();
         for (int i = 0; i < inventory.size(); i++) {
             inventoryToDisplay.add(inventory.get(i));
-            System.out.println(inventoryToDisplay.get(i));
             displayInventory.getItems().add(inventory.get(i));
         }
     }
@@ -92,16 +92,14 @@ public class ENTREController {
     public void grab(MouseEvent event) {
         id = event.getPickResult().getIntersectedNode().getId();
         if (event.isPrimaryButtonDown() && inventory.size() < 4) {
-            System.out.println(id);
             game.grabTrash(id);
             Node node = (Node) event.getSource();
             node.setVisible(false);
             loadInventory();
-
         } else if (event.isSecondaryButtonDown()) {
             inspect.setText(game.inspectTrash(id));
         } else {
-            inspect.setText("Din ryksæk er fyldt!");
+            inspect.setText("Din rygsæk er fyldt!");
         }
     }
 
@@ -129,13 +127,9 @@ public class ENTREController {
 
             if (game.getMd().winCondition() == true) {
                 inspect.setText("Godt gået! Der er ikke mere skrald i huset. Klip på en af pilene for at gå til highscore og se hvordan det gik.");
-                
                 game.quit();
             }
-            
-
             isCorrect = game.depositTrash(trash);
-
             if (isCorrect) {
                 inspect.setText("Sådan min ven! Det er korrekt.");
             } else {
@@ -151,7 +145,6 @@ public class ENTREController {
 
     public void checkTrash() {
         trashInRoom = game.getTrashRoom();
-
         for (int i = 0; i < trashInRoom.size(); i++) {
             if (trashInRoom.get(i).getId().equals("beerCan")) {
                 beerCan.setVisible(true);
@@ -182,7 +175,7 @@ public class ENTREController {
     }
 
     //Sets the help window as closed when someone presses X on the window.
-    EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
+    EventHandler<WindowEvent> helpEventClose = new EventHandler<WindowEvent>() {
         @Override
         public void handle(WindowEvent we) {
             isHelpOpen = false;

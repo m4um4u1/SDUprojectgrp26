@@ -85,10 +85,8 @@ public class Game implements IGame {
     @Override
     public String inspectTrash(String id) {
         this.trashList = currentRoom.getRoomTrash();
-        System.out.println("Trying to inspect: ");
         for (int i = 0; i < trashList.size(); i++) {
             if (id.equals(trashList.get(i).getId())) {
-                System.out.println(trashList.get(i).getDescription());
                 return trashList.get(i).getDescription();
             }
         }
@@ -117,7 +115,6 @@ public class Game implements IGame {
     }
 
     public boolean depositTrash(Trash trash) throws FileNotFoundException {
-        System.out.println(trash.getTrashType() + currentRoom.getTrashbin().getTrashtype());
         if (currentRoom.getTrashbin().getTrashtype() == trash.getTrashType()) {
             md.updateScore(100);
             inventory.remove(trash);

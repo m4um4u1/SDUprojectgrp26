@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SDUprojectgrp26:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/SDUprojectgrp26_jar</output-path>
+    <root id="archive" name="SDUprojectgrp26.jar">
+      <element id="module-output" name="SDUprojectgrp26" />
+    </root>
+  </artifact>
+</component>

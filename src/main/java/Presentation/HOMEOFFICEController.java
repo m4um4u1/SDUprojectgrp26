@@ -57,7 +57,6 @@ public class HOMEOFFICEController {
     public void loadInventory() {
         inventory = game.getInventory();
         displayInventory.getItems().clear();
-
         for (int i = 0; i < inventory.size(); i++) {
             inventoryToDisplay.add(inventory.get(i));
             displayInventory.getItems().add(inventory.get(i));
@@ -76,8 +75,6 @@ public class HOMEOFFICEController {
     public void goDirection(MouseEvent event) throws IOException {
         nextRoom = game.goRoom(event.getPickResult().getIntersectedNode().getId());
         //testroom = game.goRoom("north");
-
-
         if (nextRoom != null) {
             nextRoom.getShortDescription();
             currentRoom = nextRoom;
@@ -89,7 +86,6 @@ public class HOMEOFFICEController {
     public void grab(MouseEvent event) {
         id = event.getPickResult().getIntersectedNode().getId();
         if (event.isPrimaryButtonDown() && inventory.size() < 4) {
-            System.out.println(id);
             game.grabTrash(id);
             Node node = (Node) event.getSource();
             node.setVisible(false);
@@ -97,7 +93,7 @@ public class HOMEOFFICEController {
         } else if (event.isSecondaryButtonDown()) {
             inspect.setText(game.inspectTrash(id));
         } else {
-            inspect.setText("Din ryksæk er fyldt!");
+            inspect.setText("Din rygsæk er fyldt!");
         }
     }
 
@@ -168,7 +164,7 @@ public class HOMEOFFICEController {
     }
 
     //Sets the help window as closed when someone presses X on the window.
-    EventHandler<WindowEvent> helpEventClose = new EventHandler<>() {
+    EventHandler<WindowEvent> helpEventClose = new EventHandler<WindowEvent>() {
         @Override
         public void handle(WindowEvent we) {
             isHelpOpen = false;
