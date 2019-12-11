@@ -16,7 +16,7 @@
             <Image url="@../Images/toilet.png" />
          </image>
       </ImageView>
-        <ImageView fx:id="toiletpaperroll" fitHeight="37.0" fitWidth="38.0" layoutX="771.0" layoutY="450.0" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true" visible="false">
+        <ImageView fx:id="toiletpaperroll" fitHeight="37.0" fitWidth="67.0" layoutX="772.0" layoutY="474.0" onMousePressed="#grab" pickOnBounds="true" preserveRatio="true" visible="false">
             <image>
                 <Image url="@../Images/toiletPaper.png" />
             </image>
