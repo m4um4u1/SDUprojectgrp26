@@ -114,12 +114,12 @@ public class Game implements IGame {
         if (currentRoom.getTrashbin().getTrashtype() == trash.getTrashType()) {
             md.updateScore(100);
             inventory.remove(trash);
-            md.winCondition();
+            md.winConditionIncrementer();
             return true;
         } else {
             md.updateScore(-50);
             inventory.remove(trash);
-            md.winCondition();
+            md.winConditionIncrementer();
             return false;
         }
     }

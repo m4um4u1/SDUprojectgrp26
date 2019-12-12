@@ -32,6 +32,7 @@ public class BATHROOMController {
     private boolean isHelpOpen;
     private boolean isCorrect;
     private ObservableList<Trash> inventoryToDisplay = FXCollections.observableArrayList();
+    private boolean finalMove;
 
     @FXML
     private Label scoreLabel;
@@ -59,21 +60,27 @@ public class BATHROOMController {
 
     }
 
-    public void initialize() {
+    public void initialize() throws FileNotFoundException {
         scoreLabel.setText("Score: " + (String.valueOf(game.getMd().getScore())));
         checkTrash();
         loadInventory();
         inspect.setStyle("-focus-color: transparent; -fx-text-box-border: transparent;");
-
+        
+        if (game.getMd().winConditionChecker()) {
+            inspect.setText("Godt gået! Der er ikke mere skrald i huset. Klik på en pil for at se din score på highscore listen.");
+            finalMove = true;
+            game.quit();
+        }
     }
 
     @FXML
     public void goDirection(MouseEvent event) throws IOException {
         nextRoom = game.goRoom(event.getPickResult().getIntersectedNode().getId());
-
-        if (nextRoom == null) {
-            System.out.println(currentRoom);
-        } else {
+        
+        if (finalMove) {
+            setRoot("Highscore");
+            
+        } else if (nextRoom != null) {
             nextRoom.getShortDescription();
             currentRoom = nextRoom;
             setRoot(currentRoom.getRoot());

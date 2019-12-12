@@ -21,6 +21,6 @@
          <font>
             <Font size="28.0" />
          </font></Text>
-        <Button layoutX="177.0" layoutY="347.0" mnemonicParsing="false" onAction="#handleButtonBack" text="Tilbage" />
+        <Button fx:id="buttonBack" layoutX="177.0" layoutY="347.0" mnemonicParsing="false" onAction="#handleButtonBack" text="Tilbage" />
     </children>
 </AnchorPane>

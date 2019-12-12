@@ -114,8 +114,10 @@ public class StartscreenController extends Application {
         @Override
         public void handle(WindowEvent we) {
             try {
-                // Gets the metadata object from Game and calls its quit method:
-                game.getMd().quit();
+                // Gets the metadata object from Game and calls its quit method IF the win condition has not been met:
+                if (!game.getMd().winConditionChecker()) {
+                    game.getMd().quit();
+                }
             } catch (FileNotFoundException ex) {
                 System.out.println("File not found");
             }
