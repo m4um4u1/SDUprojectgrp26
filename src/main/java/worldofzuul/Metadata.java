@@ -110,10 +110,17 @@ public class Metadata implements IMetadata {
         this.tries = 0;
     }
 
-    public boolean winCondition() throws FileNotFoundException {
+    @Override
+    public void winConditionIncrementer() {
+        System.out.println(trashCountdown);
         trashCountdown += 1;
+        System.out.println(trashCountdown);
+    }
+        
+    @Override
+    public boolean winConditionChecker() throws FileNotFoundException {
         // When trash has been deposited 15 times the game ends
-        if (trashCountdown == 15) {
+        if (trashCountdown == 3) {
             this.tries++;
             return true;
         } else {
@@ -130,7 +137,7 @@ public class Metadata implements IMetadata {
         }
         data.saveCSV(player);
         resetData();
-        System.out.println("GAME QUITS HERE");
+        System.out.println("Game ends here");
     }
 
     public String formatScore() { // Prints players in highscore

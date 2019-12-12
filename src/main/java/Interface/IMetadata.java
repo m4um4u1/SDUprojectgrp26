@@ -16,7 +16,9 @@ public interface IMetadata {
 
     String checkUser(String playerName);
 
-    boolean winCondition() throws FileNotFoundException;
+    void winConditionIncrementer();
+    
+    boolean winConditionChecker() throws FileNotFoundException;
 
 }
 

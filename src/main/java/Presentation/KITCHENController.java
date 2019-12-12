@@ -32,6 +32,7 @@ public class KITCHENController {
     private Trash trash;
     private boolean isHelpOpen;
     private boolean isCorrect;
+    private boolean finalMove;
 
     @FXML
     private Label scoreLabel;
@@ -66,18 +67,27 @@ public class KITCHENController {
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws FileNotFoundException {
         scoreLabel.setText("Score: " + (String.valueOf(game.getMd().getScore())));
         checkTrash();
         loadInventory();
         inspect.setStyle("-focus-color: transparent; -fx-text-box-border: transparent;");
+        
+        if (game.getMd().winConditionChecker()) {
+            inspect.setText("Godt gået! Der er ikke mere skrald i huset. Klik på en pil for at se din score på highscore listen.");
+            finalMove = true;
+            game.quit();
+        }
     }
 
     @FXML
     public void goDirection(MouseEvent event) throws IOException {
         nextRoom = game.goRoom(event.getPickResult().getIntersectedNode().getId());
-
-        if (nextRoom != null) {
+        
+        if (finalMove) {
+            setRoot("Highscore");
+            
+        } else if (nextRoom != null) {
             nextRoom.getShortDescription();
             currentRoom = nextRoom;
             setRoot(currentRoom.getRoot());
