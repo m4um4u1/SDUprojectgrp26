@@ -64,7 +64,7 @@ public class Player implements Comparable<Player> {
     public String toString() {
         return "Navn: " + name + "\n" +
                 "Sidste score: " + score + "\n" +
-                "Beste score: " + bestScore + "\n" +
+                "Bedste score: " + bestScore + "\n" +
                 "Sidst været: " + location + "\n" +
                 "Gennemspilninger: " + tries + "\n" +
                 "------------------------" + "\n";
