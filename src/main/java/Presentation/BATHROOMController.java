@@ -30,7 +30,6 @@ public class BATHROOMController {
     private ArrayList<Trash> trashInRoom;
     private Trash trash;
     private boolean isHelpOpen;
-    private boolean isCorrect;
     private ObservableList<Trash> inventoryToDisplay = FXCollections.observableArrayList();
     private boolean finalMove;
 
@@ -65,7 +64,7 @@ public class BATHROOMController {
         checkTrash();
         loadInventory();
         inspect.setStyle("-focus-color: transparent; -fx-text-box-border: transparent;");
-        
+
         if (game.getMd().winConditionChecker()) {
             inspect.setText("Godt gået! Der er ikke mere skrald i huset. Klik på en pil for at se din score på highscore listen.");
             finalMove = true;
@@ -110,27 +109,6 @@ public class BATHROOMController {
                 trash = displayInventory.getSelectionModel().getSelectedItem();
                 inspect.setText(trash.getDescription());
             }
-        }
-
-    }
-
-    @FXML
-    public void deposit(MouseEvent event) throws FileNotFoundException {
-        trash = displayInventory.getSelectionModel().getSelectedItem();
-
-        if (trash != null) {
-            isCorrect = game.depositTrash(trash);
-
-            if (isCorrect) {
-                inspect.setText("Sådan min ven! Det er korrekt.");
-            } else {
-                inspect.setText(trash.getFeedback());
-            }
-            loadInventory();
-            trash = null;
-            scoreLabel.setText("Score: " + (String.valueOf(game.getMd().getScore())));
-        } else {
-            //Do nothing!
         }
 
     }

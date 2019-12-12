@@ -120,22 +120,19 @@ public class DRIVEWAYController {
     @FXML
     public void deposit(MouseEvent event) throws FileNotFoundException {
         trash = displayInventory.getSelectionModel().getSelectedItem();
-
         if (trash != null) {
             isCorrect = game.depositTrash(trash);
-
             if (isCorrect) {
-                inspect.setText("Sådan min ven! Det er korrekt.");
+                inspect.setText("Sådan! Det er korrekt - " + trash.getFeedback());
             } else {
-                inspect.setText(trash.getFeedback());
+                inspect.setText("Det er ikke korrekt - " + trash.getFeedback());
             }
             loadInventory();
             trash = null;
             scoreLabel.setText("Score: " + (String.valueOf(game.getMd().getScore())));
-        } else {
-            //Do nothing!
         }
     }
+
 
     public void checkTrash() {
         trashInRoom = game.getTrashRoom();

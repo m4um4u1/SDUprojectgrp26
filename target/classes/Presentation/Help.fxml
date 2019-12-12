@@ -12,6 +12,9 @@
                 <Font size="36.0" />
             </font>
         </Label>
-        <TextArea editable="false" layoutX="7.0" layoutY="70.0" prefHeight="397.0" prefWidth="706.0" text="Sammel ting op: ventreklik&#10;&#10;Smid ud:  ventreklik (på rysæk så skraldespanden)&#10;&#10;Undersøg: højreklik (i rygsæk eller gulvet)&#10;&#10;Afslut spillet: luk vinduet (der bliver gemt automatisk)&#10;&#10;Bevæg: tryk på pilene&#10;&#10;&#10;&#10;Venstreklik på de forskellige pile i hvert rum, for at bevæge dig mellem rummene.&#10;&#10;Venstreklik på affald i rummet for at tilføje det til din rygsæk.&#10;Højreklik på affaldet i din rygsæk eller på gulvet for at undersøge det.&#10;&#10;Højreklik på skraldespanden i rummet for at undersøge hvilken type skraldespand der er tale om.&#10;Venstreklik på et stykke affald i din rygsæk, og venstreklik igen på skraldespanden for at smide affaldet ud. &#10;&#10;Alt efter hvor godt eller dårligt du sorterer affaldet, vil du få en score man kan se øverst til venstre." wrapText="true" />
+        <TextArea editable="false" layoutX="7.0" layoutY="70.0" prefHeight="397.0" prefWidth="706.0" text="Sammel ting op: ventreklik&#10;&#10;Smid ud:  ventreklik (på rygsæk og derefter skraldespanden)&#10;&#10;Undersøg: højreklik (i rygsæk eller gulvet)&#10;&#10;Afslut spillet: luk vinduet (der bliver gemt automatisk)&#10;&#10;Bevæg: tryk på pilene&#10;&#10;&#10;Venstreklik på de forskellige pile i hvert rum, for at bevæge dig mellem rummene.&#10;&#10;Venstreklik på affald i rummet for at tilføje det til din rygsæk.&#10;Højreklik på affaldet i din rygsæk eller på gulvet for at undersøge det.&#10;&#10;Venstreklik på et stykke affald i din rygsæk, og venstreklik igen på skraldespanden for at smide affaldet ud. &#10;&#10;Alt efter hvor godt eller dårligt du sorterer affaldet, vil du få en score man kan se øverst til venstre.&#10;&#10;Du får feedback når du smider forkert." wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></TextArea>
     </children>
 </Pane>

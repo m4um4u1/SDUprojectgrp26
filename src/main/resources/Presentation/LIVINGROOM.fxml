@@ -68,14 +68,14 @@
          </font>
       </Label>
       <Button fx:id="help" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#help" prefWidth="142.0" text="Hjælp" />
-      <ImageView fitHeight="296.0" fitWidth="323.0" layoutX="643.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="392.0" fitWidth="452.0" layoutX="632.0" layoutY="-32.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/speaking_bubble_trans.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="inspect" editable="false" layoutX="722.0" layoutY="109.0" prefHeight="107.0" prefWidth="134.0" style="-fx-background-color: white;" wrapText="true">
+      <TextArea fx:id="inspect" editable="false" layoutX="745.0" layoutY="86.0" prefHeight="149.0" prefWidth="167.0" style="-fx-background-color: white;" wrapText="true">
          <font>
-            <Font size="16.0" />
+            <Font size="15.0" />
          </font></TextArea>
       <Label fx:id="scoreLabel" layoutX="14.0" layoutY="55.0" text=" Score: ">
          <font>
