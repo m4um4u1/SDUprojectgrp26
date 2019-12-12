@@ -4,7 +4,6 @@ import Data.DataRaW;
 import Interface.IDataRaW;
 import Interface.IMetadata;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,15 +13,17 @@ public class Metadata implements IMetadata {
     public File metaData = new File("metadata.csv");
     private IDataRaW data = new DataRaW();
     private ArrayList<Player> users = new ArrayList<>();
-    private int chooser;
     private String playerName;
+    private Player loggedIn;
     private int score;
     private int tries;
     private String currentRoom;
     private String output;
     private String clearOutput;
     private Player player;
+    private int bestScore;
     private boolean newPlayer;
+    private boolean isLoggedIn;
     private int trashCountdown;
 
     public Metadata() {
@@ -37,6 +38,7 @@ public class Metadata implements IMetadata {
             }
         } else {
             loadPlayers();
+            Collections.sort(users); // Sorts the users according their score; highest to lowest.
         }
     }
     
@@ -52,9 +54,10 @@ public class Metadata implements IMetadata {
                 String[] player = players.split(" ");
                 String playerName = player[0];
                 int score = Integer.parseInt(player[1]);
-                String currentRoom = player[2] + " " + player[3];
-                int tries = Integer.parseInt(player[4]);
-                Player user = new Player(playerName, score, currentRoom, tries);
+                int bestScore = Integer.parseInt(player[2]);
+                String currentRoom = player[3] + " " + player[4];
+                int tries = Integer.parseInt(player[5]);
+                Player user = new Player(playerName, score, bestScore, currentRoom, tries);
                 users.add(user);
             }
         }
@@ -66,10 +69,10 @@ public class Metadata implements IMetadata {
         if (!users.isEmpty()) {
             for (Player p : users) {
                 if (playerName.equals(p.getName())) {
-                    chooser = users.indexOf(p);
                     output = "Er du ikke " + playerName + "? Så log på med din bruger, eller lav en ny.";
+                    loggedIn = p;
                     loadPlayer();
-                    users.remove(p); //sletter den gamle bruger så der kan blive lavet en ny
+                    newPlayer = false;
                     break;
                 } else {
                     newPlayer = true;
@@ -80,18 +83,32 @@ public class Metadata implements IMetadata {
             newPlayer = true;
             output = "Du opretter en ny bruger.";
         }
+        isLoggedIn = true;
         return output;
     }
 
+    public void startGame(){
+        this.score = 0;
+    }
+
     private Player addNewPlayer() { // Creates a new player
-        player = new Player(this.playerName, this.score, this.currentRoom, this.tries);
+        player = new Player(this.playerName, this.score, this.bestScore, this.currentRoom, this.tries);
         return player;
     }
 
     private void loadPlayer() { // Loads data from current player
-        this.playerName = users.get(chooser).getName();
-        this.currentRoom = users.get(chooser).getLocation();
-        this.tries = users.get(chooser).getTries();
+        this.playerName = loggedIn.getName();
+        this.score = loggedIn.getScore();
+        this.bestScore = loggedIn.getBestScore();
+        this.currentRoom = loggedIn.getLocation();
+        this.tries = loggedIn.getTries();
+    }
+
+    private void updatePlayer(){
+        loggedIn.setLocation(this.currentRoom);
+        loggedIn.setScore(this.score);
+        loggedIn.setBestScore(this.bestScore);
+        loggedIn.setTries(this.tries);
     }
 
     // Updates the score:
@@ -103,20 +120,13 @@ public class Metadata implements IMetadata {
         this.currentRoom = currentRoom;
     }
 
-    private void resetData() {
-        this.playerName = "";
-        this.score = 0;
-        this.currentRoom = "";
-        this.tries = 0;
-    }
-
     @Override
     public void winConditionIncrementer() {
         trashCountdown += 1;
     }
         
     @Override
-    public boolean winConditionChecker() throws FileNotFoundException {
+    public boolean winConditionChecker() {
         // When trash has been deposited 15 times the game ends
         if (trashCountdown == 15) {
             this.tries++;
@@ -128,18 +138,25 @@ public class Metadata implements IMetadata {
 
     @Override
     public void quit() { // Saves players to csv
-        users.add(addNewPlayer());
-        ArrayList<String> player = new ArrayList<>();
-        for (Player p : users) {
-            player.add(p.getName() + " " + p.getScore() + " " + p.getLocation() + " " + p.getTries());
+        if (isLoggedIn) {
+            if (this.score > this.bestScore){
+                this.bestScore = this.score;
+            }
+            if (newPlayer) {
+                users.add(addNewPlayer());
+            } else {
+                updatePlayer();
+            }
+            Collections.sort(users);
+            ArrayList<String> player = new ArrayList<>();
+            for (Player p : users) {
+                player.add(p.getName() + " " + p.getScore() + " " + p.getBestScore() + " " + p.getLocation() + " " + p.getTries());
+            }
+            data.saveCSV(player);
         }
-        data.saveCSV(player);
-        resetData();
     }
-
     public String formatScore() { // Prints players in highscore
         clearOutput = "";
-        Collections.sort(users); // Sorts the users according their score; highest to lowest.
         for (Player p : users) {
             clearOutput += p.toString();
         }

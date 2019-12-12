@@ -102,6 +102,7 @@ public class StartscreenController extends Application {
 
     @FXML
     public void handleButtonStart() throws IOException { // starts the game
+        game.getMd().startGame();
         setRoot("DRIVEWAY");
     }
 

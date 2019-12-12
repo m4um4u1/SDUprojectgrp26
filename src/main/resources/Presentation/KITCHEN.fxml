@@ -55,10 +55,7 @@
             <Image url="@../Images/speaking_bubble_trans_downleft.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="inspect" editable="false" layoutX="538.0" layoutY="137.0" prefHeight="112.0" prefWidth="150.0" style="-fx-background-color: white;" wrapText="true">
-         <font>
-            <Font size="16.0" />
-         </font></TextArea>
+      <TextArea fx:id="inspect" editable="false" layoutX="538.0" layoutY="137.0" prefHeight="119.0" prefWidth="154.0" style="-fx-background-color: white;" wrapText="true" />
       <Label fx:id="scoreLabel" layoutX="14.0" layoutY="55.0" text=" Score: ">
          <font>
             <Font size="18.0" />

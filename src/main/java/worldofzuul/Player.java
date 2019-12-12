@@ -3,22 +3,40 @@ package worldofzuul;
 public class Player implements Comparable<Player> {
     private String name;
     private String location;
+    private int bestScore;
     private int score;
     private int tries;
 
-    public Player(String name, int score, String location, int tries) {
+    public Player(String name, int score, int bestScore, String location, int tries) {
         this.name = name;
         this.location = location;
+        this.bestScore = bestScore;
         this.score = score;
+        this.tries = tries;
+    }
+
+    public int getBestScore() {
+        return bestScore;
+    }
+
+    public void setBestScore(int bestScore) {
+        this.bestScore = bestScore;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setTries(int tries) {
         this.tries = tries;
     }
 
     public void setScore(int score) {
         this.score = score;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getName() {
@@ -33,25 +51,22 @@ public class Player implements Comparable<Player> {
         return location;
     }
 
-    public void setTries(int tries) {
-        this.tries = tries;
-    }
-
     public int getTries() {
         return tries;
     }
 
     @Override
     public int compareTo(Player p) {
-        return p.getScore() - this.score;
+        return p.getBestScore() - this.bestScore;
     }
 
     @Override
     public String toString() {
         return "Navn: " + name + "\n" +
-                "Score: " + score + "\n" +
+                "Sidste score: " + score + "\n" +
+                "Beste score: " + bestScore + "\n" +
                 "Sidst været: " + location + "\n" +
-                "Forsøg: " + tries + "\n" +
-                "-------------" + "\n";
+                "Gennemspilninger: " + tries + "\n" +
+                "------------------------" + "\n";
     }
 }

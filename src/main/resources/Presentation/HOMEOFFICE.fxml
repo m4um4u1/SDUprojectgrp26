@@ -52,7 +52,7 @@
       </ImageView>
       <TextArea fx:id="inspect" editable="false" layoutX="258.0" layoutY="240.0" prefHeight="166.0" prefWidth="175.0" style="-fx-background-color: white;" wrapText="true">
          <font>
-            <Font size="16.0" />
+            <Font size="15.0" />
          </font></TextArea>
       <Label fx:id="scoreLabel" layoutX="14.0" layoutY="55.0" text=" Score: ">
          <font>

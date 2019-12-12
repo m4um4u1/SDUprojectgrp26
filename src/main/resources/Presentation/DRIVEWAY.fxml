@@ -56,7 +56,7 @@
             <Blend />
          </effect>
          <font>
-            <Font size="14.0" />
+            <Font size="12.0" />
          </font></TextArea>
       <Label fx:id="scoreLabel" layoutX="14.0" layoutY="55.0" text=" Score: ">
          <font>
