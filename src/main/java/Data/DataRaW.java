@@ -13,7 +13,7 @@ public class DataRaW implements IDataRaW {
     // Reads the whole CSV file and puts it in an array:
     @Override
     public ArrayList<String> readCSV() {
-        file.setReadable(true); // makes it harder for the user to manipulate highscore
+        file.setReadable(true); // Makes it harder for the user to manipulate highscore
         ArrayList<String> scoreArray = new ArrayList<>();
         try {
             Scanner fileReader = new Scanner(file);
@@ -33,7 +33,7 @@ public class DataRaW implements IDataRaW {
     public void saveCSV(ArrayList<String> scoreArray) {
         // Writes the ArrayList to the metadata.csv file:
         try {
-            file.setWritable(true); // makes it harder for the user to manipulate highscore
+            file.setWritable(true); // Makes it harder for the user to manipulate highscore
             PrintWriter fileWriter = new PrintWriter(file);
             for (String s : scoreArray) {
                 fileWriter.println(s);

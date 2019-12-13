@@ -47,7 +47,7 @@ public class BATHROOMController {
 
     @FXML
     private ListView<Trash> displayInventory = new ListView<>(inventoryToDisplay);
-
+    
     public void loadInventory() {
         inventory = game.getInventory();
         displayInventory.getItems().clear();
@@ -137,8 +137,6 @@ public class BATHROOMController {
             this.isHelpOpen = true;
             //Sets an event that runs when the player presses on the close window button built in from Windows/Macs side.
             stageHelp.setOnCloseRequest(helpEventClose);
-        } else {
-            //Do nothing!
         }
     }
 

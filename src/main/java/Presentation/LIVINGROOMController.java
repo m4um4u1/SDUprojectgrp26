@@ -104,7 +104,7 @@ public class LIVINGROOMController {
         } else if (event.isSecondaryButtonDown()) {
             inspect.setText(game.inspectTrash(id));
         } else {
-            inspect.setText("Din ryksæk er fyldt!");
+            inspect.setText("Din rygsæk er fyldt!");
         }
     }
 
@@ -160,8 +160,6 @@ public class LIVINGROOMController {
             this.isHelpOpen = true;
             //Sets an event that runs when the player presses on the close window button built in from Windows/Macs side.
             stageHelp.setOnCloseRequest(helpEventClose);
-        } else {
-            //Do nothing!
         }
     }
 
